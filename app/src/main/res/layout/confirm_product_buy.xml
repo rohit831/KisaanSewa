@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#348E17"
+        android:layout_weight="2"
+        android:text="KISAAN SEWA"
+        android:textColor="#FFF"
+        style="@style/Base.TextAppearance.AppCompat.Headline"
+        android:gravity="center"
+        android:textStyle="bold"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.3"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/finalProductName"
+            android:text="WHEAT"
+            style="@style/Base.TextAppearance.AppCompat.Headline"
+            android:textStyle="bold"
+            android:textColor="#2b312a"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"/>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Price : Rs."
+                android:textStyle="bold"
+                android:layout_marginLeft="5dp"
+                style="@style/Base.TextAppearance.AppCompat.Medium"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="70"
+                android:textStyle="bold"
+                android:layout_marginLeft="2dp"
+                style="@style/Base.TextAppearance.AppCompat.Medium"
+                android:id="@+id/finalProductPrice"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="/kg "
+                android:textStyle="bold"
+                android:layout_marginLeft="2dp"
+                style="@style/Base.TextAppearance.AppCompat.Medium"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Items Remaining : "
+                android:layout_marginLeft="5dp"
+                android:textStyle="bold"
+                style="@style/Base.TextAppearance.AppCompat.Medium"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="500"
+                android:layout_marginLeft="2dp"
+                android:id="@+id/finalProductQuantity"
+                android:textStyle="bold"
+                style="@style/Base.TextAppearance.AppCompat.Medium"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="kg"
+                android:layout_marginLeft="2dp"
+                android:textStyle="bold"
+                style="@style/Base.TextAppearance.AppCompat.Medium"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2.8"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Seller Details:"
+            style="@style/Base.TextAppearance.AppCompat.Headline"
+            android:textStyle="bold"
+            android:textColor="#348E17"
+            android:layout_marginLeft="5dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="3dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Name: "
+                android:textStyle="bold"
+                style="@style/Base.TextAppearance.AppCompat.Medium"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textStyle="normal"
+                android:id="@+id/finalSellerName"
+                android:text="Rohit Agrawal"
+                style="@style/Base.TextAppearance.AppCompat.Medium"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Contact No. : "
+                android:textStyle="bold"
+                style="@style/Base.TextAppearance.AppCompat.Medium"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textStyle="normal"
+                android:id="@+id/finalMobileNo"
+                android:text="9039888667"
+                style="@style/Base.TextAppearance.AppCompat.Medium"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Address: "
+                android:textStyle="bold"
+                style="@style/Base.TextAppearance.AppCompat.Medium"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textStyle="normal"
+                android:id="@+id/finalLocality"
+                android:text="Tatibandh"
+                style="@style/Base.TextAppearance.AppCompat.Medium"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="City: "
+                android:textStyle="bold"
+                style="@style/Base.TextAppearance.AppCompat.Medium"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textStyle="normal"
+                android:id="@+id/finalCity"
+                android:text="Raipur"
+                style="@style/Base.TextAppearance.AppCompat.Medium"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="State: "
+                android:textStyle="bold"
+                style="@style/Base.TextAppearance.AppCompat.Medium"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textStyle="normal"
+                android:id="@+id/finalState"
+                android:text="Chattisgarh"
+                style="@style/Base.TextAppearance.AppCompat.Medium"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.8"
+        android:layout_marginLeft="5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Quantity:  "
+            android:textColor="#348E17"
+            android:gravity="center"
+            android:textStyle="bold"
+            style="@style/Base.TextAppearance.AppCompat.Medium"
+            />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="bottom"
+            android:inputType="number"
+            android:lines="1"
+            android:id="@+id/finalRequiredQuantity"
+            android:layout_height="match_parent" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="match_parent"
+            android:text="kgs"
+            style="@style/Base.TextAppearance.AppCompat.Medium"
+            android:gravity="center_vertical"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2">
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#348E17"
+        android:layout_margin="5dp"
+        android:textColor="#FFF"
+
+        android:text="BUY PRODUCT"
+        style="@style/Base.TextAppearance.AppCompat.Medium"
+        android:textStyle="bold"
+        android:id="@+id/finalBuyProduct"/>
+
+
+</LinearLayout>

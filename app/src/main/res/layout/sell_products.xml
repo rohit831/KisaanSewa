@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="#D0D6CE"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#348E17"
+        android:layout_weight="2"
+        android:text="KISAAN SEWA"
+        android:textColor="#FFF"
+        style="@style/Base.TextAppearance.AppCompat.Headline"
+        android:gravity="center"
+        android:textStyle="bold"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.8"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="#FFF"
+            android:text="  Tap to edit"
+            style="@style/Base.TextAppearance.AppCompat.Medium"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.4"
+            android:text=""
+            android:gravity="center"
+            android:textStyle="bold"
+            android:background="#FFF"
+            style="@style/Base.TextAppearance.AppCompat.Headline"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_weight="0.8"
+            android:gravity="center_vertical"
+            android:layout_height="match_parent"
+            android:background="#FFf"
+            style="@style/Base.TextAppearance.AppCompat.Medium"
+            android:text="  Long Press to delete."
+            />
+
+    </LinearLayout>
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="7dp"
+            android:id="@+id/sellProductsRefresh"
+            android:layout_weight="9">
+
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/sellProductsView"
+                ></android.support.v7.widget.RecyclerView>
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#348E17"
+        android:layout_margin="5dp"
+        android:textColor="#FFF"
+        android:text="ADD PRODUCT"
+        style="@style/Base.TextAppearance.AppCompat.Medium"
+        android:textStyle="bold"
+        android:id="@+id/addProduct"/>
+</LinearLayout>

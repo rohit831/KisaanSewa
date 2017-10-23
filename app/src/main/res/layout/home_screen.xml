@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:id="@+id/homeScreen"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:background="#348E17"
+        android:layout_weight="1.2">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:text="    KISAAN SEWA"
+            android:textColor="#FFF"
+            style="@style/Base.TextAppearance.AppCompat.Headline"
+            android:gravity="center"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.4"
+            android:background="@null"
+            android:textColor="#FFF"
+            android:text="&#8942;"
+            android:onClick="optionsButtonOnClick"
+            android:id="@+id/optionsButton"
+            android:gravity="center"
+            style="@style/Base.TextAppearance.AppCompat.Large"
+            android:textStyle="bold"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="9"
+        android:orientation="vertical"
+        android:background="#D0D6CE">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="7dp"
+            android:text="BUY PRODUCTS"
+            android:id="@+id/buyProducts"
+            android:textColor="#2b312a"
+            android:layout_marginRight="7dp"
+            style="@style/Base.TextAppearance.AppCompat.Large"
+            android:textStyle="bold"
+            android:onClick="buyProductsOnClick"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="7dp"
+            android:background="#FFF"/>
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:onClick="sellProductsOnclick"
+            style="@style/Base.TextAppearance.AppCompat.Large"
+            android:textStyle="bold"
+            android:textColor="#2b312a"
+            android:layout_marginLeft="7dp"
+            android:id="@+id/sellProducts"
+            android:text="SELL PRODUCTS"
+            android:layout_marginRight="7dp"
+            android:layout_marginBottom="7dp"
+            android:background="#FFF"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="7dp"
+            android:layout_marginRight="7dp"
+            android:text="MARKET STATUS"
+            android:textColor="#2B312A"
+            android:layout_marginBottom="7dp"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:onClick="marketStatusOnClick"
+            android:id="@+id/marketStatus"
+            style="@style/Base.TextAppearance.AppCompat.Large"
+            android:background="#FFF"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.5"/>
+
+    </LinearLayout>
+
+</LinearLayout>

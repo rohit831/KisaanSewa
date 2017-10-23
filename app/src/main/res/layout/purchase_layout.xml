@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="#FFF"
+    android:layout_marginBottom="7dp"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/purchasedProductName"
+            android:text="WHEAT"
+            style="@style/Base.TextAppearance.AppCompat.Headline"
+            android:textStyle="bold"
+            android:textColor="#2b312a"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"/>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Price : Rs."
+                android:textStyle="bold"
+                android:layout_marginLeft="5dp"
+                style="@style/Base.TextAppearance.AppCompat.Medium"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="70"
+                android:textStyle="bold"
+                android:layout_marginLeft="2dp"
+                style="@style/Base.TextAppearance.AppCompat.Medium"
+                android:id="@+id/purchasedProductPrice"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="/kg "
+                android:textStyle="bold"
+                android:layout_marginLeft="2dp"
+                style="@style/Base.TextAppearance.AppCompat.Medium"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Quantity Purchased : "
+                android:layout_marginLeft="5dp"
+                android:textStyle="bold"
+                style="@style/Base.TextAppearance.AppCompat.Medium"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="500"
+                android:layout_marginLeft="2dp"
+                android:id="@+id/purchasedProductQuantity"
+                android:textStyle="bold"
+                style="@style/Base.TextAppearance.AppCompat.Medium"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="kg"
+                android:layout_marginLeft="2dp"
+                android:textStyle="bold"
+                style="@style/Base.TextAppearance.AppCompat.Medium"
+                />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#2b312a"
+            android:layout_marginLeft="7dp"
+            android:layout_marginRight="7dp"
+
+            />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Seller Details:"
+            style="@style/Base.TextAppearance.AppCompat.Headline"
+            android:textStyle="bold"
+            android:textColor="#348E17"
+            android:layout_marginLeft="5dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="3dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Name: "
+                android:textStyle="bold"
+                style="@style/Base.TextAppearance.AppCompat.Medium"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textStyle="normal"
+                android:id="@+id/purchasedSellerName"
+                android:text="Rohit Agrawal"
+                style="@style/Base.TextAppearance.AppCompat.Medium"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Contact No. : "
+                android:textStyle="bold"
+                style="@style/Base.TextAppearance.AppCompat.Medium"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textStyle="normal"
+                android:id="@+id/purchasedSellerMobileNo"
+                android:text="9039888667"
+                style="@style/Base.TextAppearance.AppCompat.Medium"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Address: "
+                android:textStyle="bold"
+                style="@style/Base.TextAppearance.AppCompat.Medium"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textStyle="normal"
+                android:id="@+id/purchasedSellerLocality"
+                android:text="Tatibandh"
+                style="@style/Base.TextAppearance.AppCompat.Medium"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="City: "
+                android:textStyle="bold"
+                style="@style/Base.TextAppearance.AppCompat.Medium"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textStyle="normal"
+                android:id="@+id/purchasedSellerCity"
+                android:text="Raipur"
+                style="@style/Base.TextAppearance.AppCompat.Medium"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="State: "
+                android:textStyle="bold"
+                style="@style/Base.TextAppearance.AppCompat.Medium"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textStyle="normal"
+                android:id="@+id/purchasedSellerState"
+                android:text="Chattisgarh"
+                style="@style/Base.TextAppearance.AppCompat.Medium"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

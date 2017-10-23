@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="7dp"
+    android:background="#FFF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Wheat"
+            android:layout_weight="0.5"
+            style="@style/Base.TextAppearance.AppCompat.Headline"
+            android:textStyle="bold"
+            android:layout_marginLeft="5dp"
+            android:textColor="#2b312a"
+            android:id="@+id/buyProductName"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/buyProductPrice"
+            android:textColor="#348E17"
+            android:text="70"
+            android:textStyle="bold"
+            android:gravity="end"
+            style="@style/Base.TextAppearance.AppCompat.Medium"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.2"
+
+            android:text="/kg"
+            style="@style/Base.TextAppearance.AppCompat.Medium"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Rajesh"
+            android:layout_marginLeft="5dp"
+            android:textStyle="italic"
+            android:id="@+id/sellerName"
+            style="@style/Base.TextAppearance.AppCompat.Medium"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text=" -"
+            style="@style/Base.TextAppearance.AppCompat.Medium"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="9039888667"
+            android:layout_marginLeft="5dp"
+            android:textStyle="italic"
+            android:id="@+id/sellerMobileNo"
+            style="@style/Base.TextAppearance.AppCompat.Medium"/>
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Items Remaining : "
+            android:layout_marginLeft="5dp"
+            style="@style/Base.TextAppearance.AppCompat.Medium"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="500"
+            android:layout_marginLeft="2dp"
+            android:id="@+id/buyProductQuantity"
+            style="@style/Base.TextAppearance.AppCompat.Medium"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="kg"
+            android:layout_marginLeft="2dp"
+            style="@style/Base.TextAppearance.AppCompat.Medium"
+            />
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="7dp"
+    android:layout_marginBottom="4dp"
     android:background="#FFF">
 
     <LinearLayout
@@ -16,10 +16,10 @@
             android:layout_height="wrap_content"
             android:text="Wheat"
             android:layout_weight="0.5"
-            style="@style/Base.TextAppearance.AppCompat.Headline"
-            android:textStyle="bold"
+            android:textSize="25sp"
+            style="@style/Base.TextAppearance.AppCompat.Title"
             android:layout_marginLeft="5dp"
-            android:textColor="#2b312a"
+            android:textColor="@color/black_off"
             android:id="@+id/buyProductName"
             />
 
@@ -30,7 +30,6 @@
             android:id="@+id/buyProductPrice"
             android:textColor="#348E17"
             android:text="70"
-            android:textStyle="bold"
             android:gravity="end"
             style="@style/Base.TextAppearance.AppCompat.Medium"/>
 

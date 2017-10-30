@@ -7,19 +7,18 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:gravity="center_vertical"
         android:text=" Confirm Product"
-        android:textStyle="bold"
-
-        style="@style/Base.TextAppearance.AppCompat.Headline"
+        android:textSize="20sp"
+        style="@style/Base.TextAppearance.AppCompat.Title"
         android:background="#348E17"
         android:textColor="#FFF"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#000"
+        android:textColor="@color/black_off"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="5dp"
         android:text="Are you sure you want to buy this product!"

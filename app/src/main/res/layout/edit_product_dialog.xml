@@ -5,12 +5,11 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:gravity="center_vertical"
         android:text=" Edit Product"
-        android:textStyle="bold"
-
-        style="@style/Base.TextAppearance.AppCompat.Headline"
+        android:textSize="20sp"
+        style="@style/Base.TextAppearance.AppCompat.Title"
         android:background="#348E17"
         android:textColor="#FFF"/>
 
@@ -20,7 +19,6 @@
         android:layout_marginTop="7dp"
         android:hint="Product Name"
         android:inputType="text"
-        style="@style/Base.TextAppearance.AppCompat.Title"
         android:gravity="bottom"
         android:id="@+id/editProductName"
         android:layout_marginLeft="5dp">
@@ -32,7 +30,6 @@
         android:layout_height="wrap_content"
         android:hint="Product Price (In Rs)"
         android:inputType="numberDecimal"
-        style="@style/Base.TextAppearance.AppCompat.Title"
         android:gravity="bottom"
         android:id="@+id/editProductPrice"
         android:layout_marginLeft="5dp"/>
@@ -42,7 +39,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/editProductQuantity"
         android:gravity="bottom"
-        style="@style/Base.TextAppearance.AppCompat.Title"
         android:hint="Product Quantity(In kg)"
         android:inputType="numberDecimal"
         android:layout_marginLeft="5dp"/>

@@ -4,34 +4,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#348E17"
-        android:text="PRODUCT DETAILS"
-        android:id="@+id/textView"
-        android:textColor="#FFF"
-        style="@style/Base.TextAppearance.AppCompat.Title"
-        android:textStyle="bold"/>
+    <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="#348E17"-->
+        <!--android:text="PRODUCT DETAILS"-->
+        <!--android:id="@+id/textView"-->
+        <!--android:textColor="#FFF"-->
+        <!--style="@style/Base.TextAppearance.AppCompat.Title"-->
+        <!--android:textStyle="bold"/>-->
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Product Name"
         android:inputType="text"
-        style="@style/Base.TextAppearance.AppCompat.Title"
         android:gravity="bottom"
         android:id="@+id/productNameDialog"
         android:layout_marginLeft="5dp">
 
         <requestFocus/>
     </EditText>
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Product Price (In Rs)"
         android:inputType="numberDecimal"
-        style="@style/Base.TextAppearance.AppCompat.Title"
         android:gravity="bottom"
         android:id="@+id/productPriceDialog"
         android:layout_marginLeft="5dp"/>
@@ -41,7 +40,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/productQuantityDialog"
         android:gravity="bottom"
-        style="@style/Base.TextAppearance.AppCompat.Title"
         android:hint="Product Quantity(In kg)"
         android:inputType="numberDecimal"
         android:layout_marginLeft="5dp"/>

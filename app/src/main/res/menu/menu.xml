@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/market_status"
+        android:title="Market Status"
+        app:showAsAction="always"
+        />
+
+    <item
+        android:id="@+id/purchase_requests"
+        android:title="Purchase Requests"
+        app:showAsAction="always"
+        />
+
+    <item
+        android:id="@+id/sell_requests"
+        android:title="Sell Requests"
+        app:showAsAction="always"
+        />
+
+    <item
+        android:id="@+id/orders"
+        android:title="My Orders"
+        app:showAsAction="always"
+        />
+
+    <item
+        android:id="@+id/my_profile"
+        android:title="My Profile"
+        app:showAsAction="always"
+        />
+
+    <item
+        android:id="@+id/logout"
+        android:title="Logout"
+        app:showAsAction="always"
+        />
+
+</menu>

@@ -11,8 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.gw.kisansewa.Homescreen.HomeScreen;
 import com.gw.kisansewa.api.AuthenticationAPI;
-import com.gw.kisansewa.HomeScreen;
 import com.gw.kisansewa.R;
 import com.gw.kisansewa.apiGenerator.AuthenticationGenerator;
 import com.gw.kisansewa.models.FarmerDetails;
@@ -79,7 +79,7 @@ public class FarmerRegister extends AppCompatActivity {
                                 if(response.code() == 201){
                                     SharedPreferences sharedPreferences = getSharedPreferences(FarmerLogin.FarmerPreferences, Context.MODE_PRIVATE);
                                     SharedPreferences.Editor editor = sharedPreferences.edit();
-                                    editor.putLong(FarmerLogin.FMobileNo, Long.parseLong(mobileNo.getText().toString()));
+                                    editor.putString(FarmerLogin.FMobileNo, mobileNo.getText().toString());
                                     editor.commit();
 
                                     Intent intent = new Intent(getApplicationContext(), HomeScreen.class);

@@ -1,27 +1,26 @@
-package com.gw.kisansewa.buyProduct;
+package com.gw.kisansewa.BuyProductsTab;
 
-import
-        android.app.AlertDialog;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gw.kisansewa.DBHandler;
+import com.gw.kisansewa.Homescreen.HomeScreen;
 import com.gw.kisansewa.R;
 import com.gw.kisansewa.api.BuyProductAPI;
 import com.gw.kisansewa.apiGenerator.ProductGenerator;
 import com.gw.kisansewa.models.CropDetails;
 import com.gw.kisansewa.models.FarmerDetails;
-import com.gw.kisansewa.models.PurchaseDetails;
+import com.gw.kisansewa.models.RequestDetails;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,9 +30,8 @@ import retrofit2.Response;
 public class ConfirmProductBuy extends AppCompatActivity {
 
     TextView productName,productPrice,productQuantity;
-    TextView sellerName,sellerMobileNo,sellerLocality,sellerCity,sellerState;
-    EditText quantityRequired;
-    Button confirmBuyProduct;
+    TextView sellerName,sellerMobileNo/*sellerLocality,sellerCity,sellerState*/;
+    TextView sellerAddress, message, call, findDistance, requestProduct;
     private BuyProductAPI buyProductAPI;
     private DBHandler dbHandler;
     String sellerNo= new String();
@@ -50,13 +48,32 @@ public class ConfirmProductBuy extends AppCompatActivity {
 
         initialize();
         getCropDetails();
-//        getFarmerDetails();
-        confirmBuyProduct.setOnClickListener(new View.OnClickListener() {
+
+        requestProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showCustomDialog();
             }
         });
+
+        message.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.fromParts("sms", sellerNo, null)));
+            }
+        });
+
+        call.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", sellerNo, null)));
+            }
+        });
+    }
+
+    public void findDistanceOnClick(View v){
+        Toast.makeText(ConfirmProductBuy.this, "Find Distance clicked", Toast.LENGTH_SHORT).show();
     }
 
     public void initialize()
@@ -67,11 +84,16 @@ public class ConfirmProductBuy extends AppCompatActivity {
         productQuantity=(TextView)findViewById(R.id.finalProductQuantity);
         sellerName=(TextView)findViewById(R.id.finalSellerName);
         sellerMobileNo=(TextView)findViewById(R.id.finalMobileNo);
-        sellerLocality=(TextView)findViewById(R.id.finalLocality);
-        sellerCity=(TextView)findViewById(R.id.finalCity);
-        sellerState=(TextView)findViewById(R.id.finalState);
-        quantityRequired=(EditText) findViewById(R.id.finalRequiredQuantity);
-        confirmBuyProduct=(Button) findViewById(R.id.finalBuyProduct);
+        sellerAddress = (TextView)findViewById(R.id.address_confirm_buy_product);
+        message = (TextView)findViewById(R.id.message_confirm_buy);
+        call = (TextView) findViewById(R.id.call_confirm_buy);
+        findDistance = (TextView) findViewById(R.id.find_distance_confirm_buy);
+        requestProduct = (TextView) findViewById(R.id.request_product_confirm_buy);
+//        sellerLocality=(TextView)findViewById(R.id.finalLocality);
+//        sellerCity=(TextView)findViewById(R.id.finalCity);
+//        sellerState=(TextView)findViewById(R.id.finalState);
+//        quantityRequired=(EditText) findViewById(R.id.finalRequiredQuantity);
+//        confirmBuyProduct=(Button) findViewById(R.id.finalBuyProduct);
         farmerDetails=new FarmerDetails();
         cropDetails=new CropDetails();
 
@@ -128,9 +150,14 @@ public class ConfirmProductBuy extends AppCompatActivity {
 
         sellerName.setText(farmerDetails.getName());
         sellerMobileNo.setText(farmerDetails.getMobileNo());
-        sellerLocality.setText(farmerDetails.getArea());
-        sellerCity.setText(farmerDetails.getCity());
-        sellerState.setText(farmerDetails.getState());
+        String area = farmerDetails.getArea();
+        String city = farmerDetails.getCity();
+        String state = farmerDetails.getState();
+        sellerAddress.setText(area.concat(", ").concat(city).concat(", ")
+        .concat(state));
+//        sellerLocality.setText(farmerDetails.getArea());
+//        sellerCity.setText(farmerDetails.getCity());
+//        sellerState.setText(farmerDetails.getState());
     }
 
     public void showCustomDialog()
@@ -147,20 +174,7 @@ public class ConfirmProductBuy extends AppCompatActivity {
         customDialog.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                if(quantityRequired.getText().toString().equals(""))
-                {
-                    Toast.makeText(context,"Enter Required Quantity first!!",Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    if(Long.parseLong(quantityRequired.getText().toString())>Long.parseLong(productQuantity.getText().toString())) {
-                        Toast.makeText(context, "Quantity out of range!!", Toast.LENGTH_SHORT).show();
-                    }
-                    else
-                        if ((Long.parseLong(quantityRequired.getText().toString()))==0)
-                            Toast.makeText(context,"Quantity cannot be zero",Toast.LENGTH_SHORT).show();
-                    else
-                    {
-                        purchaseProduct(quantityRequired.getText().toString(),productPrice.getText().toString());
+                        requestProduct(productPrice.getText().toString());
 
 //                        if (dbHandler.purchaseProduct(userMobileNo, sellerNo, buyProductName, quantityRequired.getText().toString(),
 //                                productPrice.getText().toString())) {
@@ -172,14 +186,12 @@ public class ConfirmProductBuy extends AppCompatActivity {
 //                                intent.putExtra("mobileNo",userMobileNo);
 //                                startActivity(intent);
 //                                finish();
-                                quantityRequired.setText("");
 //                            }
 //
 //                        } else
 //                            Toast.makeText(context, "Product unable to add", Toast.LENGTH_SHORT).show();
                     }
-                }
-            }
+
         });
 
         customDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -192,18 +204,18 @@ public class ConfirmProductBuy extends AppCompatActivity {
         customDialog.create();
         customDialog.show();
     }
-    void purchaseProduct(String quantityRequired, String productPrice)
+    void requestProduct(String productPrice)
     {
         buyProductAPI = ProductGenerator.createService(BuyProductAPI.class);
-        PurchaseDetails transaction = new PurchaseDetails(sellerNo,userMobileNo, buyProductName,quantityRequired,productPrice);
-        Call<Void> purchaseProductCall = buyProductAPI.purchaseProduct(transaction);
-        purchaseProductCall.enqueue(new Callback<Void>() {
+        RequestDetails transaction = new RequestDetails(sellerNo,userMobileNo, buyProductName,productPrice);
+        Call<Void> requestProductCall = buyProductAPI.requestProduct(transaction);
+        requestProductCall.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if(response.code() == 200){
-                    Toast.makeText(context, "Product added to cart", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Crop added to Purchase Requests", Toast.LENGTH_SHORT).show();
 
-                    Intent intent=new Intent(context,BuyProducts.class);
+                    Intent intent=new Intent(context,HomeScreen.class);
                     intent.putExtra("mobileNo",userMobileNo);
                     startActivity(intent);
                     finish();

@@ -23,9 +23,7 @@
         <activity android:name=".sellProduct.SellProducts"
             android:launchMode="singleInstance"/>
 
-        <activity android:name=".buyProduct.BuyProducts"
-            android:launchMode="singleInstance"     />
-        <activity android:name=".buyProduct.ConfirmProductBuy"
+        <activity android:name=".BuyProductsTab.ConfirmProductBuy"
             android:launchMode="singleInstance"/>
         <activity android:name=".purchasedProduct.Purchased"
             android:launchMode="singleInstance"/>

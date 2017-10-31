@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -160,7 +161,7 @@ public class SellProducts extends Fragment {
             @Override
             public void onResponse(Call<ArrayList<CropDetails>> call, Response<ArrayList<CropDetails>> response) {
                 recyclerAdapter=new SellProductsRecyclerAdapter(response.body(),getContext(),mobileNo);
-                layoutManager=new LinearLayoutManager(getContext());
+                layoutManager=new GridLayoutManager(getContext(),2);
                 recyclerView.setLayoutManager(layoutManager);
                 recyclerView.setHasFixedSize(true);
                 recyclerView.setAdapter(recyclerAdapter);

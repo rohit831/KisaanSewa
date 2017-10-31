@@ -3,7 +3,7 @@ package com.gw.kisansewa.api;
 
 import com.gw.kisansewa.models.CropDetails;
 import com.gw.kisansewa.models.FarmerDetails;
-import com.gw.kisansewa.models.PurchaseDetails;
+import com.gw.kisansewa.models.RequestDetails;
 
 import java.util.ArrayList;
 
@@ -33,5 +33,5 @@ public interface BuyProductAPI {
 
 //    confirm purchasing the product
     @POST("buy")
-    Call<Void> purchaseProduct(@Body PurchaseDetails purchaseDetails);
+    Call<Void> requestProduct(@Body RequestDetails requestDetails);
 }

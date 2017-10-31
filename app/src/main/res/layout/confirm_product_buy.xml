@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_grey"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.3"
+        android:background="#FFF"
+        android:elevation="3dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
         android:orientation="vertical">
 
         <TextView
@@ -14,26 +21,63 @@
             android:layout_height="wrap_content"
             android:id="@+id/finalProductName"
             android:text="WHEAT"
+            android:textSize="30sp"
+            android:gravity="center"
             style="@style/Base.TextAppearance.AppCompat.Headline"
             android:textStyle="bold"
             android:textColor="#2b312a"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="5dp"/>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="2dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Quantity Available:"
+                android:layout_marginStart="5dp"
+                style="@style/Base.TextAppearance.AppCompat.Medium"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="500"
+                android:layout_marginStart="2dp"
+                android:id="@+id/finalProductQuantity"
+                style="@style/Base.TextAppearance.AppCompat.Medium"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="kg"
+                android:layout_marginStart="2dp"
+                style="@style/Base.TextAppearance.AppCompat.Medium"
+                />
+
+        </LinearLayout>
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="5dp"
+            android:gravity="center"
             >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Price : Rs."
-                android:textStyle="bold"
-                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
                 style="@style/Base.TextAppearance.AppCompat.Medium"
                 />
 
@@ -41,8 +85,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="70"
-                android:textStyle="bold"
-                android:layout_marginLeft="2dp"
+                android:layout_marginStart="2dp"
                 style="@style/Base.TextAppearance.AppCompat.Medium"
                 android:id="@+id/finalProductPrice"
                 />
@@ -51,45 +94,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="/kg "
-                android:textStyle="bold"
-                android:layout_marginLeft="2dp"
+                android:layout_marginStart="2dp"
                 style="@style/Base.TextAppearance.AppCompat.Medium"
                 />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Items Remaining : "
-                android:layout_marginLeft="5dp"
-                android:textStyle="bold"
-                style="@style/Base.TextAppearance.AppCompat.Medium"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="500"
-                android:layout_marginLeft="2dp"
-                android:id="@+id/finalProductQuantity"
-                android:textStyle="bold"
-                style="@style/Base.TextAppearance.AppCompat.Medium"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="kg"
-                android:layout_marginLeft="2dp"
-                android:textStyle="bold"
-                style="@style/Base.TextAppearance.AppCompat.Medium"
-                />
-
         </LinearLayout>
 
     </LinearLayout>
@@ -97,190 +104,238 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2.8"
+        android:layout_height="wrap_content"
+        android:background="#FFF"
+        android:layout_margin="5dp"
+        android:elevation="5dp"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Seller Details:"
-            style="@style/Base.TextAppearance.AppCompat.Headline"
-            android:textStyle="bold"
-            android:textColor="#348E17"
-            android:layout_marginLeft="5dp"/>
+            style="@style/Base.TextAppearance.AppCompat.Title"
+            android:textColor="@color/colorPrimary"
+            android:textSize="24sp"
+            android:layout_marginTop="4dp"
+            android:layout_marginStart="5dp"/>
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="3dp" />
+            android:background="@color/colorPrimary"
+            android:layout_height="1dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:orientation="horizontal">
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="5dp"-->
+            <!--android:orientation="horizontal">-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Name: "
-                android:textStyle="bold"
-                style="@style/Base.TextAppearance.AppCompat.Medium"
-                />
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:text="Name: "-->
+                <!--android:textStyle="bold"-->
+                <!--style="@style/Base.TextAppearance.AppCompat.Medium"-->
+                <!--/>-->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:textStyle="normal"
+                android:textColor="@color/black_off"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
                 android:id="@+id/finalSellerName"
+                android:textSize="20sp"
                 android:text="Rohit Agrawal"
                 style="@style/Base.TextAppearance.AppCompat.Medium"/>
 
-        </LinearLayout>
+        <!--</LinearLayout>-->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:orientation="horizontal">
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="5dp"-->
+            <!--android:orientation="horizontal">-->
 
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:text="Contact No. : "-->
+                <!--android:textStyle="bold"-->
+                <!--style="@style/Base.TextAppearance.AppCompat.Medium"-->
+                <!--/>-->
+           <!---->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Contact No. : "
-                android:textStyle="bold"
-                style="@style/Base.TextAppearance.AppCompat.Medium"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:textStyle="normal"
+                android:textStyle="italic"
+                android:layout_marginStart="5dp"
                 android:id="@+id/finalMobileNo"
                 android:text="9039888667"
                 style="@style/Base.TextAppearance.AppCompat.Medium"/>
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Address: "
-                android:textStyle="bold"
-                style="@style/Base.TextAppearance.AppCompat.Medium"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:textStyle="normal"
-                android:id="@+id/finalLocality"
-                android:text="Tatibandh"
-                style="@style/Base.TextAppearance.AppCompat.Medium"/>
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="City: "
-                android:textStyle="bold"
-                style="@style/Base.TextAppearance.AppCompat.Medium"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:textStyle="normal"
-                android:id="@+id/finalCity"
-                android:text="Raipur"
-                style="@style/Base.TextAppearance.AppCompat.Medium"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="State: "
-                android:textStyle="bold"
-                style="@style/Base.TextAppearance.AppCompat.Medium"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:textStyle="normal"
-                android:id="@+id/finalState"
-                android:text="Chattisgarh"
-                style="@style/Base.TextAppearance.AppCompat.Medium"/>
-
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.8"
-        android:layout_marginLeft="5dp"
-        android:orientation="horizontal">
-
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="Quantity:  "
-            android:textColor="#348E17"
-            android:gravity="center"
-            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Swarnabhoomi, Raipur, Chattisgarh"
             style="@style/Base.TextAppearance.AppCompat.Medium"
+            android:layout_marginStart="5dp"
+            android:layout_marginBottom="5dp"
+            android:id="@+id/address_confirm_buy_product"
             />
 
-        <EditText
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:gravity="bottom"
-            android:inputType="number"
-            android:lines="1"
-            android:id="@+id/finalRequiredQuantity"
-            android:layout_height="match_parent" />
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="3"
-            android:layout_height="match_parent"
-            android:text="kgs"
-            style="@style/Base.TextAppearance.AppCompat.Medium"
-            android:gravity="center_vertical"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp"
+            android:gravity="center"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="Message"
+                android:layout_marginEnd="5dp"
+                android:textColor="@color/yellow_msg"
+                android:id="@+id/message_confirm_buy"
+                android:background="@drawable/boundary_yellow_rect"
+                android:textSize="18sp"
+                />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:textSize="18sp"
+                android:layout_marginEnd="10dp"
+                android:textColor="@color/colorPrimary"
+                android:id="@+id/call_confirm_buy"
+                android:background="@drawable/boundary_primary_rect"
+                android:text="Call"
+                />
+        </LinearLayout>
+
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="5dp"-->
+            <!--android:orientation="horizontal">-->
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:text="Address: "-->
+                <!--android:textStyle="bold"-->
+                <!--style="@style/Base.TextAppearance.AppCompat.Medium"-->
+                <!--/>-->
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:textStyle="normal"-->
+                <!--android:id="@+id/finalLocality"-->
+                <!--android:text="Tatibandh"-->
+                <!--style="@style/Base.TextAppearance.AppCompat.Medium"/>-->
+
+        <!--</LinearLayout>-->
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="5dp"-->
+            <!--android:orientation="horizontal">-->
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:text="City: "-->
+                <!--android:textStyle="bold"-->
+                <!--style="@style/Base.TextAppearance.AppCompat.Medium"-->
+                <!--/>-->
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:textStyle="normal"-->
+                <!--android:id="@+id/finalCity"-->
+                <!--android:text="Raipur"-->
+                <!--style="@style/Base.TextAppearance.AppCompat.Medium"/>-->
+
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="5dp"-->
+            <!--android:orientation="horizontal">-->
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:text="State: "-->
+                <!--android:textStyle="bold"-->
+                <!--style="@style/Base.TextAppearance.AppCompat.Medium"-->
+                <!--/>-->
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:textStyle="normal"-->
+                <!--android:id="@+id/finalState"-->
+                <!--android:text="Chattisgarh"-->
+                <!--style="@style/Base.TextAppearance.AppCompat.Medium"/>-->
+
+        <!--</LinearLayout>-->
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2">
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:gravity="bottom"
+        android:layout_gravity="bottom"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:paddingTop="9dp"
+            android:paddingBottom="9dp"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:text="Find Distance"
+            android:textSize="22sp"
+            android:layout_marginStart="5dp"
+            android:layout_marginBottom="2dp"
+            android:textColor="@color/colorPrimary"
+            android:background="@drawable/boundary_primary_rect"
+            android:layout_height="wrap_content"
+            android:id="@+id/find_distance_confirm_buy"
+            android:onClick="findDistanceOnClick"
+            android:elevation="20dp"
+            />
 
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="@drawable/solid_primary_rect"
+            android:textColor="#FFF"
+            android:paddingTop="9dp"
+            android:textSize="22sp"
+            android:gravity="center"
+            android:paddingBottom="9dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="2dp"
+            android:text="Request Product"
+            style="@style/Base.TextAppearance.AppCompat.Medium"
+            android:id="@+id/request_product_confirm_buy"
+            android:elevation="20dp"
+            />
     </LinearLayout>
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#348E17"
-        android:layout_margin="5dp"
-        android:textColor="#FFF"
-
-        android:text="BUY PRODUCT"
-        style="@style/Base.TextAppearance.AppCompat.Medium"
-        android:textStyle="bold"
-        android:id="@+id/finalBuyProduct"/>
 
 
 </LinearLayout>

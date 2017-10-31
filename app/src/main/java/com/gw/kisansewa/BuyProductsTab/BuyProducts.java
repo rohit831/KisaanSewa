@@ -36,7 +36,7 @@ public class BuyProducts extends Fragment
     ArrayList<CropDetails> cropDetails;
     boolean flag = false;
     String userMobileNo=new String();
-    ArrayList<String> sellerNames;
+    ArrayList<String> sellerCities;
     SharedPreferences sharedPreferences;
 
     @Nullable
@@ -52,13 +52,12 @@ public class BuyProducts extends Fragment
         swipeRefreshLayout=(SwipeRefreshLayout)view.findViewById(R.id.buyProductsRefresh);
         swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
         cropDetails=new ArrayList<CropDetails>();
-        sellerNames=new ArrayList<String>();
+        sellerCities=new ArrayList<String>();
         sharedPreferences = getActivity().getSharedPreferences(FarmerLogin.FarmerPreferences,Context.MODE_PRIVATE);
         userMobileNo=sharedPreferences.getString(FarmerLogin.FMobileNo,"");
         recyclerView=(RecyclerView)view.findViewById(R.id.buyProductsView);
 
         getCropsAvailable();
-
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -70,7 +69,7 @@ public class BuyProducts extends Fragment
 //                        dbHandler.removeUsedCrops();
                         getCropsAvailable();
 
-                        adapter=new com.gw.kisansewa.buyProduct.BuyProductsRecyclerAdapter(cropDetails,sellerNames,getContext(),userMobileNo);
+                        adapter=new BuyProductsRecyclerAdapter(cropDetails,sellerCities,getContext(),userMobileNo);
                         recyclerView.setAdapter(adapter);
                         swipeRefreshLayout.setRefreshing(false);
                     }
@@ -90,7 +89,7 @@ public class BuyProducts extends Fragment
                 if(response.code() == 200){
                     cropDetails = response.body();
                     flag = true;
-                    getSellerNames();
+                    getSellerCities();
                 }
             }
 
@@ -101,7 +100,7 @@ public class BuyProducts extends Fragment
         });
         return flag;
     }
-    void getSellerNames()
+    void getSellerCities()
     {
         buyProductAPI = ProductGenerator.createService(BuyProductAPI.class);
         Call<ArrayList<String>> getSellerNamesCall = buyProductAPI.getSellerNames(cropDetails);
@@ -109,8 +108,8 @@ public class BuyProducts extends Fragment
             @Override
             public void onResponse(Call<ArrayList<String>> call, Response<ArrayList<String>> response) {
                 if(response.code() == 200) {
-                    sellerNames = response.body();
-                    adapter = new BuyProductsRecyclerAdapter(cropDetails, sellerNames, getContext(), userMobileNo);
+                    sellerCities = response.body();
+                    adapter = new BuyProductsRecyclerAdapter(cropDetails,sellerCities, getContext(), userMobileNo);
                     layoutManager = new LinearLayoutManager(getContext());
                     recyclerView.setAdapter(adapter);
                     recyclerView.setHasFixedSize(true);

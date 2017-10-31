@@ -47,7 +47,7 @@ public class SellProductsRecyclerAdapter extends RecyclerView.Adapter<SellProduc
     @Override
     public void onBindViewHolder(SellProductsRecyclerViewHolder holder, int position) {
         holder.vh_productName.setText(cropDetails.get(position).getCropName());
-        holder.vh_productQuantity.setText(cropDetails.get(position).getCropQuantity());
+        holder.vh_productQuantity.setText(cropDetails.get(position).getCropQuantity().concat(" kgs remaining"));
         holder.vh_productPrice.setText(cropDetails.get(position).getCropPrice());
     }
 

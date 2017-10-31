@@ -3,23 +3,25 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="4dp"
+    android:layout_marginBottom="3dp"
+    android:elevation="2dp"
     android:background="#FFF">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:orientation="horizontal">
 
         <TextView
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Wheat"
             android:layout_weight="0.5"
-            android:textSize="25sp"
+            android:textSize="22sp"
             style="@style/Base.TextAppearance.AppCompat.Title"
             android:layout_marginLeft="5dp"
-            android:textColor="@color/black_off"
             android:id="@+id/buyProductName"
             />
 
@@ -44,49 +46,50 @@
 
     </LinearLayout>
 
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:text="Rajesh"-->
+            <!--android:layout_marginLeft="5dp"-->
+            <!--android:textStyle="italic"-->
+            <!--android:id="@+id/sellerName"-->
+            <!--style="@style/Base.TextAppearance.AppCompat.Medium"/>-->
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:text=" -"-->
+            <!--style="@style/Base.TextAppearance.AppCompat.Medium"-->
+            <!--/>-->
+
+        <!--<TextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="9039888667"-->
+            <!--android:layout_marginLeft="5dp"-->
+            <!--android:textStyle="italic"-->
+            <!--android:id="@+id/sellerMobileNo"-->
+            <!--style="@style/Base.TextAppearance.AppCompat.Medium"/>-->
+
+
+    <!--</LinearLayout>-->
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="Rajesh"
-            android:layout_marginLeft="5dp"
-            android:textStyle="italic"
-            android:id="@+id/sellerName"
-            style="@style/Base.TextAppearance.AppCompat.Medium"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text=" -"
-            style="@style/Base.TextAppearance.AppCompat.Medium"
-            />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="9039888667"
-            android:layout_marginLeft="5dp"
-            android:textStyle="italic"
-            android:id="@+id/sellerMobileNo"
-            style="@style/Base.TextAppearance.AppCompat.Medium"/>
-
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="Items Remaining : "
+            android:text="Available: "
             android:layout_marginLeft="5dp"
             style="@style/Base.TextAppearance.AppCompat.Medium"
             />
@@ -104,11 +107,22 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="kg"
-            android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"
             style="@style/Base.TextAppearance.AppCompat.Medium"
             />
 
     </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Chapa"
+        android:textStyle="italic"
+        android:id="@+id/seller_city"
+        android:layout_marginStart="5dp"
+        style="@style/Base.TextAppearance.AppCompat.Medium"
+        android:layout_marginBottom="5dp"
+        />
 
 
 

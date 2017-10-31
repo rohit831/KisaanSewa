@@ -8,8 +8,7 @@
         <android.support.v4.widget.SwipeRefreshLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
             android:id="@+id/sellProductsRefresh"
             android:layout_weight="9">

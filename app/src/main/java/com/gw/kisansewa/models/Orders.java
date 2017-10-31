@@ -1,24 +1,19 @@
 package com.gw.kisansewa.models;
 
-public class PurchaseDetails
-{
+public class Orders {
+
     private String sellerMobileNo;
     private String buyerMobileNo;
     private String cropName;
     private String cropQuantity;
     private String cropPrice;
 
-    public PurchaseDetails(String sellerMobileNo, String buyerMobileNo, String cropName, String cropQuantity, String cropPrice) {
+    public Orders(String sellerMobileNo, String buyerMobileNo, String cropName, String cropQuantity, String cropPrice) {
         this.sellerMobileNo = sellerMobileNo;
         this.buyerMobileNo = buyerMobileNo;
         this.cropName = cropName;
         this.cropQuantity = cropQuantity;
         this.cropPrice = cropPrice;
-    }
-
-    public PurchaseDetails()
-    {
-
     }
 
     public String getSellerMobileNo() {

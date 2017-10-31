@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_marginBottom="4dp"
+    android:layout_marginBottom="5dp"
+    android:layout_marginEnd="5dp"
     android:background="#FFF"
+    android:elevation="5dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -10,55 +12,37 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Wheat"
-        android:textSize="25sp"
-        style="@style/Base.TextAppearance.AppCompat.Title"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:textSize="28sp"
         android:layout_marginLeft="5dp"
         android:textColor="@color/black_off"
         android:id="@+id/productName"
+        style="@style/Base.AlertDialog.AppCompat.Light"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="75 kgs remaining"
+        android:gravity="center"
+        style="@style/Base.TextAppearance.AppCompat.Medium"
+        android:layout_marginStart="5dp"
+        android:id="@+id/productQuantity"
         />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginBottom="15dp"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="Items Remaining : "
-            android:layout_marginLeft="5dp"
-            style="@style/Base.TextAppearance.AppCompat.Medium"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="500"
-            android:layout_marginLeft="2dp"
-            android:id="@+id/productQuantity"
-            style="@style/Base.TextAppearance.AppCompat.Medium"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="kg"
-            android:layout_marginLeft="2dp"
-            style="@style/Base.TextAppearance.AppCompat.Medium"
-            />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="Price : Rs."
-            android:layout_marginLeft="5dp"
+            android:text="Rs."
+            android:layout_marginStart="5dp"
             style="@style/Base.TextAppearance.AppCompat.Medium"
             />
 
@@ -66,6 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="70"
+            android:textColor="@color/colorPrimary"
             android:layout_marginLeft="2dp"
             style="@style/Base.TextAppearance.AppCompat.Medium"
             android:id="@+id/productPrice"

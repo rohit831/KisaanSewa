@@ -40,8 +40,7 @@ public class SellProductsRecyclerAdapter extends RecyclerView.Adapter<SellProduc
     public SellProductsRecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.product_layout,parent,false);
-        SellProductsRecyclerViewHolder holder=new SellProductsRecyclerViewHolder(view);
-        return holder;
+        return new SellProductsRecyclerViewHolder(view);
     }
 
     @Override
@@ -71,8 +70,6 @@ public class SellProductsRecyclerAdapter extends RecyclerView.Adapter<SellProduc
             view.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-
-
 
                     LayoutInflater li=LayoutInflater.from(context);
                     final View dialogView =li.inflate(R.layout.delete_sell_product_dialog,null);

@@ -6,6 +6,9 @@
     <color name="grey">#787e7b</color>
     <color name="lightGray">#bfcac4</color>
     <color name="background_grey">#e7eae7</color>
+    <color name="white">#FFF</color>
     <color name="black_off">#161716</color>
     <color name="yellow_msg"> #FFA000</color>
+    <color name="red">#E53935</color>
+    <color name="blue">#1565C0</color>
 </resources>

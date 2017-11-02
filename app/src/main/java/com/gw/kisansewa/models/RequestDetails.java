@@ -6,17 +6,27 @@ public class RequestDetails
     private String buyerMobileNo;
     private String cropName;
     private String cropPrice;
+    private String cropQuantity;
 
-    public RequestDetails(String sellerMobileNo, String buyerMobileNo, String cropName, String cropPrice) {
+    public RequestDetails(String sellerMobileNo, String buyerMobileNo, String cropName, String cropPrice, String cropQuantity) {
         this.sellerMobileNo = sellerMobileNo;
         this.buyerMobileNo = buyerMobileNo;
         this.cropName = cropName;
         this.cropPrice = cropPrice;
+        this.cropQuantity = cropQuantity;
     }
 
     public RequestDetails()
     {
 
+    }
+
+    public String getCropQuantity() {
+        return cropQuantity;
+    }
+
+    public void setCropQuantity(String cropQuantity) {
+        this.cropQuantity = cropQuantity;
     }
 
     public String getSellerMobileNo() {

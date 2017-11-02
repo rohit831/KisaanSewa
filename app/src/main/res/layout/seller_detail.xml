@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black_off"
+        android:text="@string/name"
+        android:textSize="25sp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="3dp"
+        android:id="@+id/sellerName_sellerDetail"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/mobileNo"
+        android:textSize="18sp"
+        android:layout_marginStart="5dp"
+        android:textStyle="italic"
+        android:id="@+id/sellerNo_sellerDetail"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/address"
+        android:textSize="18sp"
+        android:layout_marginStart="5dp"
+        android:layout_marginBottom="5dp"
+        android:id="@+id/sellerAddress_sellerDetail"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="5dp"
+        >
+
+        <android.support.v7.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:id="@+id/card_viewSeller_purchaseRequest"
+            app:cardElevation="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/call"
+                style="@style/Base.TextAppearance.AppCompat.Medium"
+                android:textColor="@color/white"
+                android:padding="5dp"
+                android:background="@drawable/solid_primary_rect"
+                android:id="@+id/call_sellerDetail"
+                />
+
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardElevation="5dp"
+            android:id="@+id/card_cancelRequest_purchaseRequest"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/message"
+                style="@style/Base.TextAppearance.AppCompat.Medium"
+                android:textColor="@color/white"
+                android:padding="5dp"
+                android:background="@drawable/solid_yellow_rect"
+                android:id="@+id/message_sellerDetail"
+                />
+
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+
+</LinearLayout>

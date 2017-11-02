@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.gw.kisansewa.R;
 import com.gw.kisansewa.authentication.FarmerLogin;
+import com.gw.kisansewa.purchaseRequests.PurchaseRequest;
 
 public class HomeScreen extends AppCompatActivity {
 
@@ -75,7 +76,8 @@ public class HomeScreen extends AppCompatActivity {
                 return true;
 
             case R.id.purchase_requests:
-                Toast.makeText(HomeScreen.this, "Clicked Purchase Requests", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(HomeScreen.this, "Clicked Purchase Requests", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, PurchaseRequest.class));
                 return true;
 
             case R.id.sell_requests:

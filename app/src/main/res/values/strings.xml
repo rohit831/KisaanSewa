@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">Kisan Sewa</string>
+    <string name="cropName">Bajra</string>
+    <string name="cropPrice">70</string>
+    <string name="cropQuantity">500</string>
+    <string name="name">Rohit Agrawal</string>
+    <string name="mobileNo">9039888667</string>
+    <string name="city">Raipur</string>
+    <string name="state">Chattisgarh</string>
+    <string name="area">Swarnabhoomi</string>
+    <string name="address">Swarnabhoomi, Raipur, Chattisgarh</string>
+    <string name="seller_details">View Seller</string>
+    <string name="cancel_request">Cancel Request</string>
+    <string name="call">Call</string>
+    <string name="message">Message</string>
+
+    <!--HARDCODED STRINGS-->
+    <string name="quantity_available">Quantity Available: </string>
+    <string name="available">Available: </string>
+    <string name="per_kg">/kg</string>
+    <string name="kg">kg</string>
 </resources>

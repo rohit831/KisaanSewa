@@ -30,10 +30,9 @@ import retrofit2.Response;
 public class ConfirmProductBuy extends AppCompatActivity {
 
     TextView productName,productPrice,productQuantity;
-    TextView sellerName,sellerMobileNo/*sellerLocality,sellerCity,sellerState*/;
+    TextView sellerName,sellerMobileNo;
     TextView sellerAddress, message, call, findDistance, requestProduct;
     private BuyProductAPI buyProductAPI;
-    private DBHandler dbHandler;
     String sellerNo= new String();
     String userMobileNo=new String();
     String buyProductName=new String();
@@ -78,7 +77,6 @@ public class ConfirmProductBuy extends AppCompatActivity {
 
     public void initialize()
     {
-        dbHandler=new DBHandler(this,null,null,1);
         productName=(TextView)findViewById(R.id.finalProductName);
         productPrice=(TextView)findViewById(R.id.finalProductPrice);
         productQuantity=(TextView)findViewById(R.id.finalProductQuantity);
@@ -89,11 +87,6 @@ public class ConfirmProductBuy extends AppCompatActivity {
         call = (TextView) findViewById(R.id.call_confirm_buy);
         findDistance = (TextView) findViewById(R.id.find_distance_confirm_buy);
         requestProduct = (TextView) findViewById(R.id.request_product_confirm_buy);
-//        sellerLocality=(TextView)findViewById(R.id.finalLocality);
-//        sellerCity=(TextView)findViewById(R.id.finalCity);
-//        sellerState=(TextView)findViewById(R.id.finalState);
-//        quantityRequired=(EditText) findViewById(R.id.finalRequiredQuantity);
-//        confirmBuyProduct=(Button) findViewById(R.id.finalBuyProduct);
         farmerDetails=new FarmerDetails();
         cropDetails=new CropDetails();
 
@@ -155,9 +148,6 @@ public class ConfirmProductBuy extends AppCompatActivity {
         String state = farmerDetails.getState();
         sellerAddress.setText(area.concat(", ").concat(city).concat(", ")
         .concat(state));
-//        sellerLocality.setText(farmerDetails.getArea());
-//        sellerCity.setText(farmerDetails.getCity());
-//        sellerState.setText(farmerDetails.getState());
     }
 
     public void showCustomDialog()
@@ -167,29 +157,12 @@ public class ConfirmProductBuy extends AppCompatActivity {
         final AlertDialog.Builder customDialog= new AlertDialog.Builder(context);
         customDialog.setView(dialogView);
 
-
-
         customDialog.setCancelable(false);
 
         customDialog.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                        requestProduct(productPrice.getText().toString());
-
-//                        if (dbHandler.purchaseProduct(userMobileNo, sellerNo, buyProductName, quantityRequired.getText().toString(),
-//                                productPrice.getText().toString())) {
-//
-//                            if (dbHandler.changeQuantity(sellerNo, buyProductName, quantityRequired.getText().toString())) {
-//                                Toast.makeText(context, "Product added to cart", Toast.LENGTH_SHORT).show();
-//
-//                                Intent intent=new Intent(context,BuyProducts.class);
-//                                intent.putExtra("mobileNo",userMobileNo);
-//                                startActivity(intent);
-//                                finish();
-//                            }
-//
-//                        } else
-//                            Toast.makeText(context, "Product unable to add", Toast.LENGTH_SHORT).show();
+                        requestProduct();
                     }
 
         });
@@ -204,10 +177,11 @@ public class ConfirmProductBuy extends AppCompatActivity {
         customDialog.create();
         customDialog.show();
     }
-    void requestProduct(String productPrice)
+    void requestProduct()
     {
         buyProductAPI = ProductGenerator.createService(BuyProductAPI.class);
-        RequestDetails transaction = new RequestDetails(sellerNo,userMobileNo, buyProductName,productPrice);
+        RequestDetails transaction = new RequestDetails(sellerNo,userMobileNo, buyProductName
+                                            ,productPrice.getText().toString(), productQuantity.getText().toString());
         Call<Void> requestProductCall = buyProductAPI.requestProduct(transaction);
         requestProductCall.enqueue(new Callback<Void>() {
             @Override

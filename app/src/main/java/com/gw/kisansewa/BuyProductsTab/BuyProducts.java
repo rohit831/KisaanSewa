@@ -66,7 +66,6 @@ public class BuyProducts extends Fragment
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-//                        dbHandler.removeUsedCrops();
                         getCropsAvailable();
 
                         adapter=new BuyProductsRecyclerAdapter(cropDetails,sellerCities,getContext(),userMobileNo);

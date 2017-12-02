@@ -86,7 +86,6 @@ public class SellProductsRecyclerAdapter extends RecyclerView.Adapter<SellProduc
                     customDialog.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            Toast.makeText(context,"Item Deleted",Toast.LENGTH_SHORT).show();
 
                             SellProductAPI sellProductAPI = ProductGenerator.createService(SellProductAPI.class);
                             Call<Void> deleteCropCall = sellProductAPI.deleteCrop(userMobileNo, vh_productName.getText().toString());
@@ -98,6 +97,7 @@ public class SellProductsRecyclerAdapter extends RecyclerView.Adapter<SellProduc
                                         cropDetails.remove(getAdapterPosition());
                                         notifyItemRemoved(getAdapterPosition());
                                         notifyItemRangeChanged(getAdapterPosition(),cropDetails.size());
+                                        Toast.makeText(context,"Item Deleted",Toast.LENGTH_SHORT).show();
                                     }
                                     else{
                                         Toast.makeText(context, "Something went wrong!", Toast.LENGTH_SHORT).show();

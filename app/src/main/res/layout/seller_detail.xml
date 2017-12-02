@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/black_off"
         android:text="@string/name"
+        style="@style/Base.TextAppearance.AppCompat.Title"
         android:textSize="25sp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="3dp"
@@ -43,7 +44,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="8dp"
         >
 
         <android.support.v7.widget.CardView
@@ -58,9 +59,9 @@
                 android:layout_height="wrap_content"
                 android:text="@string/call"
                 style="@style/Base.TextAppearance.AppCompat.Medium"
-                android:textColor="@color/white"
+                android:textColor="@color/colorPrimary"
                 android:padding="5dp"
-                android:background="@drawable/solid_primary_rect"
+                android:background="@drawable/boundary_primary_rect"
                 android:id="@+id/call_sellerDetail"
                 />
 
@@ -79,9 +80,9 @@
                 android:layout_height="wrap_content"
                 android:text="@string/message"
                 style="@style/Base.TextAppearance.AppCompat.Medium"
-                android:textColor="@color/white"
+                android:textColor="@color/yellow_msg"
                 android:padding="5dp"
-                android:background="@drawable/solid_yellow_rect"
+                android:background="@drawable/boundary_yellow_rect"
                 android:id="@+id/message_sellerDetail"
                 />
 

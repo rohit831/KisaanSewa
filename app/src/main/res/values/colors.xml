@@ -11,4 +11,5 @@
     <color name="yellow_msg"> #FFA000</color>
     <color name="red">#E53935</color>
     <color name="blue">#1565C0</color>
+    <color name="off_white">#fefefd</color>
 </resources>

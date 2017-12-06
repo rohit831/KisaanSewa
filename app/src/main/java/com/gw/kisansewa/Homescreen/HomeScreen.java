@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.gw.kisansewa.R;
+import com.gw.kisansewa.authentication.EditProfile;
 import com.gw.kisansewa.authentication.FarmerLogin;
 import com.gw.kisansewa.purchaseRequests.PurchaseRequest;
 
@@ -89,7 +90,8 @@ public class HomeScreen extends AppCompatActivity {
                 return true;
 
             case R.id.my_profile:
-                Toast.makeText(HomeScreen.this, "Clicked My Profile", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(HomeScreen.this, "Clicked My Profile", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, EditProfile.class));
                 return true;
 
             case R.id.logout:

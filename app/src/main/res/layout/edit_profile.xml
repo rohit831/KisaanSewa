@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/off_white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="8dp"
+        android:id="@+id/card_edit_profile"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/colorPrimary"
+            >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_back"
+                android:gravity="bottom"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="2dp"
+                android:clickable="true"
+                android:layout_gravity="center"
+                android:id="@+id/edit_profile_back_btn"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:text="@string/edit_profile"
+                android:textColor="#FFF"
+                style="@style/Base.DialogWindowTitle.AppCompat"
+                android:textSize="22sp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                />
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_marginEnd="7dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_tick"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:layout_gravity="center"
+                android:clickable="true"
+                android:id="@+id/edit_profile_update_btn"
+                />
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_user"
+            android:id="@+id/edit_profile_user"
+            android:paddingStart="7dp"
+            android:paddingEnd="2dp"
+            android:hint="@string/name"
+            android:gravity="center_vertical"
+            android:layout_marginEnd="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            android:drawablePadding="5dp"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_mobile"
+            android:id="@+id/edit_profile_mobileNo"
+            android:paddingStart="7dp"
+            android:gravity="center_vertical"
+            android:paddingEnd="2dp"
+            android:hint="@string/mobileNo"
+            android:layout_marginEnd="5dp"
+            android:layout_marginStart="5dp"
+            android:drawablePadding="5dp"
+            android:clickable="false"
+            android:focusable="false"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_area"
+            android:id="@+id/edit_profile_area"
+            android:paddingStart="7dp"
+            android:gravity="center_vertical"
+            android:paddingEnd="2dp"
+            android:layout_marginEnd="5dp"
+            android:hint="@string/area"
+            android:layout_marginStart="5dp"
+            android:drawablePadding="5dp"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_city"
+            android:id="@+id/edit_profile_city"
+            android:paddingStart="7dp"
+            android:paddingEnd="2dp"
+            android:layout_marginEnd="5dp"
+            android:gravity="center_vertical"
+            android:layout_marginStart="5dp"
+            android:hint="@string/city"
+            android:drawablePadding="8dp"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_state"
+            android:hint="@string/state"
+            android:id="@+id/edit_profile_state"
+            android:paddingStart="7dp"
+            android:paddingEnd="2dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginStart="5dp"
+            android:gravity="center_vertical"
+            android:drawablePadding="7dp"
+            />
+
+</LinearLayout>

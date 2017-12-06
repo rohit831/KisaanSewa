@@ -6,9 +6,7 @@
         android:color="@color/colorPrimary"
         />
 
-    <solid
-        android:color="@color/off_white"
-        />
+
     <corners
         android:radius="5dp"/>
 

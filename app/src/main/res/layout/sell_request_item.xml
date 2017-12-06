@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="2dp"
+    android:layout_marginBottom="3dp"
+    android:background="#FFF">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        >
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/name"
+            android:textColor="@color/colorPrimary"
+            android:textSize="25sp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="4dp"
+            android:id="@+id/buyerName_sellRequest"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/requested_for"
+            android:textSize="20sp"
+            android:layout_marginEnd="4dp"
+            style="@style/Base.TextAppearance.AppCompat.Medium"
+            android:gravity="center"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/cropName"
+            android:textSize="20sp"
+            android:id="@+id/cropName_sellRequest"
+            style="@style/Base.TextAppearance.AppCompat.Medium"
+            android:gravity="center"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/at_rs"
+            android:gravity="end"
+            android:textSize="20sp"
+            android:layout_marginStart="5dp"
+            style="@style/Base.TextAppearance.AppCompat.Medium"/>
+
+
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cropPrice_sellRequest"
+        android:text="@string/cropPrice"
+        android:gravity="end"
+        android:textSize="20sp"
+        style="@style/Base.TextAppearance.AppCompat.Medium"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:paddingBottom="5dp"
+        android:textSize="20sp"
+        android:text="@string/per_kg"
+        style="@style/Base.TextAppearance.AppCompat.Medium"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="( Available: "
+            android:layout_marginStart="5dp"
+            android:gravity="end"
+            style="@style/Base.TextAppearance.AppCompat.Medium"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/cropQuantity"
+            android:layout_marginStart="2dp"
+            android:id="@+id/cropQuantity_sellRequest"
+            style="@style/Base.TextAppearance.AppCompat.Medium"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="5dp"
+            android:text="kg )"
+            android:layout_marginStart="2dp"
+            style="@style/Base.TextAppearance.AppCompat.Medium"
+            />
+
+    </LinearLayout>
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_marginBottom="5dp"-->
+        <!--&gt;-->
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:text="@string/quantity_available"-->
+            <!--android:textColor="@color/black_off"-->
+            <!--android:layout_marginStart="5dp"-->
+            <!--style="@style/Base.TextAppearance.AppCompat.Medium"-->
+            <!--/>-->
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:text="@string/cropQuantity"-->
+            <!--android:layout_marginStart="2dp"-->
+            <!--android:id="@+id/cropQuantity_purchaseRequest"-->
+            <!--style="@style/Base.TextAppearance.AppCompat.Medium"-->
+            <!--/>-->
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:text="@string/kg"-->
+            <!--android:layout_marginStart="2dp"-->
+            <!--style="@style/Base.TextAppearance.AppCompat.Medium"-->
+            <!--/>-->
+
+    <!--</LinearLayout>-->
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="7dp"
+        >
+
+        <android.support.v7.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardElevation="5dp"
+            android:layout_marginEnd="5dp"
+            android:id="@+id/card_cancelRequest_sellRequest"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cancel"
+                style="@style/Base.TextAppearance.AppCompat.Medium"
+                android:textColor="@color/red"
+                android:padding="5dp"
+                android:background="@drawable/boundary_red_rect"
+                android:id="@+id/cancelRequest_sellRequest"
+                />
+
+        </android.support.v7.widget.CardView>
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:id="@+id/card_viewBuyer_sellRequest"
+            app:cardElevation="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/buyer_details"
+                style="@style/Base.TextAppearance.AppCompat.Medium"
+                android:textColor="@color/blue"
+                android:padding="5dp"
+                android:background="@drawable/boundary_blue_rect"
+                android:id="@+id/viewBuyer_sellRequest"
+                />
+
+
+        </android.support.v7.widget.CardView>
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardElevation="5dp"
+            android:id="@+id/card_confirmRequest_sellRequest"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/confirm"
+                style="@style/Base.TextAppearance.AppCompat.Medium"
+                android:textColor="@color/colorPrimary"
+                android:padding="5dp"
+                android:background="@drawable/boundary_primary_rect"
+                android:id="@+id/confirmRequest_sellRequest"
+                />
+
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+</LinearLayout>

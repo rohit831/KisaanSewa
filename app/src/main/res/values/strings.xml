@@ -10,13 +10,29 @@
     <string name="area">Swarnabhoomi</string>
     <string name="address">Swarnabhoomi, Raipur, Chattisgarh</string>
     <string name="seller_details">View Seller</string>
+    <string name="buyer_details">View Buyer</string>
     <string name="cancel_request">Cancel Request</string>
+    <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
     <string name="call">Call</string>
     <string name="message">Message</string>
+    <string name="edit_profile">Edit Profile</string>
 
     <!--HARDCODED STRINGS-->
     <string name="quantity_available">Quantity Available: </string>
     <string name="available">Available: </string>
     <string name="per_kg">/kg</string>
     <string name="kg">kg</string>
+    <string name="purchase_req_nav">Purchase Requests</string>
+    <string name="sell_req_nav">Sell Requests</string>
+    <string name="requested_for">requested for </string>
+    <string name="at_rs">at Rs.</string>
+
+
+    <!--FONT AWESOME STRINGS-->
+    <string name="icon_user">&#xf007;</string>
+    <string name="icon_mobile_no">&#xf2b9;</string>
+    <string name="icon_area">&#xf21d;</string>
+    <string name="icon_city">&#xf1ad;</string>
+    <string name="icon_state">&#xf286;</string>
 </resources>

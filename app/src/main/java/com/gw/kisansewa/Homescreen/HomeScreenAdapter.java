@@ -4,8 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.gw.kisansewa.BuyProductsTab.BuyProducts;
-import com.gw.kisansewa.SellProductsTab.SellProducts;
+import com.gw.kisansewa.buyProductsTab.BuyProducts;
+import com.gw.kisansewa.sellProductsTab.SellProducts;
 
 public class HomeScreenAdapter extends FragmentStatePagerAdapter{
 

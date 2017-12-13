@@ -17,6 +17,7 @@
     <string name="call">Call</string>
     <string name="message">Message</string>
     <string name="edit_profile">Edit Profile</string>
+    <string name="quantity_purchased">Quantity purchased:</string>
 
     <!--HARDCODED STRINGS-->
     <string name="quantity_available">Quantity Available: </string>
@@ -25,9 +26,18 @@
     <string name="kg">kg</string>
     <string name="purchase_req_nav">Purchase Requests</string>
     <string name="sell_req_nav">Sell Requests</string>
-    <string name="requested_for">requested for </string>
+    <string name="requested">Requested</string>
     <string name="at_rs">at Rs.</string>
-
+    <string name="distance_from_current">Find Distance from your current location</string>
+    <string name="distance_from_address">Find Distance from your address</string>
+    <string name="no_route_addr">No route found from your given address</string>
+    <string name="no_route_curr">No route found from your current location</string>
+    <string name="dist_addr">Distance from given address: </string>
+    <string name="dist_curr">Distance from current location: </string>
+    <string name="out_of">out of</string>
+    <string name="retry">Retry</string>
+    <string name="no_internet">No Internet Connection</string>
+    <string name="no_requests">You do not have any requests yet.</string>
 
     <!--FONT AWESOME STRINGS-->
     <string name="icon_user">&#xf007;</string>

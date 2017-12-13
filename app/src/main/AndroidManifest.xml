@@ -5,6 +5,7 @@
     >
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -27,11 +28,17 @@
             android:launchMode="singleInstance"/>
 
         <!--Confirm Buy View-->
-        <activity android:name=".BuyProductsTab.ConfirmProductBuy"
+        <activity android:name=".buyProductsTab.ConfirmProductBuy"
             android:launchMode="singleInstance"/>
 
         <!--Purchase Requests-->
         <activity android:name=".purchaseRequests.PurchaseRequest"
+            android:launchMode="singleInstance"
+            android:theme="@style/NoActionBar"
+            />
+
+        <!--Sell Requests-->
+        <activity android:name=".sellRequests.SellRequests"
             android:launchMode="singleInstance"
             android:theme="@style/NoActionBar"
             />

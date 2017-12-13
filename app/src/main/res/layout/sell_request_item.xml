@@ -27,12 +27,53 @@
             android:id="@+id/buyerName_sellRequest"
             />
 
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="( Available: "
+            android:layout_marginStart="5dp"
+            android:gravity="end|center_vertical"
+            style="@style/Base.TextAppearance.AppCompat.Medium"
+            />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="@string/requested_for"
+            android:text="@string/cropQuantity"
+            android:layout_marginStart="2dp"
+            android:gravity="center_vertical"
+            android:id="@+id/cropQuantity_sellRequest"
+            style="@style/Base.TextAppearance.AppCompat.Medium"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="5dp"
+            android:text="kg )"
+            android:gravity="center_vertical"
+            android:layout_marginStart="2dp"
+            style="@style/Base.TextAppearance.AppCompat.Medium"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="7dp"
+
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/requested"
             android:textSize="20sp"
             android:layout_marginEnd="4dp"
+            android:layout_marginStart="5dp"
             style="@style/Base.TextAppearance.AppCompat.Medium"
             android:gravity="center"
             />
@@ -47,19 +88,13 @@
             android:gravity="center"
             />
 
-    </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        >
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:text="@string/at_rs"
-            android:gravity="end"
+            android:gravity="center"
             android:textSize="20sp"
             android:layout_marginStart="5dp"
             style="@style/Base.TextAppearance.AppCompat.Medium"/>
@@ -67,49 +102,21 @@
 
         <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:id="@+id/cropPrice_sellRequest"
         android:text="@string/cropPrice"
-        android:gravity="end"
+        android:gravity="center"
         android:textSize="20sp"
         style="@style/Base.TextAppearance.AppCompat.Medium"/>
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="start"
-        android:paddingBottom="5dp"
+        android:layout_height="match_parent"
+        android:gravity="center"
         android:textSize="20sp"
         android:text="@string/per_kg"
         style="@style/Base.TextAppearance.AppCompat.Medium"/>
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:text="( Available: "
-            android:layout_marginStart="5dp"
-            android:gravity="end"
-            style="@style/Base.TextAppearance.AppCompat.Medium"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="@string/cropQuantity"
-            android:layout_marginStart="2dp"
-            android:id="@+id/cropQuantity_sellRequest"
-            style="@style/Base.TextAppearance.AppCompat.Medium"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="5dp"
-            android:text="kg )"
-            android:layout_marginStart="2dp"
-            style="@style/Base.TextAppearance.AppCompat.Medium"
-            />
 
     </LinearLayout>
     <!--<LinearLayout-->

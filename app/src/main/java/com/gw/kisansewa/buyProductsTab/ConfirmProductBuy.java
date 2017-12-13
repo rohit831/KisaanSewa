@@ -1,9 +1,11 @@
-package com.gw.kisansewa.BuyProductsTab;
+package com.gw.kisansewa.buyProductsTab;
 
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,10 +15,11 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.gw.kisansewa.DBHandler;
 import com.gw.kisansewa.Homescreen.HomeScreen;
 import com.gw.kisansewa.R;
+import com.gw.kisansewa.api.AuthenticationAPI;
 import com.gw.kisansewa.api.BuyProductAPI;
+import com.gw.kisansewa.apiGenerator.AuthenticationGenerator;
 import com.gw.kisansewa.apiGenerator.ProductGenerator;
 import com.gw.kisansewa.models.CropDetails;
 import com.gw.kisansewa.models.FarmerDetails;
@@ -31,7 +34,7 @@ public class ConfirmProductBuy extends AppCompatActivity {
 
     TextView productName,productPrice,productQuantity;
     TextView sellerName,sellerMobileNo;
-    TextView sellerAddress, message, call, findDistance, requestProduct;
+    TextView sellerAddress, message, call, findDistance, requestProduct, dist_from_current, dist_from_addr;
     private BuyProductAPI buyProductAPI;
     String sellerNo= new String();
     String userMobileNo=new String();
@@ -39,6 +42,11 @@ public class ConfirmProductBuy extends AppCompatActivity {
     FarmerDetails farmerDetails;
     final Context context=this;
     CropDetails cropDetails;
+    private LocationManager locationManager;
+    private double lattitude, longitude;
+    private boolean gps_enabled, network_enabled;
+    private boolean canGetLocation = false;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -71,10 +79,43 @@ public class ConfirmProductBuy extends AppCompatActivity {
         });
     }
 
-    public void findDistanceOnClick(View v){
-        Toast.makeText(ConfirmProductBuy.this, "Find Distance clicked", Toast.LENGTH_SHORT).show();
+    public void findDistanceOnClick(View v) {
+
+        if (!checkLocationPermissions()) {
+            Toast.makeText(ConfirmProductBuy.this, "You need to grant us permission!", Toast.LENGTH_SHORT).show();
+        } else {
+
+            LayoutInflater li = LayoutInflater.from(context);
+            final View dialogView = li.inflate(R.layout.distance_dialog, null);
+            final AlertDialog.Builder customDialog = new AlertDialog.Builder(context);
+            final AlertDialog dialog = customDialog.create();
+            dialog.setView(dialogView);
+            dialog.show();
+
+            TextView current_dist, addr_dist;
+            addr_dist = (TextView) dialogView.findViewById(R.id.dist_address_btn);
+            current_dist = (TextView) dialogView.findViewById(R.id.dist_current_btn);
+
+            current_dist.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    findDistanceFromCurrentLocation();
+                    dialog.cancel();
+                }
+            });
+
+            addr_dist.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (!(dist_from_addr.getVisibility() == View.VISIBLE))
+                        findDistanceFromAddress();
+                    dialog.cancel();
+                }
+            });
+        }
     }
 
+//    Reference all the variables
     public void initialize()
     {
         productName=(TextView)findViewById(R.id.finalProductName);
@@ -85,6 +126,8 @@ public class ConfirmProductBuy extends AppCompatActivity {
         sellerAddress = (TextView)findViewById(R.id.address_confirm_buy_product);
         message = (TextView)findViewById(R.id.message_confirm_buy);
         call = (TextView) findViewById(R.id.call_confirm_buy);
+        dist_from_current = (TextView) findViewById(R.id.dist_from_current_view);
+        dist_from_addr = (TextView)findViewById(R.id.dist_from_addr_view);
         findDistance = (TextView) findViewById(R.id.find_distance_confirm_buy);
         requestProduct = (TextView) findViewById(R.id.request_product_confirm_buy);
         farmerDetails=new FarmerDetails();
@@ -95,6 +138,7 @@ public class ConfirmProductBuy extends AppCompatActivity {
         buyProductName=getIntent().getStringExtra("productName");
     }
 
+//    Get the details of the crop selected
      void getCropDetails()
     {
         buyProductAPI = ProductGenerator.createService(BuyProductAPI.class);
@@ -115,6 +159,7 @@ public class ConfirmProductBuy extends AppCompatActivity {
         });
     }
 
+//    Get the details of the respective seller
     void getFarmerDetails()
     {
         buyProductAPI = ProductGenerator.createService(BuyProductAPI.class);
@@ -135,6 +180,7 @@ public class ConfirmProductBuy extends AppCompatActivity {
         });
     }
 
+//    Set the view elements value to the response generated
     public void setValues()
     {
         productName.setText(cropDetails.getCropName());
@@ -150,6 +196,7 @@ public class ConfirmProductBuy extends AppCompatActivity {
         .concat(state));
     }
 
+//    show custom dialog for confirming request of crop
     public void showCustomDialog()
     {
         LayoutInflater li=LayoutInflater.from(context);
@@ -177,6 +224,8 @@ public class ConfirmProductBuy extends AppCompatActivity {
         customDialog.create();
         customDialog.show();
     }
+
+//    requesting a crop
     void requestProduct()
     {
         buyProductAPI = ProductGenerator.createService(BuyProductAPI.class);
@@ -201,5 +250,69 @@ public class ConfirmProductBuy extends AppCompatActivity {
                 Toast.makeText(context, "Unable to connect to the server at the moment", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+//    finding distance from current location
+    private void findDistanceFromCurrentLocation()
+    {
+        Toast.makeText(ConfirmProductBuy.this, "Find distance from current location clicked!", Toast.LENGTH_SHORT).show();
+
+    }
+
+//    finding distance from address
+    private void findDistanceFromAddress()
+    {
+        //Getting address of buyer
+        AuthenticationAPI authAPI = AuthenticationGenerator.createService(AuthenticationAPI.class);
+        Call<FarmerDetails> getAddressBuyerCall = authAPI.getFarmerDetail(userMobileNo);
+        getAddressBuyerCall.enqueue(new Callback<FarmerDetails>() {
+            @Override
+            public void onResponse(Call<FarmerDetails> call, Response<FarmerDetails> response) {
+                FarmerDetails farmerDetails = response.body();
+                String area = farmerDetails.getArea();
+                String city = farmerDetails.getCity();
+                String state = farmerDetails.getState();
+                String buyerAddress = area.concat(", ").concat(city).concat(", ").concat(state);
+
+                buyProductAPI = ProductGenerator.createService(BuyProductAPI.class);
+                Call<String> getDistanceCall = buyProductAPI.getDistance(buyerAddress,
+                        sellerAddress.getText().toString());
+                getDistanceCall.enqueue(new Callback<String>() {
+                    @Override
+                    public void onResponse(Call<String> call, Response<String> response) {
+                        if(response.code() == 204){
+                            dist_from_addr.setVisibility(View.VISIBLE);
+                            dist_from_addr.setText(R.string.no_route_addr);
+                        }
+                        else if(response.code() == 200){
+                            dist_from_addr.setVisibility(View.VISIBLE);
+                            dist_from_addr.setText(dist_from_addr.getText().toString().concat(response.body()));
+                        }
+                        else{
+                            Toast.makeText(ConfirmProductBuy.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<String> call, Throwable t) {
+                        Toast.makeText(ConfirmProductBuy.this, "Can't connect to server at the moment", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+
+            @Override
+            public void onFailure(Call<FarmerDetails> call, Throwable t) {
+                Toast.makeText(ConfirmProductBuy.this, "Can't connect to server at the moment", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
+//    check for network permissions
+    private boolean checkLocationPermissions()
+    {
+        String permission = "android.permission.ACCESS_FINE_LOCATION";
+        int res = context.checkCallingOrSelfPermission(permission);
+        return (res == PackageManager.PERMISSION_GRANTED);
     }
 }

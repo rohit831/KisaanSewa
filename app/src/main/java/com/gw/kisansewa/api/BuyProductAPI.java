@@ -34,4 +34,8 @@ public interface BuyProductAPI {
 //    confirm purchasing the product
     @POST("buy")
     Call<Void> requestProduct(@Body RequestDetails requestDetails);
+
+//    get distance between two addresses
+    @GET("buy/distance/{origin}/{destination}")
+    Call<String> getDistance(@Path("origin") String origin, @Path("destination")String destination);
 }

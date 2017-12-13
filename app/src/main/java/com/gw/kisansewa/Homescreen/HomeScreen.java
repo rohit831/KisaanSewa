@@ -19,6 +19,7 @@ import com.gw.kisansewa.R;
 import com.gw.kisansewa.authentication.EditProfile;
 import com.gw.kisansewa.authentication.FarmerLogin;
 import com.gw.kisansewa.purchaseRequests.PurchaseRequest;
+import com.gw.kisansewa.sellRequests.SellRequests;
 
 public class HomeScreen extends AppCompatActivity {
 
@@ -82,7 +83,8 @@ public class HomeScreen extends AppCompatActivity {
                 return true;
 
             case R.id.sell_requests:
-                Toast.makeText(HomeScreen.this, "Clicked Sell Requests", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, SellRequests.class));
+//                Toast.makeText(HomeScreen.this, "Clicked Sell Requests", Toast.LENGTH_SHORT).show();
                 return true;
 
             case R.id.orders:

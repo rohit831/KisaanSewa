@@ -65,19 +65,19 @@ public class PurchaseRequestAdapter extends RecyclerView.Adapter<PurchaseRequest
             vh_cancelRequest.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    cancelRequestClicked(v);
+                    cancelRequestClicked();
                 }
             });
 
             vh_viewSeller.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    viewSellerClicked(v);
+                    viewSellerClicked();
                 }
             });
         }
 
-        void viewSellerClicked(View v)
+        void viewSellerClicked()
         {
             LayoutInflater li = LayoutInflater.from(context);
             final View dialogView = li.inflate(R.layout.seller_detail, null);
@@ -94,8 +94,8 @@ public class PurchaseRequestAdapter extends RecyclerView.Adapter<PurchaseRequest
             sMessage = (TextView)dialogView.findViewById(R.id.message_sellerDetail);
 
             RequestAPI requestAPI = RequestGenerator.createService(RequestAPI.class);
-            Call<FarmerDetails> viewSellerCall = requestAPI.getSellerDetails(requestDetails.get(position).getSellerMobileNo());
-            viewSellerCall.enqueue(new Callback<FarmerDetails>() {
+            Call<FarmerDetails> viewFarmerCall = requestAPI.getFarmerDetails(requestDetails.get(position).getSellerMobileNo());
+            viewFarmerCall.enqueue(new Callback<FarmerDetails>() {
                 @Override
                 public void onResponse(Call<FarmerDetails> call, Response<FarmerDetails> response) {
                     if(response.code() == 200){
@@ -136,7 +136,7 @@ public class PurchaseRequestAdapter extends RecyclerView.Adapter<PurchaseRequest
 
         }
 
-        void cancelRequestClicked(View v)
+        void cancelRequestClicked()
         {
             final int position = getAdapterPosition();
             AlertDialog.Builder builder = new AlertDialog.Builder(context);

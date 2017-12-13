@@ -1,4 +1,4 @@
-package com.gw.kisansewa.BuyProductsTab;
+package com.gw.kisansewa.buyProductsTab;
 
 import android.content.Context;
 import android.content.SharedPreferences;

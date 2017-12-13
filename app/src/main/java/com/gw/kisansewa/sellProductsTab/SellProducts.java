@@ -1,4 +1,4 @@
-package com.gw.kisansewa.SellProductsTab;
+package com.gw.kisansewa.sellProductsTab;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -10,14 +10,12 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gw.kisansewa.R;
@@ -66,73 +64,7 @@ public class SellProducts extends Fragment {
         addProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                LayoutInflater li=LayoutInflater.from(getContext());
-                final View dialogView=li.inflate(R.layout.add_product,null);
-                final AlertDialog.Builder customDialog= new AlertDialog.Builder(getContext());
-
-                customDialog.setView(dialogView);
-                final TextView title;
-                final EditText productName,productPrice,productQuantity;
-                productName=(EditText)dialogView.findViewById(R.id.productNameDialog);
-                productPrice=(EditText)dialogView.findViewById(R.id.productPriceDialog);
-                productQuantity=(EditText)dialogView.findViewById(R.id.productQuantityDialog);
-
-                customDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-
-                customDialog.setPositiveButton("Add", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                        if(productName.getText().toString().equals("")
-                                || productPrice.getText().toString().equals("")
-                                || productQuantity.getText().toString().equals(""))
-                        {
-                            Toast.makeText(getContext(),"Enter All Details!!",Toast.LENGTH_SHORT).show();
-
-                        }
-                        else
-                        {
-                            final CropDetails crop = new CropDetails(productName.getText().toString(),
-                                    productQuantity.getText().toString(),
-                                    productPrice.getText().toString(),mobileNo);
-
-                            if(!checkCropAvailability(mobileNo, productName.getText().toString())){
-                                if(Long.parseLong(productQuantity.getText().toString())==0)
-                                    Toast.makeText(getContext(),"Quantity cannot be zero",Toast.LENGTH_SHORT).show();
-                                else{
-                                    SellProductAPI sellProductAPI = ProductGenerator.createService(SellProductAPI.class);
-                                    Call<Void> addNewCropCall = sellProductAPI.addNewCrop(crop);
-                                    addNewCropCall.enqueue(new Callback<Void>() {
-                                        @Override
-                                        public void onResponse(Call<Void> call, Response<Void> response) {
-                                            if(response.code()==201) {
-                                                Toast.makeText(getContext(), "Crop successfully added!", Toast.LENGTH_SHORT).show();
-                                                retrieveSellerCrops(mobileNo);
-                                            }
-                                        }
-
-                                        @Override
-                                        public void onFailure(Call<Void> call, Throwable t) {
-                                            Toast.makeText(getContext(), "Unable to connect to server! :(", Toast.LENGTH_SHORT).show();
-                                        }
-                                    });
-                                }
-                            }
-                            else{
-
-                            }
-                        }
-
-                    }
-                });
-                customDialog.create();
-                customDialog.show();
+                addNewProduct(v);
             }
         });
 
@@ -152,6 +84,72 @@ public class SellProducts extends Fragment {
         });
 
 
+    }
+
+    private void addNewProduct(View v)
+    {
+        LayoutInflater li=LayoutInflater.from(getContext());
+        final View dialogView=li.inflate(R.layout.add_product,null);
+        final AlertDialog.Builder customDialog= new AlertDialog.Builder(getContext());
+
+        customDialog.setView(dialogView);
+        final EditText productName,productPrice,productQuantity;
+        productName=(EditText)dialogView.findViewById(R.id.productNameDialog);
+        productPrice=(EditText)dialogView.findViewById(R.id.productPriceDialog);
+        productQuantity=(EditText)dialogView.findViewById(R.id.productQuantityDialog);
+
+        customDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        customDialog.setPositiveButton("Add", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                if(productName.getText().toString().equals("")
+                        || productPrice.getText().toString().equals("")
+                        || productQuantity.getText().toString().equals(""))
+                {
+                    Toast.makeText(getContext(),"Enter All Details!!",Toast.LENGTH_SHORT).show();
+
+                }
+                else
+                {
+                    final CropDetails crop = new CropDetails(productName.getText().toString(),
+                            productQuantity.getText().toString(),
+                            productPrice.getText().toString(),mobileNo);
+
+                    if(!checkCropAvailability(mobileNo, productName.getText().toString())){
+                        if(Long.parseLong(productQuantity.getText().toString())==0)
+                            Toast.makeText(getContext(),"Quantity cannot be zero",Toast.LENGTH_SHORT).show();
+                        else{
+                            SellProductAPI sellProductAPI = ProductGenerator.createService(SellProductAPI.class);
+                            Call<Void> addNewCropCall = sellProductAPI.addNewCrop(crop);
+                            addNewCropCall.enqueue(new Callback<Void>() {
+                                @Override
+                                public void onResponse(Call<Void> call, Response<Void> response) {
+                                    if(response.code()==201) {
+                                        Toast.makeText(getContext(), "Crop successfully added!", Toast.LENGTH_SHORT).show();
+                                        retrieveSellerCrops(mobileNo);
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call<Void> call, Throwable t) {
+                                    Toast.makeText(getContext(), "Unable to connect to server! :(", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                    }
+                }
+
+            }
+        });
+        customDialog.create();
+        customDialog.show();
     }
 
     public void retrieveSellerCrops(final String mobileNo){

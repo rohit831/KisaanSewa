@@ -2,6 +2,7 @@ package com.gw.kisansewa.api;
 
 
 import com.gw.kisansewa.models.FarmerDetails;
+import com.gw.kisansewa.models.Orders;
 import com.gw.kisansewa.models.RequestDetails;
 
 import java.util.ArrayList;
@@ -40,7 +41,9 @@ public interface RequestAPI {
     Call<ArrayList<RequestDetails>> getSellRequests(@Path("sellerMobileNo") String sellerMobileNo);
 
     // Getting all buyer names
-    @POST("sell/buyers")
-    Call<ArrayList<String>> getBuyerNames(@Body ArrayList<String> buyerMobileNos);
+    @GET("sell/buyers/{sellerMobileNo}")
+    Call<ArrayList<String>> getBuyerNames(@Path("sellerMobileNo") String sellerMobileNo );
 
+    @POST("sell/order")
+    Call<Void> confirmOrder(@Body Orders order);
 }

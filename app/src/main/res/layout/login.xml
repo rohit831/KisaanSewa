@@ -1,44 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
 
-    <!--<TextView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="0dp"-->
-        <!--android:background="#348E17"-->
-        <!--android:layout_weight="2"-->
-        <!--android:text="KISAAN SEWA"-->
-        <!--android:textColor="#FFF"-->
-        <!--style="@style/Base.TextAppearance.AppCompat.Headline"-->
-        <!--android:gravity="center"-->
-        <!--android:textStyle="bold"-->
-        <!--/>-->
-    <LinearLayout
+    >
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="9"
-        android:orientation="vertical"
-        >
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
 
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="140dp"
-            android:layout_marginTop="20dp"
-            android:layout_gravity="center"
-            android:text="Kisaan Sewa"
-            android:paddingTop="50dp"
-            android:textStyle="bold"
-            android:textSize="50dp"
-            android:fontFamily="serif"
-            android:textColor="@color/colorPrimary"
-            />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="140dp"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
+                android:text="Kisaan Sewa"
+                android:paddingTop="50dp"
+                android:textStyle="bold"
+                android:textSize="50dp"
+                android:fontFamily="serif"
+                android:textColor="@color/colorPrimary"
+                />
 
 
-        <!--<ImageView-->
+            <!--<ImageView-->
             <!--android:layout_width="wrap_content"-->
             <!--android:layout_height="160dp"-->
             <!--android:padding="20dp"-->
@@ -47,113 +40,102 @@
             <!--android:src="@drawable/kisaan_sewa"/>-->
 
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/TextLabel"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
-
-            <EditText
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number"
-                android:layout_marginLeft="5dp"
-                android:id="@+id/loginMobileNo"
-                android:hint="Mobile No"/>
+                android:theme="@style/TextLabel"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp">
 
-        </android.support.design.widget.TextInputLayout>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:layout_marginStart="5dp"
+                    android:id="@+id/loginMobileNo"
+                    android:hint="Mobile No"/>
+
+            </android.support.design.widget.TextInputLayout>
 
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:theme="@style/TextLabel"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:theme="@style/TextLabel"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp">
 
-            <EditText
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:layout_marginLeft="5dp"
+                    android:hint="Password"
+                    android:id="@+id/loginPassword"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:layout_marginLeft="5dp"
-                android:hint="Password"
-                android:id="@+id/loginPassword"/>
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:text="Login"
+                android:onClick="LoginOnClick"
+                android:textColor="#FFF"
+                android:background="#348E17"
+                style="@style/Base.TextAppearance.AppCompat.Title"
+                android:id="@+id/loginButton"
+                />
 
-        </android.support.design.widget.TextInputLayout>
-        <!--<EditText-->
-            <!--android:layout_width="match_parent"-->
-            <!--style="@style/Base.TextAppearance.AppCompat.Title"-->
-            <!--android:layout_height="0dp"-->
-            <!--android:layout_weight="2"-->
-            <!--android:hint="Mobile no."-->
-            <!--android:inputType="number"-->
-            <!--android:layout_marginLeft="5dp"-->
-            <!--android:gravity="bottom"-->
-            <!--android:id="@+id/loginMobileNo"-->
-            <!--/>-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Not Registered Yet?"
+                android:textAlignment="center"
+                android:padding="10dp"
+                android:textColor="#000"
+                android:gravity="bottom"
+                style="@style/Base.TextAppearance.AppCompat.Medium"/>
 
-        <!--<EditText-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="0dp"-->
-            <!--android:layout_weight="2"-->
-            <!--style="@style/Base.TextAppearance.AppCompat.Title"-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
 
-            <!--android:hint="Password"-->
-            <!--android:inputType="textPassword"-->
-            <!--android:layout_marginLeft="5dp"-->
-            <!--android:gravity="bottom"-->
-            <!--android:id="@+id/loginPassword"-->
-            <!--/>-->
-        <!--<TextView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="0dp"-->
-            <!--android:layout_weight="1.5"/>-->
-
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
-            android:text="Login"
-            android:onClick="LoginOnClick"
-            android:textColor="#FFF"
-            android:background="#348E17"
-            style="@style/Base.TextAppearance.AppCompat.Title"
-            android:id="@+id/loginButton"
-            />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Not Registered Yet?"
-            android:textAlignment="center"
-            android:padding="10dp"
-            android:textColor="#000"
-            android:gravity="bottom"
-            style="@style/Base.TextAppearance.AppCompat.Medium"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_gravity="center"
-            android:layout_height="wrap_content"
-
-            android:text="Register Here!"
-            android:textColor="#348E17"
-            android:textAlignment="center"
-            android:gravity="center"
-            style="@style/Base.TextAppearance.AppCompat.Large"
-            android:textStyle="bold"
-            android:onClick="RegisterHereOnClick"
-            android:id="@+id/registerHere"/>
+                android:text="Register Here!"
+                android:textColor="#348E17"
+                android:textAlignment="center"
+                android:gravity="center"
+                style="@style/Base.TextAppearance.AppCompat.Large"
+                android:textStyle="bold"
+                android:onClick="RegisterHereOnClick"
+                android:id="@+id/registerHere"/>
 
 
 
-    </LinearLayout>
+        </LinearLayout>
 
+    </ScrollView>
 
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:id="@+id/progress_login"
+        android:scrollbarSize="10dp"
+        android:visibility="gone"
+        />
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/layout_login"
+        >
+
+    </android.support.design.widget.CoordinatorLayout>
 
 
 </LinearLayout>

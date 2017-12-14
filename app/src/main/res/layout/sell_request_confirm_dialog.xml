@@ -22,7 +22,9 @@
 
         <EditText
             android:layout_width="60dp"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:id="@+id/quantity_purchased"
+            />
 
         <TextView
             android:layout_width="wrap_content"
@@ -45,7 +47,7 @@
             android:paddingBottom="7dp"
             android:gravity="bottom"
             android:layout_marginTop="10dp"
-            android:id="@+id/sell_requests_quantity_purchased"
+            android:id="@+id/sell_requests_total_quantity"
 
             />
         <TextView

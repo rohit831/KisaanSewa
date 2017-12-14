@@ -22,9 +22,11 @@
         <!--Auth Views-->
         <activity android:name=".authentication.FarmerRegister"
             android:theme="@style/NoActionBar"
+            android:windowSoftInputMode="stateHidden"
             android:launchMode="singleInstance"/>
         <activity android:name=".authentication.FarmerLogin"
             android:theme="@style/NoActionBar"
+            android:windowSoftInputMode="stateHidden"
             android:launchMode="singleInstance"/>
 
         <!--Confirm Buy View-->

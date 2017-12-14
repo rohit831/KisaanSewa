@@ -1,189 +1,220 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 
-
-    <LinearLayout
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="9"
-        android:orientation="vertical"
+        android:layout_height="120dp"
+        app:cardElevation="7dp"
         >
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
             android:textAlignment="center"
-            android:text="Kisaan Sewa"
+            android:text="@string/app_name"
             android:paddingTop="40dp"
             android:textStyle="normal"
-            android:textSize="50dp"
+            android:textSize="50sp"
             android:fontFamily="serif"
             android:background="@color/colorPrimary"
             android:textColor="#FFF"
             />
 
-        <android.support.design.widget.TextInputLayout
+    </android.support.v7.widget.CardView>
+
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:theme="@style/TextLabel"
-            android:layout_marginTop="18dp"
-            android:layout_marginBottom="5dp"
             >
 
-            <EditText
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:id="@+id/name"
-                android:inputType="text"
-                android:hint="Name"
-                />
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/TextLabel"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="5dp"
-            >
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:id="@+id/mobileNo"
-                android:inputType="number"
-                android:hint="Mobile No"
-                />
-
-        </android.support.design.widget.TextInputLayout>
-
-
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/TextLabel"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="5dp"
-            >
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:id="@+id/area"
-                android:inputType="text"
-                android:hint="Area"
-                />
-
-        </android.support.design.widget.TextInputLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:theme="@style/TextLabel"
+                android:orientation="vertical"
                 >
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="5dp"
-                    android:id="@+id/city"
-                    android:inputType="text"
-                    android:hint="City"
-                    />
-
-            </android.support.design.widget.TextInputLayout>
-
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:theme="@style/TextLabel"
-                android:layout_weight="1"
-                >
-
-                <EditText
+                <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:id="@+id/state"
-                    android:inputType="text"
-                    android:hint="State"
+                    android:theme="@style/TextLabel"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginBottom="5dp"
+                    >
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:id="@+id/name"
+                        android:inputType="text"
+                        android:hint="@string/h_name"
+                        />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/TextLabel"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="5dp"
+                    >
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"                        android:id="@+id/mobileNo"
+                        android:inputType="number"
+                        android:hint="@string/h_mobile"
+                        />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/TextLabel"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="5dp"
+                    >
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"                        android:id="@+id/area"
+                        android:inputType="text"
+                        android:hint="@string/h_area"
+                        />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:theme="@style/TextLabel"
+                        >
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="5dp"
+                            android:id="@+id/city"
+                            android:inputType="text"
+                            android:hint="@string/h_city"
+                            />
+
+                    </android.support.design.widget.TextInputLayout>
+
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:theme="@style/TextLabel"
+                        android:layout_weight="1"
+                        >
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginEnd="5dp"                            android:id="@+id/state"
+                            android:inputType="text"
+                            android:hint="@string/h_state"
+                            />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                </LinearLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/TextLabel"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="5dp"
+                    >
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"                        android:id="@+id/password"
+                        android:inputType="textPassword"
+                        android:hint="@string/h_password"
+                        />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/TextLabel"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="5dp"
+                    >
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"                        android:id="@+id/confirmPassword"
+                        android:inputType="textPassword"
+                        android:hint="@string/h_conf_password"
+                        />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/colorPrimary"
+                    android:text="@string/register"
+                    android:textColor="@color/white"
+                    android:onClick="RegisterOnClick"
+                    android:id="@+id/registerBtn"
+                    style="@style/Base.TextAppearance.AppCompat.Title"
                     />
 
-            </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
 
-        </LinearLayout>
+        </ScrollView>
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:scrollbarSize="10dp"
+            android:layout_gravity="center"
             android:layout_height="wrap_content"
-            android:theme="@style/TextLabel"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="5dp"
-            >
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:id="@+id/password"
-                android:inputType="textPassword"
-                android:hint="Password"
-                />
-
-        </android.support.design.widget.TextInputLayout>
-
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/TextLabel"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="5dp"
-            >
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:id="@+id/confirmPassword"
-                android:inputType="textPassword"
-                android:hint="Confirm Password"
-                />
-
-        </android.support.design.widget.TextInputLayout>
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_marginRight="25dp"
-            android:layout_marginLeft="25dp"
-            android:background="#348E17"
-            android:text="REGISTER"
-            android:textColor="#FFF"
-            android:onClick="RegisterOnClick"
-            android:id="@+id/registerBtn"
-            style="@style/Base.TextAppearance.AppCompat.Title"
+            android:layout_marginTop="5dp"
+            android:id="@+id/progress_signup"
+            android:visibility="gone"
             />
 
-    </LinearLayout>
 
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/layout_signup"
+        >
+
+    </android.support.design.widget.CoordinatorLayout>
 
 </LinearLayout>

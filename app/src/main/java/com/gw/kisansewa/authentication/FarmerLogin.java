@@ -1,14 +1,21 @@
 package com.gw.kisansewa.authentication;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +37,8 @@ public class FarmerLogin extends AppCompatActivity {
     private EditText password;
     private Button loginButton;
     private TextView registerHere;
+    private CoordinatorLayout coordinatorLayout;
+    private ProgressBar progressBar;
 
     public static final String FarmerPreferences= "FarmerPrefs";
     public static final String FMobileNo="FMobileNo";
@@ -52,6 +61,13 @@ public class FarmerLogin extends AppCompatActivity {
         }
 
         farmerInitialization();
+
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                login();
+            }
+        });
     }
 
     public void farmerInitialization()
@@ -62,15 +78,17 @@ public class FarmerLogin extends AppCompatActivity {
         password=(EditText)findViewById(R.id.loginPassword);
         loginButton=(Button)findViewById(R.id.loginButton);
         registerHere=(TextView)findViewById(R.id.registerHere);
-
+        coordinatorLayout = (CoordinatorLayout) findViewById(R.id.layout_login);
+        progressBar = (ProgressBar)findViewById(R.id.progress_login);
     }
 
-    public void LoginOnClick(View view)
+    private void login()
     {
+        hideKeyboard();
         if(mobileNo.getText().toString().equals("") || password.getText().toString().equals(""))
-            Toast.makeText(getApplicationContext(),"Enter Mobile No/Password First!!",Toast.LENGTH_SHORT).show();
+            Snackbar.make(coordinatorLayout,"Enter Mobile No/Password First!!",Snackbar.LENGTH_SHORT).show();
         else {
-
+            showProgressBar(true);
             AuthenticationAPI authenticationAPI = AuthenticationGenerator.createService(AuthenticationAPI.class);
             LoginInformation loginInformation = new LoginInformation(mobileNo.getText().toString(), password.getText().toString());
             Call<Void> loginCall = authenticationAPI.loginUser(loginInformation);
@@ -84,18 +102,29 @@ public class FarmerLogin extends AppCompatActivity {
                         editor.putString(FMobileNo,mobileNo.getText().toString());
                         editor.commit();
 
+                        showProgressBar(false);
+
                         Intent intent = new Intent(getApplicationContext(), HomeScreen.class);
                         intent.putExtra("mobileNo",mobileNo.getText().toString());
                         startActivity(intent);
                         finish();
                     }
                     if(response.code()==401){
-                        Toast.makeText(getApplicationContext(), "Invalid User crendentials!", Toast.LENGTH_SHORT).show();
+                        Snackbar.make(coordinatorLayout,"Invalid User Credentials",Snackbar.LENGTH_LONG).show();
+                        showProgressBar(false);
                     }
                 }
                 @Override
                 public void onFailure(Call<Void> call, Throwable t) {
-                    Toast.makeText(getApplicationContext(), "Unable to process your request at the moment!", Toast.LENGTH_SHORT).show();
+                    showProgressBar(false);
+                    Snackbar snackbar = Snackbar.make(coordinatorLayout,"Unable to process your request at the moment!",Snackbar.LENGTH_INDEFINITE)
+                            .setAction("Retry", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    login();
+                                }
+                            });
+                    snackbar.show();
                 }
             });
         }
@@ -105,5 +134,21 @@ public class FarmerLogin extends AppCompatActivity {
     {
         Intent intent=new Intent(this,FarmerRegister.class);
         startActivity(intent);
+    }
+
+    private void hideKeyboard()
+    {
+        View view = this.getCurrentFocus();
+        if(view!=null){
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+    }
+    private void showProgressBar(boolean show){
+        if(show){
+            progressBar.setVisibility(View.VISIBLE);
+        }
+        else
+            progressBar.setVisibility(View.INVISIBLE);
     }
 }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Kisan Sewa</string>
+    <string name="app_name">Kisaan Sewa</string>
     <string name="cropName">Bajra</string>
     <string name="cropPrice">70</string>
     <string name="cropQuantity">500</string>
@@ -18,6 +18,17 @@
     <string name="message">Message</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="quantity_purchased">Quantity purchased:</string>
+
+    <!--Authentication-->
+    <string name="h_name">Name</string>
+    <string name="h_mobile">Mobile No</string>
+    <string name="h_area">Area</string>
+    <string name="h_city">City</string>
+    <string name="h_state">State</string>
+    <string name="h_password">Password</string>
+    <string name="h_conf_password">Confirm Password</string>
+    <string name="progress_sign_up">Signing you up</string>
+    <string name="register">REGISTER</string>
 
     <!--HARDCODED STRINGS-->
     <string name="quantity_available">Quantity Available: </string>

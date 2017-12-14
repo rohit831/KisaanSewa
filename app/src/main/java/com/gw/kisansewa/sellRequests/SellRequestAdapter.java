@@ -2,6 +2,7 @@ package com.gw.kisansewa.sellRequests;
 
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -10,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +19,7 @@ import com.gw.kisansewa.R;
 import com.gw.kisansewa.api.RequestAPI;
 import com.gw.kisansewa.apiGenerator.RequestGenerator;
 import com.gw.kisansewa.models.FarmerDetails;
+import com.gw.kisansewa.models.Orders;
 import com.gw.kisansewa.models.RequestDetails;
 
 import java.util.ArrayList;
@@ -110,6 +113,7 @@ public class SellRequestAdapter extends RecyclerView.Adapter<SellRequestAdapter.
                         public void onResponse(Call<Void> call, Response<Void> response) {
                             if(response.code()==200){
                                 requestDetails.remove(position);
+                                buyerNames.remove(position);
                                 notifyItemRemoved(position);
                                 notifyItemRangeChanged(position, requestDetails.size());
                             }
@@ -134,7 +138,6 @@ public class SellRequestAdapter extends RecyclerView.Adapter<SellRequestAdapter.
             });
             AlertDialog alertDialog = builder.create();
             alertDialog.show();
-
         }
 
         //view the buyer
@@ -193,12 +196,86 @@ public class SellRequestAdapter extends RecyclerView.Adapter<SellRequestAdapter.
                     Toast.makeText(context, "Can't connect to the server at the moment!", Toast.LENGTH_SHORT).show();
                 }
             });
-
         }
 
         //confirm the request
         private void confirmRequestClicked(){
-            Toast.makeText(context, "Confirm request clicked", Toast.LENGTH_SHORT).show();
+            final int position = getAdapterPosition();
+            LayoutInflater inflater = LayoutInflater.from(context);
+            final View dialogView = inflater.inflate(R.layout.sell_request_confirm_dialog, null);
+            final AlertDialog.Builder customDialog = new AlertDialog.Builder(context);
+            customDialog.setView(dialogView);
+
+            final TextView totalQuantity;
+            final EditText quantity_purchased;
+
+            totalQuantity = (TextView)dialogView.findViewById(R.id.sell_requests_total_quantity);
+            quantity_purchased = (EditText)dialogView.findViewById(R.id.quantity_purchased);
+
+            totalQuantity.setText(requestDetails.get(position).getCropQuantity());
+
+            final Orders order = new Orders(requestDetails.get(position).getSellerMobileNo(),
+                    requestDetails.get(position).getBuyerMobileNo(),
+                    requestDetails.get(position).getCropName(),
+                    quantity_purchased.getText().toString(),
+                    requestDetails.get(position).getCropPrice());
+
+            customDialog.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    if(quantity_purchased.getText().toString().equals("0"))
+                        Toast.makeText(context, "Quantity cannot be zero", Toast.LENGTH_SHORT).show();
+
+                    else if(Integer.parseInt(quantity_purchased.getText().toString()) >
+                            Integer.parseInt(totalQuantity.getText().toString()))
+                        Toast.makeText(context, "Enter a valid quantity", Toast.LENGTH_SHORT).show();
+                    else{
+                        RequestAPI requestAPI = RequestGenerator.createService(RequestAPI.class);
+                        Call<Void> confirmOrderCall = requestAPI.confirmOrder(order);
+                        confirmOrderCall.enqueue(new Callback<Void>() {
+                            @Override
+                            public void onResponse(Call<Void> call, Response<Void> response) {
+                                if(response.code() == 200){
+                                    Toast.makeText(context, "Response code 200", Toast.LENGTH_SHORT).show();
+                                    requestDetails.remove(position);
+                                    buyerNames.remove(position);
+                                    notifyItemRemoved(position);
+                                    notifyItemRangeChanged(position,requestDetails.size());
+                                }
+                                else{
+                                    Toast.makeText(context, "Response code not 200", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<Void> call, Throwable t) {
+                                Toast.makeText(context, "Can't connect to server at the moment", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                }
+            });
+
+            customDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            customDialog.create();
+            customDialog.show();
         }
     }
+    public void showDialog(ProgressDialog mProgressDialog) {
+
+        if(mProgressDialog != null && !mProgressDialog.isShowing())
+            mProgressDialog.show();
+    }
+
+    public void hideDialog(ProgressDialog mProgressDialog) {
+
+        if(mProgressDialog != null && mProgressDialog.isShowing())
+            mProgressDialog.dismiss();
+    }
+
 }

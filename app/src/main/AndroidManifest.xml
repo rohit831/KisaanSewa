@@ -31,7 +31,11 @@
 
         <!--Confirm Buy View-->
         <activity android:name=".buyProductsTab.ConfirmProductBuy"
-            android:launchMode="singleInstance"/>
+            android:launchMode="singleInstance"
+            android:theme="@style/NoActionBar"
+
+
+            />
 
         <!--Purchase Requests-->
         <activity android:name=".purchaseRequests.PurchaseRequest"

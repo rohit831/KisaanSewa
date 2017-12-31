@@ -1,16 +1,23 @@
 package com.gw.kisansewa.sellProductsTab;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.androidadvance.topsnackbar.TSnackbar;
 import com.gw.kisansewa.R;
 import com.gw.kisansewa.api.SellProductAPI;
 import com.gw.kisansewa.apiGenerator.ProductGenerator;
@@ -27,10 +34,13 @@ public class SellProductsRecyclerAdapter extends RecyclerView.Adapter<SellProduc
     ArrayList<CropDetails> cropDetails;
     Context context;
     String userMobileNo;
+    LinearLayout snackLayout;
 
 
-    public  SellProductsRecyclerAdapter(ArrayList<CropDetails> cropDetails,Context context,String userMobileNo)
+    public  SellProductsRecyclerAdapter(ArrayList<CropDetails> cropDetails, Context context, String userMobileNo
+    , LinearLayout snackLayout)
     {
+        this.snackLayout = snackLayout;
         this.context=context;
         this.userMobileNo=userMobileNo;
         this.cropDetails=cropDetails;
@@ -71,6 +81,11 @@ public class SellProductsRecyclerAdapter extends RecyclerView.Adapter<SellProduc
                 @Override
                 public boolean onLongClick(View v) {
 
+                    final ProgressDialog progressDialog = new ProgressDialog(context);
+                    progressDialog.setIndeterminate(true);
+                    progressDialog.setMessage("Deleting crop .. ");
+                    progressDialog.show();
+
                     LayoutInflater li=LayoutInflater.from(context);
                     final View dialogView =li.inflate(R.layout.delete_sell_product_dialog,null);
                     final AlertDialog.Builder customDialog=new AlertDialog.Builder(context);
@@ -79,6 +94,7 @@ public class SellProductsRecyclerAdapter extends RecyclerView.Adapter<SellProduc
                     customDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+                            progressDialog.hide();
                             dialog.cancel();
                         }
                     });
@@ -93,20 +109,22 @@ public class SellProductsRecyclerAdapter extends RecyclerView.Adapter<SellProduc
                             deleteCropCall.enqueue(new Callback<Void>() {
                                 @Override
                                 public void onResponse(Call<Void> call, Response<Void> response) {
+                                    progressDialog.hide();
                                     if(response.code() == 200){
                                         cropDetails.remove(getAdapterPosition());
                                         notifyItemRemoved(getAdapterPosition());
                                         notifyItemRangeChanged(getAdapterPosition(),cropDetails.size());
-                                        Toast.makeText(context,"Item Deleted",Toast.LENGTH_SHORT).show();
+                                        showSnack("Item Deleted");
                                     }
                                     else{
-                                        Toast.makeText(context, "Something went wrong!", Toast.LENGTH_SHORT).show();
+                                        showSnack("Something went  wrong!");
                                     }
                                 }
 
                                 @Override
                                 public void onFailure(Call<Void> call, Throwable t) {
-                                    Toast.makeText(context, "Unable to connect to server!", Toast.LENGTH_SHORT).show();
+                                    progressDialog.hide();
+                                    showSnack("Unable to connect to server at the moment");
                                 }
                             });
                         }
@@ -151,7 +169,7 @@ public class SellProductsRecyclerAdapter extends RecyclerView.Adapter<SellProduc
 
                             if(editProductName.getText().toString().equals("") || editProductPrice.getText().toString().equals("")
                                     || editProductQuantity.getText().toString().equals(""))
-                                Toast.makeText(context,"Field cannot be empty!!",Toast.LENGTH_SHORT).show();
+                                showSnack("Field cannot be empty!!");
                             else
                             {
                                 SellProductAPI sellProductAPI = ProductGenerator.createService(SellProductAPI.class);
@@ -170,7 +188,7 @@ public class SellProductsRecyclerAdapter extends RecyclerView.Adapter<SellProduc
 
                                     @Override
                                     public void onFailure(Call<Void> call, Throwable t) {
-                                        Toast.makeText(context, "Unable to connect to server!", Toast.LENGTH_SHORT).show();
+                                        showSnack("Unable to connect to server!");
                                     }
                                 });
                             }
@@ -181,7 +199,16 @@ public class SellProductsRecyclerAdapter extends RecyclerView.Adapter<SellProduc
                     customDialog.show();
                 }
             });
+        }
 
+        void showSnack(String message) {
+            TSnackbar snack = TSnackbar.make(snackLayout,message,TSnackbar.LENGTH_SHORT );
+            View snackView = snack.getView();
+            snackView.setBackgroundColor(Color.rgb(34,142,17));
+            TextView textView = (TextView)snackView.findViewById(com.androidadvance.topsnackbar.R.id.snackbar_text);
+            textView.setTextColor(Color.WHITE);
+            snack.show();
         }
     }
+
 }

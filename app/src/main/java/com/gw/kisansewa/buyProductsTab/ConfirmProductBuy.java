@@ -1,5 +1,6 @@
 package com.gw.kisansewa.buyProductsTab;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -9,9 +10,12 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,26 +36,24 @@ import retrofit2.Response;
 
 public class ConfirmProductBuy extends AppCompatActivity {
 
-    TextView productName,productPrice,productQuantity;
-    TextView sellerName,sellerMobileNo;
-    TextView sellerAddress, message, call, findDistance, requestProduct, dist_from_current, dist_from_addr;
+    private TextView productName,productPrice,productQuantity,sellerName,sellerMobileNo;
+    private TextView sellerAddress, message, call, findDistance, requestProduct, dist_from_current, dist_from_addr;
     private BuyProductAPI buyProductAPI;
-    String sellerNo= new String();
-    String userMobileNo=new String();
-    String buyProductName=new String();
-    FarmerDetails farmerDetails;
+    private String sellerNo,buyProductName,userMobileNo;
+    private FarmerDetails farmerDetails;
     final Context context=this;
-    CropDetails cropDetails;
-    private LocationManager locationManager;
-    private double lattitude, longitude;
-    private boolean gps_enabled, network_enabled;
-    private boolean canGetLocation = false;
-
+    private CropDetails cropDetails;
+    private LinearLayout progressBar, no_internet;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.confirm_product_buy);
+//
+////      enable back button and changing the name of action bar
+//        getSupportActionBar().setDisplayShowHomeEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setTitle(R.string.tab_confirm_product_buy);
 
         initialize();
         getCropDetails();
@@ -78,13 +80,22 @@ public class ConfirmProductBuy extends AppCompatActivity {
             }
         });
     }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        int id = item.getItemId();
+//
+//        if(id == android.R.id.home){
+//            this.finish();
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 
     public void findDistanceOnClick(View v) {
-
         if (!checkLocationPermissions()) {
+            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
             Toast.makeText(ConfirmProductBuy.this, "You need to grant us permission!", Toast.LENGTH_SHORT).show();
         } else {
-
             LayoutInflater li = LayoutInflater.from(context);
             final View dialogView = li.inflate(R.layout.distance_dialog, null);
             final AlertDialog.Builder customDialog = new AlertDialog.Builder(context);
@@ -116,8 +127,7 @@ public class ConfirmProductBuy extends AppCompatActivity {
     }
 
 //    Reference all the variables
-    public void initialize()
-    {
+    public void initialize() {
         productName=(TextView)findViewById(R.id.finalProductName);
         productPrice=(TextView)findViewById(R.id.finalProductPrice);
         productQuantity=(TextView)findViewById(R.id.finalProductQuantity);
@@ -132,6 +142,8 @@ public class ConfirmProductBuy extends AppCompatActivity {
         requestProduct = (TextView) findViewById(R.id.request_product_confirm_buy);
         farmerDetails=new FarmerDetails();
         cropDetails=new CropDetails();
+        progressBar = (LinearLayout)findViewById(R.id.progress_confirm_product_buy);
+        no_internet = (LinearLayout)findViewById(R.id.no_internet_confirm_product_buy);
 
         sellerNo=getIntent().getStringExtra("sellerMobileNo");
         userMobileNo=getIntent().getStringExtra("userMobileNo");
@@ -139,8 +151,7 @@ public class ConfirmProductBuy extends AppCompatActivity {
     }
 
 //    Get the details of the crop selected
-     void getCropDetails()
-    {
+     void getCropDetails() {
         buyProductAPI = ProductGenerator.createService(BuyProductAPI.class);
         final Call<CropDetails> cropDetailCall = buyProductAPI.getCropDetails(sellerNo, buyProductName);
         cropDetailCall.enqueue(new Callback<CropDetails>() {
@@ -160,8 +171,7 @@ public class ConfirmProductBuy extends AppCompatActivity {
     }
 
 //    Get the details of the respective seller
-    void getFarmerDetails()
-    {
+    void getFarmerDetails() {
         buyProductAPI = ProductGenerator.createService(BuyProductAPI.class);
         final Call<FarmerDetails> farmerDetailsCall = buyProductAPI.getFarmerDetails(sellerNo);
         farmerDetailsCall.enqueue(new Callback<FarmerDetails>() {
@@ -181,8 +191,7 @@ public class ConfirmProductBuy extends AppCompatActivity {
     }
 
 //    Set the view elements value to the response generated
-    public void setValues()
-    {
+    public void setValues() {
         productName.setText(cropDetails.getCropName());
         productPrice.setText(cropDetails.getCropPrice());
         productQuantity.setText(cropDetails.getCropQuantity());
@@ -197,8 +206,7 @@ public class ConfirmProductBuy extends AppCompatActivity {
     }
 
 //    show custom dialog for confirming request of crop
-    public void showCustomDialog()
-    {
+    public void showCustomDialog() {
         LayoutInflater li=LayoutInflater.from(context);
         final View dialogView= li.inflate(R.layout.dialog_confirm_product,null);
         final AlertDialog.Builder customDialog= new AlertDialog.Builder(context);
@@ -226,8 +234,7 @@ public class ConfirmProductBuy extends AppCompatActivity {
     }
 
 //    requesting a crop
-    void requestProduct()
-    {
+    void requestProduct() {
         buyProductAPI = ProductGenerator.createService(BuyProductAPI.class);
         RequestDetails transaction = new RequestDetails(sellerNo,userMobileNo, buyProductName
                                             ,productPrice.getText().toString(), productQuantity.getText().toString());
@@ -307,12 +314,28 @@ public class ConfirmProductBuy extends AppCompatActivity {
         });
     }
 
+//
+//    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+//                // If request is cancelled, the result arrays are empty.
+//                if (grantResults.length > 0
+//                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//
+//                } else {
+//                    // permission denied, boo! Disable the
+//                    // functionality that depends on this permission.
+//                }
+//    }
 
-//    check for network permissions
-    private boolean checkLocationPermissions()
-    {
+//  check for network permissions
+    private boolean checkLocationPermissions() {
         String permission = "android.permission.ACCESS_FINE_LOCATION";
         int res = context.checkCallingOrSelfPermission(permission);
         return (res == PackageManager.PERMISSION_GRANTED);
+    }
+
+//   no internet connection found
+    private void noInternetConnectionFound()
+    {
+        no_internet.setVisibility(View.VISIBLE);
     }
 }

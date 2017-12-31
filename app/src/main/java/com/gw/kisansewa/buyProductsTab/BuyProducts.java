@@ -77,6 +77,8 @@ public class BuyProducts extends Fragment
         retry_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                noInternet.setVisibility(View.GONE);
+                no_crops.setVisibility(View.GONE);
                 getCropsAvailable();
             }
         });

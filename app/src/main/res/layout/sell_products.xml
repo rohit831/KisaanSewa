@@ -4,6 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:background="@color/background_grey"
+    android:id="@+id/snack_layout_sell_product"
     android:layout_height="match_parent">
 
     <!--progress loader-->
@@ -30,16 +31,8 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:id="@+id/no_crops_sell_products"
-        android:visibility="visible"
+        android:visibility="gone"
         >
-
-        <android.support.design.widget.CoordinatorLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/snack_layout_sell_products_no_requests"
-            >
-
-        </android.support.design.widget.CoordinatorLayout>
 
         <TextView
             android:layout_width="match_parent"
@@ -157,13 +150,5 @@
         style="@style/Base.TextAppearance.AppCompat.Medium"
         android:textStyle="bold"
         android:id="@+id/addProduct"/>
-
-    <android.support.design.widget.CoordinatorLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/snack_layout_sell_products"
-        >
-
-    </android.support.design.widget.CoordinatorLayout>
 
 </LinearLayout>

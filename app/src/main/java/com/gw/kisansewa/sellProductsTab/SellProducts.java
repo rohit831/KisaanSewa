@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -20,12 +21,16 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import com.androidadvance.topsnackbar.TSnackbar;
 import com.gw.kisansewa.R;
 import com.gw.kisansewa.api.SellProductAPI;
 import com.gw.kisansewa.apiGenerator.ProductGenerator;
 import com.gw.kisansewa.authentication.FarmerLogin;
 import com.gw.kisansewa.models.CropDetails;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -44,9 +49,9 @@ public class SellProducts extends Fragment {
     private String mobileNo;
     private SharedPreferences sharedPreferences;
     boolean isAvailable = false;
-    private LinearLayout progressBar, no_crops, no_internet;
-    private CoordinatorLayout snackLayout, snackLayoutNoCrops;
+    private LinearLayout progressBar, no_crops, no_internet, snackLayout;
     private ProgressDialog progressDialog;
+    private TextView retry_btn;
 
     @Nullable
     @Override
@@ -88,6 +93,15 @@ public class SellProducts extends Fragment {
                 },500);
             }
         });
+
+        retry_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                no_crops.setVisibility(View.GONE);
+                no_internet.setVisibility(View.GONE);
+                retrieveSellerCrops(mobileNo);
+            }
+        });
     }
 
     //referencing all the elements
@@ -98,14 +112,14 @@ public class SellProducts extends Fragment {
         progressBar = (LinearLayout)view.findViewById(R.id.progress_sell_products);
         sharedPreferences = getActivity().getSharedPreferences(FarmerLogin.FarmerPreferences, Context.MODE_PRIVATE);
         mobileNo = sharedPreferences.getString(FarmerLogin.FMobileNo,"");
-        snackLayout = (CoordinatorLayout)view.findViewById(R.id.snack_layout_sell_products);
-        snackLayoutNoCrops = (CoordinatorLayout)view.findViewById(R.id.snack_layout_sell_products_no_requests);
         addProductsNoCrops = (Button)view.findViewById(R.id.addProductNoCrops);
         no_crops = (LinearLayout)view.findViewById(R.id.no_crops_sell_products);
         no_internet = (LinearLayout)view.findViewById(R.id.no_internet_sell_products);
         addProduct=(Button)view.findViewById(R.id.addProduct);
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setIndeterminate(true);
+        snackLayout = (LinearLayout)view.findViewById(R.id.snack_layout_sell_product);
+        retry_btn = (TextView) view.findViewById(R.id.retry_sell_products);
     }
 
     //retrieve all the seller crops
@@ -121,7 +135,7 @@ public class SellProducts extends Fragment {
                 if(response.body().size() == 0)
                     noCropsToSell();
                 else {
-                    recyclerAdapter = new SellProductsRecyclerAdapter(cropDetails, getContext(), mobileNo);
+                    recyclerAdapter = new SellProductsRecyclerAdapter(cropDetails, getContext(), mobileNo, snackLayout);
                     layoutManager = new GridLayoutManager(getContext(), 2);
                     recyclerView.setLayoutManager(layoutManager);
                     recyclerView.setHasFixedSize(true);
@@ -165,16 +179,12 @@ public class SellProducts extends Fragment {
                 if(productName.getText().toString().equals("")
                         || productPrice.getText().toString().equals("")
                         || productQuantity.getText().toString().trim().equals("")) {
-                    if(noCropsCheck())
-                        showSnackNoCrops("Enter All Details");
-                    else
-                        showSnack("Enter All Details!!");
+                        noCropsCheck();
+                        showSnack("Enter All Details");
                 }
                 else if (Long.parseLong(productQuantity.getText().toString())==0) {
-                    if(noCropsCheck())
-                        showSnackNoCrops("Quantity cannot be zero!");
-                    else
-                        showSnack("Quantity cannot be zero!");
+                    noCropsCheck();
+                    showSnack("Quantity cannot be zero!");
                 }
                 else
                 {
@@ -197,9 +207,7 @@ public class SellProducts extends Fragment {
                             @Override
                             public void onFailure(Call<Void> call, Throwable t) {
                                 progressDialog.hide();
-                                if(noCropsCheck())
-                                    showSnackNoCrops("Something went wrong! Please try again later!");
-                                else
+                                    noCropsCheck();
                                     showSnack("Something went wrong! Please try again later!");
                             }
                         });
@@ -214,6 +222,7 @@ public class SellProducts extends Fragment {
 
     //check if the name of crop is available for that seller
     public boolean checkCropAvailability(String mobileNo, String cropName){
+        isAvailable =false;
         SellProductAPI sellProductAPI = ProductGenerator.createService(SellProductAPI.class);
         Call<Void> checkCropAvailabilityCall = sellProductAPI.checkCropAvailability(mobileNo, cropName);
         progressDialog.setMessage("Adding new crop .. ");
@@ -224,9 +233,7 @@ public class SellProducts extends Fragment {
                 if(response.code() == 302){
                     progressDialog.hide();
                     isAvailable = false;
-                    if(noCropsCheck())
-                        showSnackNoCrops("Crop already exists, try some another name!");
-                    else
+                        noCropsCheck();
                         showSnack("Crop already exists, try some another name!");
                 }
                 else if(response.code() == 200){
@@ -235,9 +242,7 @@ public class SellProducts extends Fragment {
                 else if(response.code() == 502){
                     isAvailable = false;
                     progressDialog.hide();
-                    if(noCropsCheck())
-                        showSnackNoCrops("Oops! Something went wrong!");
-                    else
+                        noCropsCheck();
                         showSnack("Oops! Something went wrong!");
                 }
             }
@@ -245,10 +250,8 @@ public class SellProducts extends Fragment {
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
                 progressDialog.hide();
-                if(noCropsCheck())
-                    showSnackNoCrops("Unable to process your request at the moment!");
-                else
-                    showSnack("Unable to process your request at the moment!");
+                noCropsCheck();
+                showSnack("Unable to process your request at the moment!");
                 isAvailable = false;
             }
         });
@@ -256,12 +259,10 @@ public class SellProducts extends Fragment {
     }
 
     //check if no crop present
-    private boolean noCropsCheck() {
+    private void noCropsCheck() {
         if(cropDetails.size() == 0){
             noCropsToSell();
-            return true;
         }
-        return false;
     }
 
     //view if seller has no crops to sell
@@ -285,14 +286,14 @@ public class SellProducts extends Fragment {
             progressBar.setVisibility(View.GONE);
     }
 
-    //show snack message
-    void showSnack(String message){
-        Snackbar.make(snackLayout, message, Snackbar.LENGTH_SHORT).show();
-    }
-
-    //show snack for no requests
-    void showSnackNoCrops(String message) {
-        Snackbar.make(snackLayoutNoCrops,message,Snackbar.LENGTH_SHORT ).show();
+    //show snack
+    void showSnack(String message) {
+        TSnackbar snack = TSnackbar.make(snackLayout,message,TSnackbar.LENGTH_SHORT );
+        View snackView = snack.getView();
+        snackView.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        TextView textView = (TextView)snackView.findViewById(com.androidadvance.topsnackbar.R.id.snackbar_text);
+        textView.setTextColor(getResources().getColor(R.color.white));
+        snack.show();
     }
 }
 

@@ -4,7 +4,6 @@ package com.gw.kisansewa.authentication;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
@@ -14,10 +13,8 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.gw.kisansewa.Homescreen.HomeScreen;
 import com.gw.kisansewa.api.AuthenticationAPI;
@@ -78,7 +75,7 @@ public class FarmerLogin extends AppCompatActivity {
         password=(EditText)findViewById(R.id.loginPassword);
         loginButton=(Button)findViewById(R.id.loginButton);
         registerHere=(TextView)findViewById(R.id.registerHere);
-        coordinatorLayout = (CoordinatorLayout) findViewById(R.id.layout_login);
+        coordinatorLayout = (CoordinatorLayout) findViewById(R.id.snack_layout_login);
         progressBar = (ProgressBar)findViewById(R.id.progress_login);
     }
 

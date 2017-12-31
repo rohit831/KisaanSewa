@@ -1,9 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:background="@color/background_grey"
     android:layout_height="match_parent">
+
+    <!--progress loader-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:id="@+id/progress_buy_products"
+        android:visibility="gone"
+        >
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scrollbarSize="10dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            />
+    </LinearLayout>
+
+    <!--No Requests-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/no_crops_to_buy"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:visibility="gone"
+        android:id="@+id/no_requests_buy_products"
+        />
+
+    <!--No internet connection-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:id="@+id/no_internet_buy_products"
+        >
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="100dp"
+            android:background="@drawable/no_internet"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/no_internet"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_marginTop="7dp"
+            />
+
+        <android.support.v7.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="@color/colorPrimary"
+            android:layout_gravity="center"
+            app:cardElevation="7dp"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
+                android:text="@string/retry"
+                android:textColor="@color/white"
+                android:id="@+id/retry_buy_products"
+                android:textSize="20sp"
+                android:padding="7dp"
+                />
+
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
@@ -26,6 +108,13 @@
 
     </android.support.v4.widget.SwipeRefreshLayout>
 
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:id="@+id/snack_layout_buy_products"
+        >
 
+    </android.support.design.widget.CoordinatorLayout>
 
 </LinearLayout>

@@ -130,7 +130,7 @@ public class PurchaseRequestAdapter extends RecyclerView.Adapter<PurchaseRequest
 
                 @Override
                 public void onFailure(Call<FarmerDetails> call, Throwable t) {
-                    Toast.makeText(context, "Can't connect to the server at the moment!", Toast.LENGTH_SHORT).show();
+                    ((PurchaseRequest)context).showSnack("Can't connect to the server at the moment!");
                 }
             });
 
@@ -140,7 +140,6 @@ public class PurchaseRequestAdapter extends RecyclerView.Adapter<PurchaseRequest
         {
             final int position = getAdapterPosition();
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
-//            builder.setTitle("Cancel Request");
             builder.setMessage("Are you sure you want to cancel this request?");
             builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                 @Override
@@ -151,9 +150,13 @@ public class PurchaseRequestAdapter extends RecyclerView.Adapter<PurchaseRequest
                             requestDetails.get(position).getCropName());
                     cancelRequestCall.enqueue(new Callback<Void>() {
                         @Override
-                        public void onResponse(Call<Void> call, Response<Void> response) {
+                        public void onResponse(Call<Void> call, Response<Void> response){
                             if(response.code()==200){
                                 requestDetails.remove(position);
+                                if(requestDetails.size() == 0)
+                                {
+                                    ((PurchaseRequest)context).noRequestsCurrently();
+                                }
                                 notifyItemRemoved(position);
                                 notifyItemRangeChanged(position, requestDetails.size());
                             }
@@ -164,7 +167,7 @@ public class PurchaseRequestAdapter extends RecyclerView.Adapter<PurchaseRequest
 
                         @Override
                         public void onFailure(Call<Void> call, Throwable t) {
-                            Toast.makeText(context, "Unable to connect to server at the moment", Toast.LENGTH_SHORT).show();
+                            ((PurchaseRequest)context).showSnack("Can't connect to the server at the moment!");
                         }
                     });
                 }

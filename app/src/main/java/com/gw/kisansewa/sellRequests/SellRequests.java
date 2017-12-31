@@ -7,11 +7,15 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -34,7 +38,6 @@ import retrofit2.Response;
 
 public class SellRequests extends AppCompatActivity {
 
-    ImageButton back_btn;
     private RecyclerView recyclerView;
     private RequestAPI requestAPI;
     private RecyclerView.Adapter adapter;
@@ -47,37 +50,35 @@ public class SellRequests extends AppCompatActivity {
     private ArrayList<String> buyerNames;
     private LinearLayout noInternet;
     private TextView retry_btn, no_requests;
-    ProgressDialog progressDialog;
+    private LinearLayout progressBar;
+    private CoordinatorLayout snackLayout;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sell_requests);
 
-       // reference all the elements and get the shared preferences
+//      enable back button and changing the name of action bar
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(R.string.sell_req_nav);
+
+
+        // reference all the elements and get the shared preferences
         initialize();
         getSellRequests();
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                swipeRefreshLayout.setRefreshing(false);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         getSellRequests();
-                       swipeRefreshLayout.setRefreshing(false);
                     }
                 },500);
             }
         });
-
-        back_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(context, HomeScreen.class));
-                finish();
-            }
-        });
-
 
         retry_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,10 +88,18 @@ public class SellRequests extends AppCompatActivity {
         });
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if(id == android.R.id.home){
+            this.finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     // reference all the elements and get the shared preferences
     private void initialize(){
-        back_btn = (ImageButton)findViewById(R.id.sell_requests_back_btn);
         recyclerView = (RecyclerView)findViewById(R.id.recycler_view_sell_requests);
         swipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.refresh_sell_requests);
         sharedPreferences = getSharedPreferences(FarmerLogin.FarmerPreferences,Context.MODE_PRIVATE);
@@ -99,52 +108,40 @@ public class SellRequests extends AppCompatActivity {
         noInternet = (LinearLayout)findViewById(R.id.no_internet_sell_requests);
         retry_btn = (TextView)findViewById(R.id.retry_sell_requests);
         no_requests = (TextView)findViewById(R.id.no_requests_sell_requests);
-        progressDialog = new ProgressDialog(context);
-        progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Loading ..");
+        progressBar = (LinearLayout)findViewById(R.id.progress_sell_requests);
+        snackLayout = (CoordinatorLayout)findViewById(R.id.snack_layout_sell_requests);
     }
 
     //get all the sell requests of a seller
     private void getSellRequests(){
         requestAPI = RequestGenerator.createService(RequestAPI.class);
         Call<ArrayList<RequestDetails>> getSellRequestsCall = requestAPI.getSellRequests(userMobileNo);
-        showDialog(progressDialog);
+        showProgressBar(true);
         getSellRequestsCall.enqueue(new Callback<ArrayList<RequestDetails>>() {
             @Override
             public void onResponse(Call<ArrayList<RequestDetails>> call, Response<ArrayList<RequestDetails>> response) {
                 if(response.code() == 200){
                     if(response.body().size() == 0){
-                        hideDialog(progressDialog);
-                        noInternet.setVisibility(View.GONE);
-                        no_requests.setVisibility(View.VISIBLE);
+                        showProgressBar(false);
+                        noRequestsCurrently();
                     }
                     else{
                         noInternet.setVisibility(View.GONE);
                         no_requests.setVisibility(View.GONE);
                         requestDetails = response.body();
-//                        ArrayList<String> buyerMobileNos = new ArrayList<String>();
-//                        for(RequestDetails request: requestDetails){
-//                            buyerMobileNos.add(request.getBuyerMobileNo());
-//                        }
-//                        getBuyerNames(buyerMobileNos);
-
                         getBuyerNames();
                     }
                 }
                 if(response.code() == 502){
-                    hideDialog(progressDialog);
-                    noInternet.setVisibility(View.VISIBLE);
-                    no_requests.setVisibility(View.GONE);
-                    Toast.makeText(SellRequests.this,
-                            "Can't connect to server at the moment", Toast.LENGTH_SHORT).show();
+                    showProgressBar(false);
+                    noInternetConnectionFound();
                 }
             }
 
             @Override
             public void onFailure(Call<ArrayList<RequestDetails>> call, Throwable t) {
-                hideDialog(progressDialog);
-                no_requests.setVisibility(View.GONE);
-                noInternet.setVisibility(View.VISIBLE);
+                showProgressBar(false);
+                noInternetConnectionFound();
             }
         });
     }
@@ -155,7 +152,7 @@ public class SellRequests extends AppCompatActivity {
         getBuyerNamesCall.enqueue(new Callback<ArrayList<String>>() {
             @Override
             public void onResponse(Call<ArrayList<String>> call, Response<ArrayList<String>> response) {
-                hideDialog(progressDialog);
+                showProgressBar(false);
                 if(response.code() == 200){
                     buyerNames = response.body();
                     adapter = new SellRequestAdapter(requestDetails, buyerNames, context);
@@ -164,31 +161,46 @@ public class SellRequests extends AppCompatActivity {
                     recyclerView.setHasFixedSize(true);
                     recyclerView.setLayoutManager(layoutManager);
                 }
-                else{
-                    no_requests.setVisibility(View.GONE);
-                    noInternet.setVisibility(View.VISIBLE);
-                    Toast.makeText(SellRequests.this, "Something went wrong", Toast.LENGTH_SHORT).show();
-                }
+                else
+                    noInternetConnectionFound();
             }
 
             @Override
             public void onFailure(Call<ArrayList<String>> call, Throwable t) {
-                hideDialog(progressDialog);
-                no_requests.setVisibility(View.GONE);
-                noInternet.setVisibility(View.VISIBLE);
+                showProgressBar(false);
+                noInternetConnectionFound();
             }
         });
     }
-    public void showDialog(ProgressDialog mProgressDialog) {
 
-        if(mProgressDialog != null && !mProgressDialog.isShowing())
-            mProgressDialog.show();
+    void noInternetConnectionFound(){
+        noInternet.setVisibility(View.VISIBLE);
+        no_requests.setVisibility(View.GONE);
     }
 
-    public void hideDialog(ProgressDialog mProgressDialog) {
+    void noRequestsCurrently() {
+        no_requests.setVisibility(View.VISIBLE);
+        noInternet.setVisibility(View.GONE);
+    }
 
-        if(mProgressDialog != null && mProgressDialog.isShowing())
-            mProgressDialog.dismiss();
+    void showSnack(String message) {
+        Snackbar.make(snackLayout, message, Snackbar.LENGTH_SHORT).show();
+    }
+
+    void showProgressBar(boolean flag){
+        if(flag)
+            progressBar.setVisibility(View.VISIBLE);
+        else
+            progressBar.setVisibility(View.GONE);
+    }
+
+    void hideKeyboard()
+    {
+        View view = this.getCurrentFocus();
+        if(view!=null){
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
     }
 
 }

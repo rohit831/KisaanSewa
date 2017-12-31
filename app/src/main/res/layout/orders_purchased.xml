@@ -6,13 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!--progress loader-->
+<!--Loader-->
     <LinearLayout
-
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:id="@+id/progress_purchase_requests"
+        android:id="@+id/progress_orders_purchased"
         android:visibility="gone"
         >
 
@@ -25,24 +24,25 @@
             />
     </LinearLayout>
 
-    <!--No Requests-->
+
+    <!--If in case no orders yet-->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/no_requests"
+        android:text="@string/no_orders"
         android:textSize="18sp"
         android:gravity="center"
-        android:visibility="visible"
-        android:id="@+id/no_requests_purchase_requests"
+        android:visibility="gone"
+        android:id="@+id/no_orders_purchased"
         />
 
-    <!--No internet connection-->
+    <!--In case of no internet connection-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:visibility="gone"
-        android:id="@+id/no_internet_purchase_requests"
+        android:id="@+id/no_internet_purchased"
         >
 
         <ImageView
@@ -58,6 +58,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/no_internet"
+            android:textColor="@color/grey"
             android:textSize="22sp"
             android:textStyle="bold"
             android:layout_marginTop="7dp"
@@ -78,7 +79,7 @@
                 android:background="@color/colorPrimary"
                 android:text="@string/retry"
                 android:textColor="@color/white"
-                android:id="@+id/retry_purchase_requests"
+                android:id="@+id/retry_orders_purchased"
                 android:textSize="20sp"
                 android:padding="7dp"
                 />
@@ -87,34 +88,29 @@
 
     </LinearLayout>
 
+
+    <!--Recycler view for showing data-->
     <android.support.v4.widget.SwipeRefreshLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginStart="5dp"
-    android:layout_marginEnd="4dp"
-    android:layout_marginTop="5dp"
-    android:layout_marginBottom="5dp"
-    android:id="@+id/refresh_purchase_requests"
-    >
-
-    <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/recycler_view_purchase_requests"
+        android:layout_height="0dp"
+        android:layout_weight="9"
+        android:id="@+id/orderPurchasedRefresh"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
         >
 
-    </android.support.v7.widget.RecyclerView>
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/recycler_view_purchased_orders"
+            >
+
+        </android.support.v7.widget.RecyclerView>
 
 
-</android.support.v4.widget.SwipeRefreshLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
-    <android.support.design.widget.CoordinatorLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/snack_layout_purchase_requests"
-        >
-
-    </android.support.design.widget.CoordinatorLayout>
 
 
 </LinearLayout>

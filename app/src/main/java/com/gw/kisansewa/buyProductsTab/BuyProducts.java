@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,7 +14,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.gw.kisansewa.R;
 import com.gw.kisansewa.api.BuyProductAPI;
@@ -31,13 +34,17 @@ public class BuyProducts extends Fragment
     private RecyclerView recyclerView;
     private BuyProductAPI buyProductAPI;
     private RecyclerView.Adapter adapter;
-    SwipeRefreshLayout swipeRefreshLayout;
+    private SwipeRefreshLayout swipeRefreshLayout;
     private RecyclerView.LayoutManager layoutManager;
-    ArrayList<CropDetails> cropDetails;
+    private ArrayList<CropDetails> cropDetails;
     boolean flag = false;
-    String userMobileNo=new String();
-    ArrayList<String> sellerCities;
-    SharedPreferences sharedPreferences;
+    private String userMobileNo=new String();
+    private ArrayList<String> sellerCities;
+    private SharedPreferences sharedPreferences;
+    private LinearLayout progressBar;
+    private LinearLayout noInternet;
+    private TextView retry_btn, no_crops;
+    private CoordinatorLayout snackLayout;
 
     @Nullable
     @Override
@@ -49,55 +56,80 @@ public class BuyProducts extends Fragment
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        swipeRefreshLayout=(SwipeRefreshLayout)view.findViewById(R.id.buyProductsRefresh);
-        swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
-        cropDetails=new ArrayList<CropDetails>();
-        sellerCities=new ArrayList<String>();
-        sharedPreferences = getActivity().getSharedPreferences(FarmerLogin.FarmerPreferences,Context.MODE_PRIVATE);
-        userMobileNo=sharedPreferences.getString(FarmerLogin.FMobileNo,"");
-        recyclerView=(RecyclerView)view.findViewById(R.id.buyProductsView);
-
+        initialize(view);
         getCropsAvailable();
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-
+                swipeRefreshLayout.setRefreshing(false);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         getCropsAvailable();
-
                         adapter=new BuyProductsRecyclerAdapter(cropDetails,sellerCities,getContext(),userMobileNo);
                         recyclerView.setAdapter(adapter);
-                        swipeRefreshLayout.setRefreshing(false);
                     }
                 },500);
+            }
+        });
 
+        retry_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getCropsAvailable();
             }
         });
     }
-    boolean getCropsAvailable()
+
+    private void initialize(View view)
+    {
+        noInternet = (LinearLayout)view.findViewById(R.id.no_internet_buy_products);
+        retry_btn = (TextView)view.findViewById(R.id.retry_buy_products);
+        no_crops = (TextView)view.findViewById(R.id.no_requests_buy_products);
+        swipeRefreshLayout=(SwipeRefreshLayout)view.findViewById(R.id.buyProductsRefresh);
+        swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
+        progressBar = (LinearLayout) view.findViewById(R.id.progress_buy_products);
+        cropDetails=new ArrayList<>();
+        sellerCities=new ArrayList<>();
+        sharedPreferences = getActivity().getSharedPreferences(FarmerLogin.FarmerPreferences,Context.MODE_PRIVATE);
+        userMobileNo=sharedPreferences.getString(FarmerLogin.FMobileNo,"");
+        recyclerView=(RecyclerView)view.findViewById(R.id.buyProductsView);
+        snackLayout = (CoordinatorLayout)view.findViewById(R.id.snack_layout_buy_products);
+    }
+
+    void getCropsAvailable()
     {
         flag = false;
         buyProductAPI = ProductGenerator.createService(BuyProductAPI.class);
         Call<ArrayList<CropDetails>> gettingCropsCall = buyProductAPI.getCropsAvailable();
+        showProgressBar(true);
         gettingCropsCall.enqueue(new Callback<ArrayList<CropDetails>>() {
             @Override
             public void onResponse(Call<ArrayList<CropDetails>> call, Response<ArrayList<CropDetails>> response) {
                 if(response.code() == 200){
-                    cropDetails = response.body();
-                    flag = true;
-                    getSellerCities();
+                    if(response.body().size() == 0)
+                    {
+                        showProgressBar(false);
+                        noCrops();
+                    }
+                    else {
+                        cropDetails = response.body();
+                        getSellerCities();
+                    }
+                }
+                else{
+                    showProgressBar(false);
+                    noInternetConnectionFound();
                 }
             }
 
             @Override
             public void onFailure(Call<ArrayList<CropDetails>> call, Throwable t) {
-                Toast.makeText(getContext(), "Unable to connect to server at the moment!", Toast.LENGTH_SHORT).show();
+                showProgressBar(false);
+                noInternetConnectionFound();
             }
         });
-        return flag;
     }
     void getSellerCities()
     {
@@ -107,6 +139,7 @@ public class BuyProducts extends Fragment
             @Override
             public void onResponse(Call<ArrayList<String>> call, Response<ArrayList<String>> response) {
                 if(response.code() == 200) {
+                    showProgressBar(false);
                     sellerCities = response.body();
                     adapter = new BuyProductsRecyclerAdapter(cropDetails,sellerCities, getContext(), userMobileNo);
                     layoutManager = new LinearLayoutManager(getContext());
@@ -118,8 +151,27 @@ public class BuyProducts extends Fragment
 
             @Override
             public void onFailure(Call<ArrayList<String>> call, Throwable t) {
-                Toast.makeText(getContext(), "Unable to connect to server at the moment!", Toast.LENGTH_SHORT).show();
+                showProgressBar(false);
+                noInternetConnectionFound();
             }
         });
+    }
+
+    private void noCrops(){
+        no_crops.setVisibility(View.VISIBLE);
+        noInternet.setVisibility(View.GONE);
+    }
+
+    private void noInternetConnectionFound() {
+        noInternet.setVisibility(View.VISIBLE);
+        no_crops.setVisibility(View.GONE);
+    }
+
+    private void showProgressBar(boolean show){
+        if(show){
+            progressBar.setVisibility(View.VISIBLE);
+        }
+        else
+            progressBar.setVisibility(View.GONE);
     }
 }

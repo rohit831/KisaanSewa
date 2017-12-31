@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.gw.kisansewa.R;
 import com.gw.kisansewa.authentication.EditProfile;
 import com.gw.kisansewa.authentication.FarmerLogin;
+import com.gw.kisansewa.orders.Order;
 import com.gw.kisansewa.purchaseRequests.PurchaseRequest;
 import com.gw.kisansewa.sellRequests.SellRequests;
 
@@ -32,8 +33,8 @@ public class HomeScreen extends AppCompatActivity {
         setContentView(R.layout.home_screen);
 
         TabLayout tabLayout = (TabLayout)findViewById(R.id.hometab_layout);
-        tabLayout.addTab(tabLayout.newTab().setText("Buy Crops"));
-        tabLayout.addTab(tabLayout.newTab().setText("Sell Crops"));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.tab_buy));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.tab_sell));
 
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
@@ -88,7 +89,8 @@ public class HomeScreen extends AppCompatActivity {
                 return true;
 
             case R.id.orders:
-                Toast.makeText(HomeScreen.this, "Clicked Orders", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, Order.class));
+//                Toast.makeText(HomeScreen.this, "Clicked Orders", Toast.LENGTH_SHORT).show();
                 return true;
 
             case R.id.my_profile:

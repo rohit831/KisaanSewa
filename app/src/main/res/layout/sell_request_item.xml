@@ -25,7 +25,7 @@
             android:layout_marginStart="5dp"
             android:layout_marginEnd="4dp"
             android:id="@+id/buyerName_sellRequest"
-            />
+        />
 
 
         <TextView

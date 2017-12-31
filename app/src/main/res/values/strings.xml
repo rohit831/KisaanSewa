@@ -17,7 +17,9 @@
     <string name="call">Call</string>
     <string name="message">Message</string>
     <string name="edit_profile">Edit Profile</string>
-    <string name="quantity_purchased">Quantity purchased:</string>
+    <string name="quantity_purchased">Quantity sold (in kgs)</string>
+    <string name="order_quantity_sold">kgs at Rs. </string>
+    <string name="add_product">ADD PRODUCT</string>
 
     <!--Authentication-->
     <string name="h_name">Name</string>
@@ -47,8 +49,15 @@
     <string name="dist_curr">Distance from current location: </string>
     <string name="out_of">out of</string>
     <string name="retry">Retry</string>
+    <string name="add_first_crop">Click below to add your first crop! </string>
     <string name="no_internet">No Internet Connection</string>
+    <string name="no_crops_to_sell">You do not have any crops to sell.</string>
+    <string name="no_crops_to_buy">There are currently no crops to buy.</string>
     <string name="no_requests">You do not have any requests yet.</string>
+    <string name="no_orders">You do not have any orders yet.</string>
+    <string name="to">To:</string>
+    <string name="open_bracket">(</string>
+    <string name="close_bracket"> )</string>
 
     <!--FONT AWESOME STRINGS-->
     <string name="icon_user">&#xf007;</string>
@@ -56,4 +65,11 @@
     <string name="icon_area">&#xf21d;</string>
     <string name="icon_city">&#xf1ad;</string>
     <string name="icon_state">&#xf286;</string>
+
+    <!--Tab names-->
+    <string name="tab_buy">Buy Crops</string>
+    <string name="tab_sell">Sell Crops</string>
+
+    <string name="tab_purchased">Purchased</string>
+    <string name="tab_sold">Sold</string>
 </resources>

@@ -22,6 +22,11 @@ public class FarmerDetails
         this.password = password;
     }
 
+    public String getAddress(){
+        return area.concat(", ").concat(city)
+                            .concat(", ").concat(state);
+
+    }
     public String getName() {
         return name;
     }

@@ -63,61 +63,24 @@ public class FarmerRegister extends AppCompatActivity {
     public void RegisterOnClick(View view) {
         hideKeyboard();
         checkValidity();
-//        if(checkValidity()) {
-//            final AuthenticationAPI authenticationAPI = AuthenticationGenerator.createService(AuthenticationAPI.class);
-//            Call<Void> checkAvailabilityCall = authenticationAPI.checkAvailability(mobileNo.getText().toString());
-//
-//            checkAvailabilityCall.enqueue(new Callback<Void>() {
-//                @Override
-//                public void onResponse(Call<Void> call, Response<Void> response) {
-//                    if(response.code() == 302)
-//                        Snackbar.make(layout,"User already registered",Snackbar.LENGTH_SHORT).show();
-//                    else if(response.code()==200){
-//                        farmerDetails = new FarmerDetails(name.getText().toString(), mobileNo.getText().toString(),
-//                                area.getText().toString(), city.getText().toString(),
-//                                state.getText().toString(), password.getText().toString());
-//
-//                        Call<Void> signUpCall = authenticationAPI.createNewUser(farmerDetails);
-//                        signUpCall.enqueue(new Callback<Void>() {
-//                            @Override
-//                            public void onResponse(Call<Void> call, Response<Void> response) {
-//                                if(response.code() == 201){
-//                                    SharedPreferences sharedPreferences = getSharedPreferences(FarmerLogin.FarmerPreferences, Context.MODE_PRIVATE);
-//                                    SharedPreferences.Editor editor = sharedPreferences.edit();
-//                                    editor.putString(FarmerLogin.FMobileNo, mobileNo.getText().toString());
-//                                    editor.commit();
-//
-//                                    Intent intent = new Intent(getApplicationContext(), HomeScreen.class);
-//                                    intent.putExtra("mobileNo", mobileNo.getText().toString());
-//                                    startActivity(intent);
-//                                    finish();
-//                                }
-//                                if(response.code() == 502)
-//                                    Snackbar.make(layout,"Something went wrong", Snackbar.LENGTH_SHORT).show();
-//                            }
-//
-//                            @Override
-//                            public void onFailure(Call<Void> call, Throwable t) {
-//                                Snackbar snackbar = Snackbar.make(layout,"Please check your network connection",Snackbar.LENGTH_INDEFINITE)
-//                                        .setAction("RETRY", new View.OnClickListener() {
-//                                            @Override
-//                                            public void onClick(View v) {
-//
-//                                            }
-//                                        });
-//                            }
-//                        });
-//                    }
-//                }
-//                @Override
-//                public void onFailure(Call<Void> call, Throwable t) {
-//                    Snackbar.make(layout,"Unable to process your request at the moment!",Snackbar.LENGTH_SHORT).show();
-//                }
-//            });
-//        }
     }
 
-//    check availability of mobile no
+    //    checking validation of the input
+    private void checkValidity(){
+        if(name.getText().toString().equals("") || mobileNo.getText().toString().equals("") ||
+                area.getText().toString().equals("") || city.getText().toString().equals("") ||
+                state.getText().toString().equals("") || password.getText().toString().equals("") ||
+                confirmPassword.getText().toString().equals(""))
+            Snackbar.make(layout,"Enter All Details!!",Snackbar.LENGTH_SHORT).show();
+        else if (mobileNo.getText().toString().length() != 10)
+            Snackbar.make(layout,"Enter a valid Mobile No!!",Snackbar.LENGTH_SHORT).show();
+        else  if (!password.getText().toString().equals(confirmPassword.getText().toString()))
+            Snackbar.make(layout,"Passwords Don't Match!!",Snackbar.LENGTH_SHORT).show();
+        else
+            checkAvailable();
+    }
+
+    //    check availability of mobile no
     private void checkAvailable(){
         showProgressBar(true);
         Call<Void> checkAvailabilityCall = authenticationAPI.checkAvailability(mobileNo.getText().toString());
@@ -147,7 +110,7 @@ public class FarmerRegister extends AppCompatActivity {
         });
     }
 
-//    register user
+    //    register user
     private void register(){
 
         farmerDetails = new FarmerDetails(name.getText().toString(), mobileNo.getText().toString(),
@@ -193,22 +156,7 @@ public class FarmerRegister extends AppCompatActivity {
         });
     }
 
-//    checking validation of the input
-    private void checkValidity(){
-        if(name.getText().toString().equals("") || mobileNo.getText().toString().equals("") ||
-                area.getText().toString().equals("") || city.getText().toString().equals("") ||
-                state.getText().toString().equals("") || password.getText().toString().equals("") ||
-                confirmPassword.getText().toString().equals(""))
-            Snackbar.make(layout,"Enter All Details!!",Snackbar.LENGTH_SHORT).show();
-        else if (mobileNo.getText().toString().length() != 10)
-            Snackbar.make(layout,"Enter a valid Mobile No!!",Snackbar.LENGTH_SHORT).show();
-        else  if (!password.getText().toString().equals(confirmPassword.getText().toString()))
-            Snackbar.make(layout,"Passwords Don't Match!!",Snackbar.LENGTH_SHORT).show();
-        else
-            checkAvailable();
-    }
-
-//    hide the keyboard
+    //    hide the keyboard
     private void hideKeyboard(){
         View view = this.getCurrentFocus();
         if(view!=null){

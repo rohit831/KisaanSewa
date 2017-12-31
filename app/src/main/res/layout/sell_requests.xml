@@ -6,64 +6,37 @@
     android:layout_height="match_parent"
     android:background="@color/background_grey">
 
-    <!--The action bar-->
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardElevation="8dp"
-        android:id="@+id/card_sell_requests"
-        >
-
+    <!--progress loader-->
     <LinearLayout
+
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@color/colorPrimary"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:id="@+id/progress_sell_requests"
+        android:visibility="gone"
         >
 
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_back"
-                android:background="@color/colorPrimary"
-                android:gravity="bottom"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="2dp"
-                android:clickable="true"
-                android:layout_gravity="center"
-                android:id="@+id/sell_requests_back_btn"
-                />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorPrimary"
-                android:text="@string/sell_req_nav"
-                android:textColor="#FFF"
-                style="@style/Base.TextAppearance.AppCompat.Title"
-                android:textSize="22sp"
-                android:paddingTop="15dp"
-                android:paddingBottom="15dp"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-
-                />
-
-        </LinearLayout>
-
-    </android.support.v7.widget.CardView>
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scrollbarSize="10dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            />
+    </LinearLayout>
 
     <!--Failure view-->
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="@string/no_requests"
         android:textSize="18sp"
         android:gravity="center"
-        android:visibility="visible"
+        android:visibility="gone"
         android:id="@+id/no_requests_sell_requests"
         />
+
+    <!--No internet connection-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -117,7 +90,8 @@
     <!--The recycler view-->
     <android.support.v4.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="4dp"
         android:layout_marginTop="5dp"
@@ -134,5 +108,13 @@
         </android.support.v7.widget.RecyclerView>
 
     </android.support.v4.widget.SwipeRefreshLayout>
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/snack_layout_sell_requests"
+        >
+
+    </android.support.design.widget.CoordinatorLayout>
 
 </LinearLayout>

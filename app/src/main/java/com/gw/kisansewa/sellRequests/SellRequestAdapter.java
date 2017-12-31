@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Handler;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,6 +35,8 @@ public class SellRequestAdapter extends RecyclerView.Adapter<SellRequestAdapter.
     ArrayList<String> buyerNames;
     Context context;
 
+    ProgressDialog progressDialog;
+
     public SellRequestAdapter(ArrayList<RequestDetails> requestDetails,ArrayList<String> buyerNames, Context context) {
         this.requestDetails = requestDetails;
         this.buyerNames = buyerNames;
@@ -43,6 +46,8 @@ public class SellRequestAdapter extends RecyclerView.Adapter<SellRequestAdapter.
     @Override
     public SellRequestHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.sell_request_item,parent,false);
+        progressDialog =new ProgressDialog(context);
+        progressDialog.setIndeterminate(true);
         return new SellRequestHolder(view);
     }
 
@@ -61,6 +66,7 @@ public class SellRequestAdapter extends RecyclerView.Adapter<SellRequestAdapter.
 
     public class SellRequestHolder extends RecyclerView.ViewHolder
     {
+
         TextView vh_buyerName, vh_cropName,vh_quantity, vh_price,
                 vh_view_buyer, vh_cancel_request, vh_confirm_request;
 
@@ -99,11 +105,11 @@ public class SellRequestAdapter extends RecyclerView.Adapter<SellRequestAdapter.
         private void cancelRequestClicked(){
             final int position = getAdapterPosition();
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
-//            builder.setTitle("Cancel Request");
             builder.setMessage("Are you sure you want to cancel this request?");
             builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
+                    ((SellRequests)context).showProgressBar(true);
                     RequestAPI requestAPI = RequestGenerator.createService(RequestAPI.class);
                     Call<Void> cancelRequestCall = requestAPI.cancelRequest(requestDetails.get(position).getSellerMobileNo(),
                             requestDetails.get(position).getBuyerMobileNo(),
@@ -114,17 +120,22 @@ public class SellRequestAdapter extends RecyclerView.Adapter<SellRequestAdapter.
                             if(response.code()==200){
                                 requestDetails.remove(position);
                                 buyerNames.remove(position);
+                                ((SellRequests)context).showProgressBar(false);
                                 notifyItemRemoved(position);
                                 notifyItemRangeChanged(position, requestDetails.size());
+                                if(requestDetails.size() == 0)
+                                    ((SellRequests)context).noRequestsCurrently();
                             }
                             else {
-                                Toast.makeText(context, "Oops Something went wrong", Toast.LENGTH_SHORT).show();
+                                ((SellRequests)context).showProgressBar(false);
+                                ((SellRequests)context).showSnack("Oops!! Something went wrong.");
                             }
                         }
 
                         @Override
                         public void onFailure(Call<Void> call, Throwable t) {
-                            Toast.makeText(context, "Unable to connect to server at the moment", Toast.LENGTH_SHORT).show();
+                            ((SellRequests)context).showProgressBar(false);
+                            ((SellRequests)context).showSnack("Oops!! Something went wrong.");
                         }
                     });
                 }
@@ -193,7 +204,7 @@ public class SellRequestAdapter extends RecyclerView.Adapter<SellRequestAdapter.
 
                 @Override
                 public void onFailure(Call<FarmerDetails> call, Throwable t) {
-                    Toast.makeText(context, "Can't connect to the server at the moment!", Toast.LENGTH_SHORT).show();
+                    ((SellRequests)context).showSnack("No Internet connection found!");
                 }
             });
         }
@@ -205,6 +216,7 @@ public class SellRequestAdapter extends RecyclerView.Adapter<SellRequestAdapter.
             final View dialogView = inflater.inflate(R.layout.sell_request_confirm_dialog, null);
             final AlertDialog.Builder customDialog = new AlertDialog.Builder(context);
             customDialog.setView(dialogView);
+            customDialog.setTitle("Enter Quantity");
 
             final TextView totalQuantity;
             final EditText quantity_purchased;
@@ -214,42 +226,65 @@ public class SellRequestAdapter extends RecyclerView.Adapter<SellRequestAdapter.
 
             totalQuantity.setText(requestDetails.get(position).getCropQuantity());
 
-            final Orders order = new Orders(requestDetails.get(position).getSellerMobileNo(),
-                    requestDetails.get(position).getBuyerMobileNo(),
-                    requestDetails.get(position).getCropName(),
-                    quantity_purchased.getText().toString(),
-                    requestDetails.get(position).getCropPrice());
-
             customDialog.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    if(quantity_purchased.getText().toString().equals("0"))
-                        Toast.makeText(context, "Quantity cannot be zero", Toast.LENGTH_SHORT).show();
+                    ((SellRequests)context).hideKeyboard();
+                    final Orders order = new Orders(requestDetails.get(position).getSellerMobileNo(),
+                            requestDetails.get(position).getBuyerMobileNo(),
+                            requestDetails.get(position).getCropName(),
+                            quantity_purchased.getText().toString(),
+                            requestDetails.get(position).getCropPrice());
+
+                    if(quantity_purchased.getText().toString().trim().equals("0"))
+                        ((SellRequests)context).showSnack("Quantity cannot be zero");
+
+                    else if (quantity_purchased.getText().toString().trim().equals(""))
+                        ((SellRequests)context).showSnack("Quantity cannot be null");
 
                     else if(Integer.parseInt(quantity_purchased.getText().toString()) >
                             Integer.parseInt(totalQuantity.getText().toString()))
-                        Toast.makeText(context, "Enter a valid quantity", Toast.LENGTH_SHORT).show();
+                        ((SellRequests)context).showSnack("Enter a valid quantity");
                     else{
+                        progressDialog.setMessage("Confirming your order ..");
+                        progressDialog.show();
                         RequestAPI requestAPI = RequestGenerator.createService(RequestAPI.class);
-                        Call<Void> confirmOrderCall = requestAPI.confirmOrder(order);
-                        confirmOrderCall.enqueue(new Callback<Void>() {
+                        Call<Orders> confirmOrderCall = requestAPI.confirmOrder(order);
+                        confirmOrderCall.enqueue(new Callback<Orders>() {
                             @Override
-                            public void onResponse(Call<Void> call, Response<Void> response) {
+                            public void onResponse(Call<Orders> call, Response<Orders> response) {
                                 if(response.code() == 200){
-                                    Toast.makeText(context, "Response code 200", Toast.LENGTH_SHORT).show();
                                     requestDetails.remove(position);
                                     buyerNames.remove(position);
-                                    notifyItemRemoved(position);
-                                    notifyItemRangeChanged(position,requestDetails.size());
+                                    new Handler().postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            progressDialog.hide();
+                                            notifyItemRemoved(position);
+                                            notifyItemRangeChanged(position,requestDetails.size());
+                                            if(requestDetails.size() == 0)
+                                            {
+                                                ((SellRequests)context).noRequestsCurrently();
+                                            }
+                                            ((SellRequests)context).showSnack("Your order is confirmed!");
+                                        }
+                                    },1000);
                                 }
-                                else{
-                                    Toast.makeText(context, "Response code not 200", Toast.LENGTH_SHORT).show();
+                                else if (response.code() == 502){
+                                    new Handler().postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            progressDialog.hide();
+                                        }
+                                    },500);
+                                    ((SellRequests)context).showSnack("Something went wrong!");
                                 }
                             }
 
                             @Override
-                            public void onFailure(Call<Void> call, Throwable t) {
-                                Toast.makeText(context, "Can't connect to server at the moment", Toast.LENGTH_SHORT).show();
+                            public void onFailure(Call<Orders> call, Throwable t) {
+                                progressDialog.hide();
+                                ((SellRequests)context).showSnack("No Internet connection Found!");
                             }
                         });
                     }
@@ -265,17 +300,6 @@ public class SellRequestAdapter extends RecyclerView.Adapter<SellRequestAdapter.
             customDialog.create();
             customDialog.show();
         }
-    }
-    public void showDialog(ProgressDialog mProgressDialog) {
-
-        if(mProgressDialog != null && !mProgressDialog.isShowing())
-            mProgressDialog.show();
-    }
-
-    public void hideDialog(ProgressDialog mProgressDialog) {
-
-        if(mProgressDialog != null && mProgressDialog.isShowing())
-            mProgressDialog.dismiss();
     }
 
 }

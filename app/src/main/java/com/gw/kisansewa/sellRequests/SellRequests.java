@@ -1,8 +1,6 @@
 package com.gw.kisansewa.sellRequests;
 
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
@@ -16,18 +14,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.gw.kisansewa.Homescreen.HomeScreen;
 import com.gw.kisansewa.R;
 import com.gw.kisansewa.api.RequestAPI;
 import com.gw.kisansewa.apiGenerator.RequestGenerator;
 import com.gw.kisansewa.authentication.FarmerLogin;
-import com.gw.kisansewa.helper.Loader;
 import com.gw.kisansewa.models.RequestDetails;
 
 import java.util.ArrayList;
@@ -61,7 +54,7 @@ public class SellRequests extends AppCompatActivity {
 //      enable back button and changing the name of action bar
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(R.string.sell_req_nav);
+        getSupportActionBar().setTitle(R.string.tab_sell_req);
 
 
         // reference all the elements and get the shared preferences

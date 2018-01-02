@@ -19,7 +19,7 @@ public class Order extends AppCompatActivity {
 //        enable back button and changing the name of action bar
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("My Orders");
+        getSupportActionBar().setTitle(R.string.tab_orders);
 
         TabLayout tabLayout = (TabLayout)findViewById(R.id.order_tabLayout);
         tabLayout.addTab(tabLayout.newTab().setText(R.string.tab_purchased));

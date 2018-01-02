@@ -15,10 +15,9 @@
 
         <TextView
 
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/cropName"
-            android:layout_weight="0.5"
             android:textSize="22sp"
             style="@style/Base.TextAppearance.AppCompat.Title"
             android:layout_marginStart="5dp"
@@ -26,19 +25,19 @@
             />
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:id="@+id/buyProductPrice"
-            android:textColor="#348E17"
+            android:textColor="@color/colorPrimary"
             android:text="@string/cropPrice"
             android:gravity="end"
             style="@style/Base.TextAppearance.AppCompat.Medium"/>
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1.2"
+            android:layout_marginEnd="4dp"
             android:text="@string/per_kg"
             style="@style/Base.TextAppearance.AppCompat.Medium"/>
 
@@ -56,6 +55,7 @@
             android:layout_height="match_parent"
             android:text="@string/available"
             android:layout_marginStart="5dp"
+            android:layout_marginEnd="3dp"
             style="@style/Base.TextAppearance.AppCompat.Medium"
             />
 

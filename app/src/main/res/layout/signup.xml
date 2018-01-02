@@ -53,7 +53,7 @@
                         android:layout_marginEnd="5dp"
                         android:id="@+id/name"
                         android:inputType="text"
-                        android:hint="@string/h_name"
+                        android:hint="@string/name_view"
                         />
 
                 </android.support.design.widget.TextInputLayout>
@@ -72,7 +72,7 @@
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="5dp"                        android:id="@+id/mobileNo"
                         android:inputType="number"
-                        android:hint="@string/h_mobile"
+                        android:hint="@string/mobile_no_view"
                         />
 
                 </android.support.design.widget.TextInputLayout>
@@ -91,7 +91,7 @@
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="5dp"                        android:id="@+id/area"
                         android:inputType="text"
-                        android:hint="@string/h_area"
+                        android:hint="@string/area_view"
                         />
 
                 </android.support.design.widget.TextInputLayout>
@@ -114,7 +114,7 @@
                             android:layout_marginStart="5dp"
                             android:id="@+id/city"
                             android:inputType="text"
-                            android:hint="@string/h_city"
+                            android:hint="@string/city_view"
                             />
 
                     </android.support.design.widget.TextInputLayout>
@@ -133,7 +133,7 @@
                             android:layout_marginStart="5dp"
                             android:layout_marginEnd="5dp"                            android:id="@+id/state"
                             android:inputType="text"
-                            android:hint="@string/h_state"
+                            android:hint="@string/state_view"
                             />
 
                     </android.support.design.widget.TextInputLayout>
@@ -154,7 +154,7 @@
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="5dp"                        android:id="@+id/password"
                         android:inputType="textPassword"
-                        android:hint="@string/h_password"
+                        android:hint="@string/password_view"
                         />
 
                 </android.support.design.widget.TextInputLayout>
@@ -173,7 +173,7 @@
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="5dp"                        android:id="@+id/confirmPassword"
                         android:inputType="textPassword"
-                        android:hint="@string/h_conf_password"
+                        android:hint="@string/conf_password_view"
                         />
 
                 </android.support.design.widget.TextInputLayout>
@@ -184,9 +184,9 @@
                     android:layout_marginTop="15dp"
                     android:layout_marginRight="25dp"
                     android:layout_marginLeft="25dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="5dp"
                     android:background="@color/colorPrimary"
-                    android:text="@string/register"
+                    android:text="@string/register_view"
                     android:textColor="@color/white"
                     android:onClick="RegisterOnClick"
                     android:id="@+id/registerBtn"

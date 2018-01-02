@@ -4,37 +4,37 @@
 
     <item
         android:id="@+id/market_status"
-        android:title="Market Status"
+        android:title="@string/menu_market_status"
         app:showAsAction="always"
         />
 
     <item
         android:id="@+id/purchase_requests"
-        android:title="Purchase Requests"
+        android:title="@string/menu_purchase_req"
         app:showAsAction="always"
         />
 
     <item
         android:id="@+id/sell_requests"
-        android:title="Sell Requests"
+        android:title="@string/menu_sell_req"
         app:showAsAction="always"
         />
 
     <item
         android:id="@+id/orders"
-        android:title="My Orders"
+        android:title="@string/menu_my_orders"
         app:showAsAction="always"
         />
 
     <item
         android:id="@+id/my_profile"
-        android:title="My Profile"
+        android:title="@string/menu_edit_prof"
         app:showAsAction="always"
         />
 
     <item
         android:id="@+id/logout"
-        android:title="Logout"
+        android:title="@string/menu_logout"
         app:showAsAction="always"
         />
 

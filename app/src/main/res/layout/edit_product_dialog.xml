@@ -7,7 +7,9 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:gravity="center_vertical"
-        android:text=" Edit Product"
+        android:paddingStart="9dp"
+        android:paddingEnd="5dp"
+        android:text="@string/sell_product_edit_product"
         android:textSize="20sp"
         style="@style/Base.TextAppearance.AppCompat.Title"
         android:background="#348E17"
@@ -17,33 +19,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="7dp"
-        android:hint="Product Name"
+        android:hint="@string/sell_product_product_name"
         android:inputType="text"
         android:gravity="bottom"
         android:id="@+id/editProductName"
-        android:layout_marginLeft="5dp">
+        android:layout_marginStart="5dp">
 
         <requestFocus/>
     </EditText>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Product Price (In Rs)"
+        android:hint="@string/sell_product_product_price"
         android:inputType="numberDecimal"
         android:gravity="bottom"
         android:id="@+id/editProductPrice"
-        android:layout_marginLeft="5dp"/>
+        android:layout_marginStart="5dp"/>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/editProductQuantity"
         android:gravity="bottom"
-        android:hint="Product Quantity(In kg)"
+        android:hint="@string/sell_product_product_quantity"
         android:inputType="numberDecimal"
-        android:layout_marginLeft="5dp"/>
-
-
-
+        android:layout_marginStart="5dp"/>
 
 </LinearLayout>

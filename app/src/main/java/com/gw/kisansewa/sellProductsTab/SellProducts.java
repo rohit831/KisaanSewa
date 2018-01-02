@@ -5,12 +5,9 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
@@ -18,6 +15,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -29,8 +28,6 @@ import com.gw.kisansewa.api.SellProductAPI;
 import com.gw.kisansewa.apiGenerator.ProductGenerator;
 import com.gw.kisansewa.authentication.FarmerLogin;
 import com.gw.kisansewa.models.CropDetails;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -53,6 +50,12 @@ public class SellProducts extends Fragment {
     private ProgressDialog progressDialog;
     private TextView retry_btn;
 
+    static String[] cropNames = {"Almond","Apple","Apricot","ArecaNut","Bajra","Baley","Banana","Barley","Basil","Beans","Beetroot","Betel","Blackberry","Cabbage","Cantaloupe","Carrot","Cashew","Cauliflower","Cereals",
+            "Cherry","Chestnuts","Chili","Coffee","Coriander","Corn","Cotton","Cucumber","Dahlia","Dates","DragonFruit","Eggs","Flour","Fodder","Garlic","Ginger","Gooseberry","Grain","Gram",
+            "Grapes","Groundnut","Guava","Hay","Hazelnuts","Herbs","Honey","Jowar","Jute","Kiwi","Legumes","Lemon","Lentils","Lettuce","Limes","Litchi","Maize","Mandarin","Mango","Millet","Mint","Moong",
+            "Mushroom","Mustard","Niger","Oak","Oat","Onion","Orange","Oregano","Paddy","Papaya","Peach","Peanut","Pear","Peas","Pepper","Pineapple","Pistachio","Pomegranate","potato","pulses",
+            "Ragi","Raisins","Rapeseed","Raspberry","Redgram","Rice","Rubber","Sesame","Silk","Soyabean","Spices","Spinach","Strawberry","Sugarcane","Sunflower","Sweetcherry","Tea","Tobacco","Tomato","tur","Urad","Vine","Walnuts","Watermelon","Wheat","Wool"};
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -69,14 +72,14 @@ public class SellProducts extends Fragment {
             @Override
             public void onClick(View v) {
                 no_crops.setVisibility(View.GONE);
-                addNewProduct();
+                showAddProductDialog();
             }
         });
 
         addProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addNewProduct();
+                showAddProductDialog();
             }
         });
 
@@ -152,18 +155,24 @@ public class SellProducts extends Fragment {
     }
 
     //show dialog and add a new product
-    private void addNewProduct() {
+    private void showAddProductDialog() {
         LayoutInflater li=LayoutInflater.from(getContext());
         final View dialogView=li.inflate(R.layout.add_product,null);
         final AlertDialog.Builder customDialog= new AlertDialog.Builder(getContext());
 
         customDialog.setView(dialogView);
-        final EditText productName,productPrice,productQuantity;
-        productName=(EditText)dialogView.findViewById(R.id.productNameDialog);
+        final EditText productPrice,productQuantity;
+        final AutoCompleteTextView productName;
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),R.layout.dropdown, cropNames);
+        productName=(AutoCompleteTextView) dialogView.findViewById(R.id.productNameDialog);
         productPrice=(EditText)dialogView.findViewById(R.id.productPriceDialog);
         productQuantity=(EditText)dialogView.findViewById(R.id.productQuantityDialog);
 
-        customDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        productName.setThreshold(1);
+        productName.setAdapter(adapter);
+
+        customDialog.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
@@ -172,7 +181,7 @@ public class SellProducts extends Fragment {
             }
         });
 
-        customDialog.setPositiveButton("Add", new DialogInterface.OnClickListener() {
+        customDialog.setPositiveButton(R.string.add, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
@@ -180,11 +189,11 @@ public class SellProducts extends Fragment {
                         || productPrice.getText().toString().equals("")
                         || productQuantity.getText().toString().trim().equals("")) {
                         noCropsCheck();
-                        showSnack("Enter All Details");
+                            showSnack(getActivity().getString(R.string.enter_all_details));
                 }
                 else if (Long.parseLong(productQuantity.getText().toString())==0) {
                     noCropsCheck();
-                    showSnack("Quantity cannot be zero!");
+                    showSnack(getActivity().getString(R.string.quantity_cannot_be_zero));
                 }
                 else
                 {
@@ -192,26 +201,7 @@ public class SellProducts extends Fragment {
                             productQuantity.getText().toString(),
                             productPrice.getText().toString(),mobileNo);
 
-                    if(!checkCropAvailability(mobileNo, productName.getText().toString())){
-                        SellProductAPI sellProductAPI = ProductGenerator.createService(SellProductAPI.class);
-                        Call<Void> addNewCropCall = sellProductAPI.addNewCrop(crop);
-                        addNewCropCall.enqueue(new Callback<Void>() {
-                            @Override
-                            public void onResponse(Call<Void> call, Response<Void> response) {
-                                if(response.code()==201) {
-                                    progressDialog.hide();
-                                    retrieveSellerCrops(mobileNo);
-                                }
-                            }
-
-                            @Override
-                            public void onFailure(Call<Void> call, Throwable t) {
-                                progressDialog.hide();
-                                    noCropsCheck();
-                                    showSnack("Something went wrong! Please try again later!");
-                            }
-                        });
-                    }
+                    checkCropAvailability(crop, mobileNo, productName.getText().toString());
                 }
 
             }
@@ -221,11 +211,11 @@ public class SellProducts extends Fragment {
     }
 
     //check if the name of crop is available for that seller
-    public boolean checkCropAvailability(String mobileNo, String cropName){
+    public boolean checkCropAvailability(final CropDetails crop,String mobileNo, String cropName){
         isAvailable =false;
         SellProductAPI sellProductAPI = ProductGenerator.createService(SellProductAPI.class);
         Call<Void> checkCropAvailabilityCall = sellProductAPI.checkCropAvailability(mobileNo, cropName);
-        progressDialog.setMessage("Adding new crop .. ");
+        progressDialog.setMessage(getActivity().getString(R.string.sell_product_dialog_adding_new_crop));
         progressDialog.show();
         checkCropAvailabilityCall.enqueue(new Callback<Void>() {
             @Override
@@ -233,17 +223,18 @@ public class SellProducts extends Fragment {
                 if(response.code() == 302){
                     progressDialog.hide();
                     isAvailable = false;
-                        noCropsCheck();
-                        showSnack("Crop already exists, try some another name!");
+                    noCropsCheck();
+                    showSnack(getActivity().getString(R.string.sell_product_crop_exists));
                 }
                 else if(response.code() == 200){
                     isAvailable = true;
+                    addProduct(crop);
                 }
                 else if(response.code() == 502){
                     isAvailable = false;
                     progressDialog.hide();
-                        noCropsCheck();
-                        showSnack("Oops! Something went wrong!");
+                    noCropsCheck();
+                    showSnack(getActivity().getString(R.string.something_went_wrong));
                 }
             }
 
@@ -251,11 +242,33 @@ public class SellProducts extends Fragment {
             public void onFailure(Call<Void> call, Throwable t) {
                 progressDialog.hide();
                 noCropsCheck();
-                showSnack("Unable to process your request at the moment!");
+                showSnack(getActivity().getString(R.string.unable_to_process_request));
                 isAvailable = false;
             }
         });
         return isAvailable;
+    }
+
+    private void addProduct(CropDetails crop)
+    {
+        SellProductAPI sellProductAPI = ProductGenerator.createService(SellProductAPI.class);
+        Call<Void> addNewCropCall = sellProductAPI.addNewCrop(crop);
+        addNewCropCall.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if(response.code()==201) {
+                    progressDialog.hide();
+                    retrieveSellerCrops(mobileNo);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                progressDialog.hide();
+                noCropsCheck();
+                showSnack(getActivity().getString(R.string.something_went_wrong));
+            }
+        });
     }
 
     //check if no crop present

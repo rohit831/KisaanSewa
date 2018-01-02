@@ -4,134 +4,149 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:elevation="2dp"
-    android:layout_marginBottom="3dp"
-    android:background="#FFF">
+    >
 
-    <LinearLayout
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:orientation="horizontal">
-
-        <TextView
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/cropName"
-            android:layout_weight="0.5"
-            android:textSize="25sp"
-            style="@style/Base.TextAppearance.AppCompat.Title"
-            android:layout_marginStart="5dp"
-            android:id="@+id/cropName_purchaseRequest"
-            />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:id="@+id/cropPrice_purchaseRequest"
-            android:textColor="@color/colorPrimary"
-            android:text="@string/cropPrice"
-            android:gravity="end"
-            android:textSize="20sp"
-            style="@style/Base.TextAppearance.AppCompat.Medium"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.2"
-            android:gravity="start"
-            android:paddingBottom="5dp"
-            android:textSize="20sp"
-            android:text="@string/per_kg"
-            style="@style/Base.TextAppearance.AppCompat.Medium"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="5dp"
+        app:cardElevation="4dp"
+        android:layout_marginBottom="4dp"
         >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="@string/quantity_available"
-            android:layout_marginStart="5dp"
-            style="@style/Base.TextAppearance.AppCompat.Medium"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="@string/cropQuantity"
-            android:layout_marginStart="2dp"
-            android:id="@+id/cropQuantity_purchaseRequest"
-            style="@style/Base.TextAppearance.AppCompat.Medium"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="@string/kg"
-            android:layout_marginStart="2dp"
-            style="@style/Base.TextAppearance.AppCompat.Medium"
-            />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginBottom="7dp"
-        >
-
-        <android.support.v7.widget.CardView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="5dp"
-            android:id="@+id/card_viewSeller_purchaseRequest"
-            app:cardElevation="5dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/seller_details"
-                style="@style/Base.TextAppearance.AppCompat.Medium"
-                android:textColor="@color/blue"
-                android:padding="5dp"
-                android:background="@drawable/boundary_blue_rect"
-                android:id="@+id/viewSeller_purchaseRequest"
-                />
-
-
-        </android.support.v7.widget.CardView>
-
-        <android.support.v7.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:cardElevation="5dp"
-            android:id="@+id/card_cancelRequest_purchaseRequest"
+            android:layout_marginBottom="3dp"
+            android:background="@color/white"
+            android:orientation="vertical"
             >
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/cancel_request"
-                style="@style/Base.TextAppearance.AppCompat.Medium"
-                android:textColor="@color/red"
-                android:padding="5dp"
-                android:background="@drawable/boundary_red_rect"
-                android:id="@+id/cancelRequest_purchaseRequest"
-                />
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal">
 
-        </android.support.v7.widget.CardView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/cropName"
+                    android:textSize="25sp"
+                    style="@style/Base.TextAppearance.AppCompat.Title"
+                    android:layout_marginStart="5dp"
+                    android:id="@+id/cropName_purchaseRequest"
+                    />
 
-    </LinearLayout>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:id="@+id/cropPrice_purchaseRequest"
+                    android:textColor="@color/colorPrimary"
+                    android:text="@string/cropPrice"
+                    android:gravity="end|bottom"
+                    android:textSize="20sp"
+                    style="@style/Base.TextAppearance.AppCompat.Medium"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:paddingBottom="5dp"
+                    android:textSize="20sp"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/per_kg"
+                    style="@style/Base.TextAppearance.AppCompat.Medium"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="5dp"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/quantity_available"
+                    android:layout_marginStart="5dp"
+                    style="@style/Base.TextAppearance.AppCompat.Medium"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/cropQuantity"
+                    android:layout_marginStart="2dp"
+                    android:id="@+id/cropQuantity_purchaseRequest"
+                    style="@style/Base.TextAppearance.AppCompat.Medium"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/kg"
+                    android:layout_marginStart="2dp"
+                    style="@style/Base.TextAppearance.AppCompat.Medium"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginBottom="7dp"
+                >
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:id="@+id/card_viewSeller_purchaseRequest"
+                    app:cardElevation="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/seller_details"
+                        style="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:textColor="@color/blue"
+                        android:padding="5dp"
+                        android:background="@drawable/boundary_blue_rect"
+                        android:id="@+id/viewSeller_purchaseRequest"
+                        />
+
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardElevation="5dp"
+                    android:id="@+id/card_cancelRequest_purchaseRequest"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cancel_request"
+                        style="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:textColor="@color/red"
+                        android:padding="5dp"
+                        android:background="@drawable/boundary_red_rect"
+                        android:id="@+id/cancelRequest_purchaseRequest"
+                        />
+
+                </android.support.v7.widget.CardView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
 
 </LinearLayout>

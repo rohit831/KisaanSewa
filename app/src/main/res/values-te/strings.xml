@@ -1,0 +1,177 @@
+<resources>
+
+    <string name="app_name">Kisaan Sewa</string>
+
+    <!--Authentication-->
+    <string name="name_view">పేరు</string>
+    <string name="area_view">ప్రాంతం</string>
+    <string name="city_view">సిటీ</string>
+    <string name="state_view">రాష్ట్రం</string>
+    <string name="conf_password_view">పాస్వర్డ్ని నిర్ధారించండి</string>
+    <string name="register_view">నమోదు</string>
+    <string name="mobile_no_view">మొబైల్ నంబర్</string>
+    <string name="password_view">పాస్వర్డ్</string>
+    <string name="login_view">లాగిన్</string>
+    <string name="not_registered_yet_view">ఇప్పటి వరకు నమోదు కాలేదు</string>
+    <string name="register_here_view">ఇక్కడ నమోదు చేయండి!</string>
+
+    <!--Dummy Values-->
+    <string name="cropName">Bajra</string>
+    <string name="cropPrice">70</string>
+    <string name="cropQuantity">500</string>
+    <string name="cropQuantity_rem">75 kgs remaining</string>
+    <string name="name">Rohit Agrawal</string>
+    <string name="mobileNo">9039888667</string>
+    <string name="city">Raipur</string>
+    <string name="state">Chattisgarh</string>
+    <string name="area">Swarnabhoomi</string>
+    <string name="address">Swarnabhoomi, Raipur, Chattisgarh</string>
+
+    <!--View text-->
+    <string name="seller_details">విక్రేతను వీక్షించండి</string>
+    <string name="buyer_details">కొనుగోలుదారు చూడండి</string>
+    <string name="cancel_request">అభ్యర్ధన రద్దు చెయ్యండి</string>
+    <string name="confirm">నిర్ధారించండి</string>
+    <string name="cancel">రద్దు</string>
+    <string name="delete">తొలగించు</string>
+    <string name="call">కాల్</string>
+    <string name="message">సందేశం</string>
+    <string name="edit">మార్చు</string>
+    <string name="yes">అవును</string>
+    <string name="no">తోబుట్టువుల</string>
+    <string name="edit_profile">ప్రొఫైల్ను సవరించండి</string>
+    <string name="quantity_purchased">పరిమాణ అమ్మకాలు (కిలోలలో)</string>
+    <string name="order_quantity_sold">కిలోలు రూ. </string>
+    <string name="add_product">పంటను జోడించు</string>
+    <string name="seller_details_head">విక్రేత వివరాలు:</string>
+    <string name="quantity_available">అందుబాటులో ఉన్న పరిమాణం: </string>
+    <string name="available">అందుబాటులో: </string>
+    <string name="distance_from_current">మీ ప్రస్తుత స్థానం నుండి దూరం కనుగొనండి</string>
+    <string name="distance_from_address">మీ చిరునామా నుండి దూరం కనుగొనండి</string>
+    <string name="retry">మళ్ళీ ప్రయత్నించు</string>
+    <string name="no_internet">ఇంటర్నెట్ కనెక్షన్ లేదు</string>
+
+
+    <!--HARDCODED STRINGS-->
+    <string name="per_kg">/కిలొగ్రామ్</string>
+    <string name="kg">కిలొగ్రామ్</string>
+    <string name="kgs">కిలోలు</string>
+    <string name="add">చేర్చు</string>
+    <string name="kg_close_bracket">కిలొగ్రామ్ )</string>
+    <string name="rs">రూ.</string>
+    <string name="open_bracket_available">(అందుబాటులో:</string>
+    <string name="requested">అభ్యర్థించిన</string>
+    <string name="at_rs">రూ.</string>
+    <string name="no_route_addr">మీరు ఇచ్చిన చిరునామా నుండి మార్గం కనుగొనబడలేదు</string>
+    <string name="no_route_curr">మీ ప్రస్తుత స్థానం నుండి మార్గం కనుగొనబడలేదు</string>
+    <string name="dist_addr">ఇవ్వబడిన చిరునామా నుండి దూరం: </string>
+    <string name="dist_curr">ప్రస్తుత స్థానం నుండి దూరం: </string>
+    <string name="out_of">బయటకు</string>
+    <string name="add_first_crop">మీ మొదటి పంటను జోడించడానికి దిగువ క్లిక్ చేయండి! </string>
+    <string name="no_crops_to_sell">మీరు విక్రయించడానికి ఏ పంటలూ లేవు.</string>
+    <string name="no_crops_to_buy">ప్రస్తుతం కొనుగోలు పంటలు లేవు.</string>
+    <string name="no_requests">మీకు ఇంకా ఏ అభ్యర్థనలు లేవు.</string>
+    <string name="no_orders">మీకు ఇంకా ఆర్డర్లు లేవు.</string>
+    <string name="to">కు:</string>
+    <string name="open_bracket">(</string>
+    <string name="close_bracket"> )</string>
+
+    <!--LANGUAGE-->
+    <string name="choose_language"><u>భాషను ఎంచుకోండి</u></string>
+    <string name="choose_language_dialog">ఏదైనా భాషను ఎంచుకోండి</string>
+    <string-array name="languages">
+        <item>ఇంగ్లీష్</item>
+        <item>హిందీ</item>
+        <item>మరాఠీ</item>
+        <item>పంజాబీ</item>
+        <item>సింధీ</item>
+        <item>తమిళ</item>
+        <item>తెలుగు</item>
+    </string-array>
+
+    <!--FONT AWESOME STRINGS-->
+    <string name="icon_user">&#xf007;</string>
+    <string name="icon_mobile_no">&#xf2b9;</string>
+    <string name="icon_area">&#xf21d;</string>
+    <string name="icon_city">&#xf1ad;</string>
+    <string name="icon_state">&#xf286;</string>
+
+    <!--Tab names-->
+    <string name="tab_buy">పంటలు కొనండి</string>
+    <string name="tab_sell">పంటలు అమ్మే</string>
+
+    <string name="tab_purchased">కొనుగోలు</string>
+    <string name="tab_sold">సోల్డ్</string>
+    <string name="tab_confirm_product_buy">వస్తువు యొక్క వివరాలు</string>
+
+    <string name="tab_purchase_req">కొనుగోలు అభ్యర్థనలు</string>
+    <string name="tab_sell_req">అభ్యర్థనలను విక్రయించండి</string>
+
+    <string name="tab_orders">నా ఆదేశాలు</string>
+
+
+    <!--View names-->
+
+    <!--SNACK MESSAGES-->
+
+    <string name="something_went_wrong">అయ్యో! ఎక్కడో తేడ జరిగింది!</string>
+    <string name="check_network_connection">దయచేసి మీ ఇంటర్నెట్ కనెక్షన్ను తనిఖీ చేయండి!</string>
+    <string name="unable_to_process_request">ప్రస్తుతానికి మీ అభ్యర్థనను ప్రాసెస్ చేయడం సాధ్యపడలేదు!</string>
+    <string name="cannot_connect_to_server">ప్రస్తుతానికి సర్వర్కు కనెక్ట్ చేయడం సాధ్యపడలేదు!</string>
+    <string name="enter_all_details">అన్ని వివరాలను నమోదు చేయండి!</string>
+    <string name="passwords_do_not_match">గుత్త పదములు సరి పోవట్లేదు!!</string>
+    <string name="quantity_cannot_be_zero">పరిమాణం సున్నా ఉండకూడదు!</string>
+    <string name="permission_required">మాకు అనుమతి మంజూరు చేయాలి</string>
+
+    <!--login-->
+    <string name="login_details_enter_first">మొట్టమొదట మొబైల్ సంఖ్య / పాస్వర్డ్ నమోదు చేయండి !!</string>
+    <string name="login_invalid_credentials">ఇన్వాలైడ్ యూజర్ క్రెడెన్షియల్స్</string>
+
+    <!--sign up-->
+    <string name="signup_valid_no">చెల్లుబాటు అయ్యే మొబైల్ సంఖ్యను నమోదు చేయండి !!</string>
+    <string name="signup_already_registered">వినియోగదారు ఇప్పటికే నమోదు చేశారు</string>
+
+    <!--Sell products-->
+    <string name="sell_product_dialog_adding_new_crop">కొత్త పంటను కలుపుతోంది ..</string>
+    <string name="sell_product_dialog_deleting_crop">పంటను తొలగిస్తోంది .. </string>
+    <string name="sell_product_kgs_remaining">కిలోలు మిగిలి ఉన్నాయి</string>
+
+    <string name="sell_products_item_deleted">అంశం తొలగించబడింది</string>
+
+    <string name="sell_product_crop_exists">పంట ఇప్పటికే ఉంది, మరికొన్ని పేరు ప్రయత్నించండి!</string>
+    <string name="sell_product_field_cannot_empty">ఫీల్డ్ ఖాళీగా ఉండకూడదు !!</string>
+    <string name="sell_product_delete_product"> ఉత్పత్తిని తొలగించు</string>
+    <string name="sell_product_sure_to_delete">మీరు ఖచ్చితంగా ఈ ఉత్పత్తిని తొలగించాలనుకుంటున్నారా?</string>
+    <string name="sell_product_edit_product"> ఉత్పత్తిని సవరించండి</string>
+    <string name="sell_product_product_name">ఉత్పత్తి నామం</string>
+    <string name="sell_product_product_price">ఉత్పత్తి ధర (రూ.</string>
+    <string name="sell_product_product_quantity">ఉత్పత్తి పరిమాణం (kg లో)</string>
+
+    <!--Confirm product buy-->
+    <string name="confirm_buy_find_distance">దూరం కనుగొనండి</string>
+    <string name="confirm_buy_request_product">ఉత్పత్తిని అభ్యర్థించండి</string>
+    <string name="confirm_buy_dialog_creating_request">మీ అభ్యర్థనను సృష్టిస్తోంది ..</string>
+    <string name="confirm_buy_dialog_confirm_product">ఉత్పత్తి నిర్ధారించండి</string>
+    <string name="confirm_buy_dialog_calculating_distance">దూరం లెక్కించడం ..</string>
+    <string name="confirm_buy_request_made">అభ్యర్థన విజయవంతంగా చేయబడింది!</string>
+    <string name="confirm_buy_sure_to_request">మీరు ఖచ్చితంగా ఈ ఉత్పత్తిని అభ్యర్థించాలనుకుంటున్నారా?</string>
+    <string name="confirm_buy_price">ధర: రూ.</string>
+
+    <!--Requests-->
+    <string name="request_sure_to_cancel">మీరు ఖచ్చితంగా ఈ అభ్యర్థనను రద్దు చేయాలనుకుంటున్నారా?</string>
+    <string name="request_dialog_confirming_order">మీ ఆర్డర్ని నిర్ధారించడం ..</string>
+    <string name="request_order_confirmed">మీ ఆర్డర్ నిర్ధారించబడింది!</string>
+    <string name="request_enter_quantity">పరిమాణాన్ని నమోదు చేయండి</string>
+    <string name="request_quantity_cannot_zero">పరిమాణం సున్నా ఉండకూడదు</string>
+    <string name="request_quantity_cannot_empty">పరిమాణం ఖాళీగా ఉండకూడదు</string>
+    <string name="request_enter_valid_quantity">చెల్లుబాటు అయ్యే పరిమాణం నమోదు చేయండి</string>
+
+    <!--Menu items-->
+    <string name="menu_market_status">మార్కెట్ స్థితి</string>
+    <string name="menu_purchase_req">కొనుగోలు అభ్యర్థనలు</string>
+    <string name="menu_sell_req">అభ్యర్థనలను విక్రయించండి</string>
+    <string name="menu_my_orders">నా ఆదేశాలు</string>
+    <string name="menu_edit_prof">నా జీవన వివరణ</string>
+    <string name="menu_logout">లాగౌట్</string>
+
+</resources>

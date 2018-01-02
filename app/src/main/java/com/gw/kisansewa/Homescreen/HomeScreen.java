@@ -85,16 +85,13 @@ public class HomeScreen extends AppCompatActivity {
 
             case R.id.sell_requests:
                 startActivity(new Intent(this, SellRequests.class));
-//                Toast.makeText(HomeScreen.this, "Clicked Sell Requests", Toast.LENGTH_SHORT).show();
                 return true;
 
             case R.id.orders:
                 startActivity(new Intent(this, Order.class));
-//                Toast.makeText(HomeScreen.this, "Clicked Orders", Toast.LENGTH_SHORT).show();
                 return true;
 
             case R.id.my_profile:
-//                Toast.makeText(HomeScreen.this, "Clicked My Profile", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(this, EditProfile.class));
                 return true;
 

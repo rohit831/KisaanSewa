@@ -2,6 +2,7 @@ package com.gw.kisansewa.buyProductsTab;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -10,6 +11,7 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -29,31 +31,33 @@ import com.gw.kisansewa.models.CropDetails;
 import com.gw.kisansewa.models.FarmerDetails;
 import com.gw.kisansewa.models.RequestDetails;
 
+import org.w3c.dom.Text;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-
 public class ConfirmProductBuy extends AppCompatActivity {
 
-    private TextView productName,productPrice,productQuantity,sellerName,sellerMobileNo;
+    private TextView productName,productPrice,productQuantity,sellerName,sellerMobileNo, retry_btn;
     private TextView sellerAddress, message, call, findDistance, requestProduct, dist_from_current, dist_from_addr;
     private BuyProductAPI buyProductAPI;
     private String sellerNo,buyProductName,userMobileNo;
     private FarmerDetails farmerDetails;
     final Context context=this;
     private CropDetails cropDetails;
-    private LinearLayout progressBar, no_internet;
+    private LinearLayout progressBar, no_internet, snackLayout;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.confirm_product_buy);
-//
-////      enable back button and changing the name of action bar
-//        getSupportActionBar().setDisplayShowHomeEnabled(true);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        getSupportActionBar().setTitle(R.string.tab_confirm_product_buy);
+
+//      enable back button and changing the name of action bar
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(R.string.tab_confirm_product_buy);
 
         initialize();
         getCropDetails();
@@ -62,6 +66,14 @@ public class ConfirmProductBuy extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 showCustomDialog();
+            }
+        });
+
+        retry_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                no_internet.setVisibility(View.GONE);
+                getCropDetails();
             }
         });
 
@@ -80,21 +92,50 @@ public class ConfirmProductBuy extends AppCompatActivity {
             }
         });
     }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        int id = item.getItemId();
-//
-//        if(id == android.R.id.home){
-//            this.finish();
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if(id == android.R.id.home){
+            this.finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    //    Reference all the variables
+    public void initialize() {
+        productName=(TextView)findViewById(R.id.finalProductName);
+        productPrice=(TextView)findViewById(R.id.finalProductPrice);
+        productQuantity=(TextView)findViewById(R.id.finalProductQuantity);
+        sellerName=(TextView)findViewById(R.id.finalSellerName);
+        sellerMobileNo=(TextView)findViewById(R.id.finalMobileNo);
+        sellerAddress = (TextView)findViewById(R.id.address_confirm_buy_product);
+        message = (TextView)findViewById(R.id.message_confirm_buy);
+        call = (TextView) findViewById(R.id.call_confirm_buy);
+        dist_from_current = (TextView) findViewById(R.id.dist_from_current_view);
+        dist_from_addr = (TextView)findViewById(R.id.dist_from_addr_view);
+        findDistance = (TextView) findViewById(R.id.find_distance_confirm_buy);
+        requestProduct = (TextView) findViewById(R.id.request_product_confirm_buy);
+        farmerDetails=new FarmerDetails();
+        cropDetails=new CropDetails();
+        progressBar = (LinearLayout)findViewById(R.id.progress_confirm_product_buy);
+        no_internet = (LinearLayout)findViewById(R.id.no_internet_confirm_product_buy);
+        snackLayout = (LinearLayout)findViewById(R.id.snack_layout_confirm_buy_product);
+        retry_btn= (TextView)findViewById(R.id.retry_confirm_product_buy);
+
+        progressDialog = new ProgressDialog(context);
+        progressDialog.setIndeterminate(true);
+
+        sellerNo=getIntent().getStringExtra("sellerMobileNo");
+        userMobileNo=getIntent().getStringExtra("userMobileNo");
+        buyProductName=getIntent().getStringExtra("productName");
+    }
 
     public void findDistanceOnClick(View v) {
         if (!checkLocationPermissions()) {
             ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-            Toast.makeText(ConfirmProductBuy.this, "You need to grant us permission!", Toast.LENGTH_SHORT).show();
+            Snackbar.make(snackLayout, R.string.permission_required, Snackbar.LENGTH_SHORT).show();
         } else {
             LayoutInflater li = LayoutInflater.from(context);
             final View dialogView = li.inflate(R.layout.distance_dialog, null);
@@ -126,33 +167,10 @@ public class ConfirmProductBuy extends AppCompatActivity {
         }
     }
 
-//    Reference all the variables
-    public void initialize() {
-        productName=(TextView)findViewById(R.id.finalProductName);
-        productPrice=(TextView)findViewById(R.id.finalProductPrice);
-        productQuantity=(TextView)findViewById(R.id.finalProductQuantity);
-        sellerName=(TextView)findViewById(R.id.finalSellerName);
-        sellerMobileNo=(TextView)findViewById(R.id.finalMobileNo);
-        sellerAddress = (TextView)findViewById(R.id.address_confirm_buy_product);
-        message = (TextView)findViewById(R.id.message_confirm_buy);
-        call = (TextView) findViewById(R.id.call_confirm_buy);
-        dist_from_current = (TextView) findViewById(R.id.dist_from_current_view);
-        dist_from_addr = (TextView)findViewById(R.id.dist_from_addr_view);
-        findDistance = (TextView) findViewById(R.id.find_distance_confirm_buy);
-        requestProduct = (TextView) findViewById(R.id.request_product_confirm_buy);
-        farmerDetails=new FarmerDetails();
-        cropDetails=new CropDetails();
-        progressBar = (LinearLayout)findViewById(R.id.progress_confirm_product_buy);
-        no_internet = (LinearLayout)findViewById(R.id.no_internet_confirm_product_buy);
-
-        sellerNo=getIntent().getStringExtra("sellerMobileNo");
-        userMobileNo=getIntent().getStringExtra("userMobileNo");
-        buyProductName=getIntent().getStringExtra("productName");
-    }
-
 //    Get the details of the crop selected
      void getCropDetails() {
         buyProductAPI = ProductGenerator.createService(BuyProductAPI.class);
+        showProgressBar(true);
         final Call<CropDetails> cropDetailCall = buyProductAPI.getCropDetails(sellerNo, buyProductName);
         cropDetailCall.enqueue(new Callback<CropDetails>() {
             @Override
@@ -165,7 +183,8 @@ public class ConfirmProductBuy extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<CropDetails> call, Throwable t) {
-                Toast.makeText(context, "Unable to connect to server at the moment!", Toast.LENGTH_SHORT).show();
+                showProgressBar(false);
+                noInternetConnectionFound();
             }
         });
     }
@@ -179,13 +198,15 @@ public class ConfirmProductBuy extends AppCompatActivity {
             public void onResponse(Call<FarmerDetails> call, Response<FarmerDetails> response) {
                 if(response.code()==200) {
                     farmerDetails = response.body();
+                    showProgressBar(false);
                     setValues();
                 }
             }
 
             @Override
             public void onFailure(Call<FarmerDetails> call, Throwable t) {
-                Toast.makeText(context, "Unable to connect to server at the moment!", Toast.LENGTH_SHORT).show();
+                showProgressBar(false);
+                noInternetConnectionFound();
             }
         });
     }
@@ -214,7 +235,7 @@ public class ConfirmProductBuy extends AppCompatActivity {
 
         customDialog.setCancelable(false);
 
-        customDialog.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+        customDialog.setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                         requestProduct();
@@ -222,7 +243,7 @@ public class ConfirmProductBuy extends AppCompatActivity {
 
         });
 
-        customDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        customDialog.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
@@ -239,12 +260,15 @@ public class ConfirmProductBuy extends AppCompatActivity {
         RequestDetails transaction = new RequestDetails(sellerNo,userMobileNo, buyProductName
                                             ,productPrice.getText().toString(), productQuantity.getText().toString());
         Call<Void> requestProductCall = buyProductAPI.requestProduct(transaction);
+        progressDialog.setMessage(getString(R.string.confirm_buy_dialog_creating_request));
+        progressDialog.show();
         requestProductCall.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if(response.code() == 200){
-                    Toast.makeText(context, "Crop added to Purchase Requests", Toast.LENGTH_SHORT).show();
 
+                    progressDialog.hide();
+                    Toast.makeText(context, R.string.confirm_buy_request_made, Toast.LENGTH_SHORT).show();
                     Intent intent=new Intent(context,HomeScreen.class);
                     intent.putExtra("mobileNo",userMobileNo);
                     startActivity(intent);
@@ -254,7 +278,8 @@ public class ConfirmProductBuy extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(context, "Unable to connect to the server at the moment", Toast.LENGTH_SHORT).show();
+                progressDialog.hide();
+                Snackbar.make(snackLayout, R.string.something_went_wrong, Snackbar.LENGTH_SHORT).show();
             }
         });
     }
@@ -272,6 +297,8 @@ public class ConfirmProductBuy extends AppCompatActivity {
         //Getting address of buyer
         AuthenticationAPI authAPI = AuthenticationGenerator.createService(AuthenticationAPI.class);
         Call<FarmerDetails> getAddressBuyerCall = authAPI.getFarmerDetail(userMobileNo);
+        progressDialog.setMessage(getString(R.string.confirm_buy_dialog_calculating_distance));
+        progressDialog.show();
         getAddressBuyerCall.enqueue(new Callback<FarmerDetails>() {
             @Override
             public void onResponse(Call<FarmerDetails> call, Response<FarmerDetails> response) {
@@ -288,49 +315,50 @@ public class ConfirmProductBuy extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<String> call, Response<String> response) {
                         if(response.code() == 204){
+                            progressDialog.hide();
                             dist_from_addr.setVisibility(View.VISIBLE);
                             dist_from_addr.setText(R.string.no_route_addr);
                         }
                         else if(response.code() == 200){
+                            progressDialog.hide();
                             dist_from_addr.setVisibility(View.VISIBLE);
                             dist_from_addr.setText(dist_from_addr.getText().toString().concat(response.body()));
                         }
                         else{
-                            Toast.makeText(ConfirmProductBuy.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
+                            progressDialog.hide();
+                            Snackbar.make(snackLayout, R.string.something_went_wrong, Snackbar.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<String> call, Throwable t) {
-                        Toast.makeText(ConfirmProductBuy.this, "Can't connect to server at the moment", Toast.LENGTH_SHORT).show();
+                        progressDialog.hide();
+                        Snackbar.make(snackLayout, R.string.check_network_connection, Snackbar.LENGTH_SHORT).show();
                     }
                 });
             }
 
             @Override
             public void onFailure(Call<FarmerDetails> call, Throwable t) {
-                Toast.makeText(ConfirmProductBuy.this, "Can't connect to server at the moment", Toast.LENGTH_SHORT).show();
+                progressDialog.hide();
+                Snackbar.make(snackLayout, R.string.check_network_connection, Snackbar.LENGTH_SHORT).show();
             }
         });
     }
-
-//
-//    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
-//                // If request is cancelled, the result arrays are empty.
-//                if (grantResults.length > 0
-//                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//
-//                } else {
-//                    // permission denied, boo! Disable the
-//                    // functionality that depends on this permission.
-//                }
-//    }
 
 //  check for network permissions
     private boolean checkLocationPermissions() {
         String permission = "android.permission.ACCESS_FINE_LOCATION";
         int res = context.checkCallingOrSelfPermission(permission);
         return (res == PackageManager.PERMISSION_GRANTED);
+    }
+
+//    show/hide progress bar
+    private void showProgressBar(boolean flag) {
+        if(flag)
+            progressBar.setVisibility(View.VISIBLE);
+        else
+            progressBar.setVisibility(View.GONE);
     }
 
 //   no internet connection found

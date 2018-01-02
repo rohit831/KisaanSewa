@@ -19,6 +19,7 @@ import com.gw.kisansewa.models.FarmerDetails;
 import com.gw.kisansewa.models.RequestDetails;
 
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -130,7 +131,7 @@ public class PurchaseRequestAdapter extends RecyclerView.Adapter<PurchaseRequest
 
                 @Override
                 public void onFailure(Call<FarmerDetails> call, Throwable t) {
-                    ((PurchaseRequest)context).showSnack("Can't connect to the server at the moment!");
+                    ((PurchaseRequest)context).showSnack(context.getString(R.string.cannot_connect_to_server));
                 }
             });
 
@@ -140,8 +141,8 @@ public class PurchaseRequestAdapter extends RecyclerView.Adapter<PurchaseRequest
         {
             final int position = getAdapterPosition();
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
-            builder.setMessage("Are you sure you want to cancel this request?");
-            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            builder.setMessage(context.getString(R.string.request_sure_to_cancel));
+            builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     RequestAPI requestAPI = RequestGenerator.createService(RequestAPI.class);
@@ -161,19 +162,19 @@ public class PurchaseRequestAdapter extends RecyclerView.Adapter<PurchaseRequest
                                 notifyItemRangeChanged(position, requestDetails.size());
                             }
                             else {
-                                Toast.makeText(context, "Oops Something went wrong", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, R.string.something_went_wrong, Toast.LENGTH_SHORT).show();
                             }
                         }
 
                         @Override
                         public void onFailure(Call<Void> call, Throwable t) {
-                            ((PurchaseRequest)context).showSnack("Can't connect to the server at the moment!");
+                            ((PurchaseRequest)context).showSnack(context.getString(R.string.check_network_connection));
                         }
                     });
                 }
             });
 
-            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.dismiss();

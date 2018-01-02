@@ -1,0 +1,177 @@
+<resources>
+
+    <string name="app_name">Kisaan Sewa</string>
+
+    <!--Authentication-->
+    <string name="name_view">نالو</string>
+    <string name="area_view">ايريا</string>
+    <string name="city_view">شهر</string>
+    <string name="state_view">رياست</string>
+    <string name="conf_password_view">پاس ورڊ جي تصديق ڪريو</string>
+    <string name="register_view">رجسٽرڊ</string>
+    <string name="mobile_no_view">موبائل نمبر</string>
+    <string name="password_view">پاسورڊ</string>
+    <string name="login_view">لاگ ان</string>
+    <string name="not_registered_yet_view">اڃان رجسٽريشن نه آهي؟</string>
+    <string name="register_here_view">هتي داخل ڪريو</string>
+
+    <!--Dummy Values-->
+    <string name="cropName">Bajra</string>
+    <string name="cropPrice">70</string>
+    <string name="cropQuantity">500</string>
+    <string name="cropQuantity_rem">75 kgs remaining</string>
+    <string name="name">Rohit Agrawal</string>
+    <string name="mobileNo">9039888667</string>
+    <string name="city">Raipur</string>
+    <string name="state">Chattisgarh</string>
+    <string name="area">Swarnabhoomi</string>
+    <string name="address">Swarnabhoomi, Raipur, Chattisgarh</string>
+
+    <!--View text-->
+    <string name="seller_details">وڪرو ڏسو</string>
+    <string name="buyer_details">خريداري ڏسو</string>
+    <string name="cancel_request">درخواست رد ڪريو</string>
+    <string name="confirm">تصديق ڪريو</string>
+    <string name="cancel">منسوخ ڪريو</string>
+    <string name="delete">ختم ڪريو</string>
+    <string name="call">ڪال</string>
+    <string name="message">پيغام</string>
+    <string name="edit">ترميم ڪريو</string>
+    <string name="yes">ها</string>
+    <string name="no">نه</string>
+    <string name="edit_profile">پروفائل ۾ مٽ سٽ ڪيو</string>
+    <string name="quantity_purchased">مقدار جو وڪرو (ڪلوگرام)</string>
+    <string name="order_quantity_sold">ڪلوگرام کان. </string>
+    <string name="add_product">فصل شامل ڪريو</string>
+    <string name="seller_details_head">وڪرو ڪندڙ تفصيلات:</string>
+    <string name="quantity_available">مقدار جو دستياب </string>
+    <string name="available">دستياب </string>
+    <string name="distance_from_current">توھان جي موجوده جڳھ کان فاصلو ڳولھيو</string>
+    <string name="distance_from_address">توهان جي ايڊريس مان فاصلو ڳولهيو</string>
+    <string name="retry">ٻيهر ڪوشش ڪريو</string>
+    <string name="no_internet">ڪوبه انٽرنيٽ وارو ڪنيڪشن</string>
+
+
+    <!--HARDCODED STRINGS-->
+    <string name="per_kg">/ ڪلو</string>
+    <string name="kg">kg</string>
+    <string name="kgs">ڪلو</string>
+    <string name="add">شامل ڪريو</string>
+    <string name="kg_close_bracket">ڪلوگرام)</string>
+    <string name="rs">روپ.</string>
+    <string name="open_bracket_available">(دستياب:</string>
+    <string name="requested">درخواست ڪئي وئي آهي</string>
+    <string name="at_rs">هڪ.</string>
+    <string name="no_route_addr">توهان جي ڏنل ايڊريس مان ڪو رستو نه مليو</string>
+    <string name="no_route_curr">توهان جي موجوده جڳه مان رستو نه مليو</string>
+    <string name="dist_addr">پتي مان فاصلو: </string>
+    <string name="dist_curr">موجوده هنڌ کان فاصلو: </string>
+    <string name="out_of">کان ٻاهر</string>
+    <string name="add_first_crop">توهان جي پهرين فصل کي شامل ڪرڻ لاء هيٺ ڪلڪ ڪريو! </string>
+    <string name="no_crops_to_sell">توهان وٽ ڪي فصل نه وڪڻڻ جو ڪو نه آهي.</string>
+    <string name="no_crops_to_buy">في الحال في خريد ڪرڻ لاء ڪو به ناهي.</string>
+    <string name="no_requests">اوھان اڃان تائين ڪا درخواست ڪونھي.</string>
+    <string name="no_orders">اوھان وٽ اڃان تائين ڪو حڪم ڪونھي.</string>
+    <string name="to">جي طرف:</string>
+    <string name="open_bracket">(</string>
+    <string name="close_bracket"> )</string>
+
+    <!--LANGUAGE-->
+    <string name="choose_language"><u>ٻولي چونڊيو</u></string>
+    <string name="choose_language_dialog">ڪابه ٻولي چونڊيو</string>
+    <string-array name="languages">
+        <item>انگريزي</item>
+        <item>هندي</item>
+        <item>مراٺي</item>
+        <item>پنجابي</item>
+        <item>سنڌي</item>
+        <item>تاملي</item>
+        <item>تيلوگو ٻولي</item>
+    </string-array>
+
+    <!--FONT AWESOME STRINGS-->
+    <string name="icon_user">&#xf007;</string>
+    <string name="icon_mobile_no">&#xf2b9;</string>
+    <string name="icon_area">&#xf21d;</string>
+    <string name="icon_city">&#xf1ad;</string>
+    <string name="icon_state">&#xf286;</string>
+
+    <!--Tab names-->
+    <string name="tab_buy">خريداري جو فصل</string>
+    <string name="tab_sell">فصل ڏيو</string>
+
+    <string name="tab_purchased">خريد ڪيو</string>
+    <string name="tab_sold">وڪڻڻ</string>
+    <string name="tab_confirm_product_buy">مصنوعات جي تفصيل</string>
+
+    <string name="tab_purchase_req">خريداريون درخواستون</string>
+    <string name="tab_sell_req">وڪيلن جون درخواستون</string>
+
+    <string name="tab_orders">منهنجا حڪم</string>
+
+
+    <!--View names-->
+
+    <!--SNACK MESSAGES-->
+
+    <string name="something_went_wrong">اڙي! ڪجهه غلط ٿيو</string>
+    <string name="check_network_connection">مهرباني ڪري پنهنجي انٽرنيٽ ڪنيڪشن کي ڏسو!</string>
+    <string name="unable_to_process_request">هن وقت توهان جي درخواست تي عمل ڪرڻ جي قابل ناهي!</string>
+    <string name="cannot_connect_to_server">اس وقت سرور سان ڳنڍڻ ۾ ناڪام ٿيو!</string>
+    <string name="enter_all_details">سڀ تفصيلات داخل ڪريو !!</string>
+    <string name="passwords_do_not_match">پاسورڊ ملاپ نه ڪريو !!</string>
+    <string name="quantity_cannot_be_zero">مقدار صفر نه ٿي ڪري سگھجي!</string>
+    <string name="permission_required">توهان کي اجازت اجازت ڏيڻ جي ضرورت آهي</string>
+
+    <!--login-->
+    <string name="login_details_enter_first">موبائل نمبر / پاسورڊ داخل ڪريو پهريون</string>
+    <string name="login_invalid_credentials">غلط استعمال ڪندڙ غلطي</string>
+
+    <!--sign up-->
+    <string name="signup_valid_no">صحيح موبائل موبائل نمبر داخل ڪريو !!</string>
+    <string name="signup_already_registered">استعمال ڪندڙ کان پهريان رجسٽر ٿيل</string>
+
+    <!--Sell products-->
+    <string name="sell_product_dialog_adding_new_crop">نئون فصل شامل ڪندي ..</string>
+    <string name="sell_product_dialog_deleting_crop">فصل ختم ڪندي .. </string>
+    <string name="sell_product_kgs_remaining">باقي ڪلوگرام</string>
+
+    <string name="sell_products_item_deleted">شيون ختم ٿيل</string>
+
+    <string name="sell_product_crop_exists">پوزيشن اڳ ۾ ئي موجود آھي، ڪجھھ نالي جي ڪوشش ڪريو!</string>
+    <string name="sell_product_field_cannot_empty">خالي خالي نه ٿي سگهي !!</string>
+    <string name="sell_product_delete_product"> شين کي ختم ڪريو</string>
+    <string name="sell_product_sure_to_delete">ڇا اوھان کي پڪ آھي ته توھان ھن شين کي ختم ڪرڻ چاھيو ٿا.</string>
+    <string name="sell_product_edit_product"> تبديلي آڻيو</string>
+    <string name="sell_product_product_name">شئ جو نالو</string>
+    <string name="sell_product_product_price">محصول جي قيمت (روپ ۾)</string>
+    <string name="sell_product_product_quantity">پيداوار جي مقدار (ڪلو ۾)</string>
+
+    <!--Confirm product buy-->
+    <string name="confirm_buy_find_distance">فاصلو ڳولهيو</string>
+    <string name="confirm_buy_request_product">درخواست جي پيداوار</string>
+    <string name="confirm_buy_dialog_creating_request">توھان جي درخواست ٺاھڻ</string>
+    <string name="confirm_buy_dialog_confirm_product">تصديق ڪريو مصنوعات</string>
+    <string name="confirm_buy_dialog_calculating_distance">فاصلي جي حساب سان</string>
+    <string name="confirm_buy_request_made">ڪاميابي سان ڪاميابي ڪئي وئي!</string>
+    <string name="confirm_buy_sure_to_request">ڇا توھان پڪ آھي ته توھان ھن پراڊڪٽ جي درخواست ڪرڻ چاھيو ٿا!</string>
+    <string name="confirm_buy_price">قيمت: روپ.</string>
+
+    <!--Requests-->
+    <string name="request_sure_to_cancel">ڇا توهان پڪ آهي ته توهان هن درخواست کي رد ڪرڻ چاهيو ٿا؟</string>
+    <string name="request_dialog_confirming_order">توھان جي آرڊر جي تصديق ڪريو</string>
+    <string name="request_order_confirmed">توهان جي آرڊر جي تصديق ڪئي وئي آهي!</string>
+    <string name="request_enter_quantity">مقدار ۾ داخل ڪريو</string>
+    <string name="request_quantity_cannot_zero">مقدار صفر نه ٿي ڪري سگھجي</string>
+    <string name="request_quantity_cannot_empty">مقدار خالي نه ٿي سگھي</string>
+    <string name="request_enter_valid_quantity">صحيح مقدار داخل ڪريو</string>
+
+    <!--Menu items-->
+    <string name="menu_market_status">مارڪيٽ جي حالت</string>
+    <string name="menu_purchase_req">خريداريون درخواستون</string>
+    <string name="menu_sell_req">وڪيلن جون درخواستون</string>
+    <string name="menu_my_orders">منهنجا حڪم</string>
+    <string name="menu_edit_prof">منهنجو پروفائل</string>
+    <string name="menu_logout">ڪم ڇڏڻ</string>
+
+</resources>

@@ -15,7 +15,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.gw.kisansewa.R;
 import com.gw.kisansewa.api.RequestAPI;
@@ -53,7 +52,7 @@ public class PurchaseRequest extends AppCompatActivity
 //      enable back button and changing the name of action bar
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(R.string.purchase_req_nav);
+        getSupportActionBar().setTitle(R.string.tab_purchase_req);
 
         initialize();
 

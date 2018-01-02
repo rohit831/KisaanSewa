@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -22,11 +23,12 @@
                 android:layout_height="140dp"
                 android:layout_marginTop="20dp"
                 android:layout_gravity="center"
-                android:text="Kisaan Sewa"
+                android:text="@string/app_name"
                 android:paddingTop="50dp"
                 android:textStyle="bold"
-                android:textSize="50dp"
+                android:textSize="50sp"
                 android:fontFamily="serif"
+                android:id="@+id/login_appName"
                 android:textColor="@color/colorPrimary"
                 />
 
@@ -45,6 +47,8 @@
                 android:layout_height="wrap_content"
                 android:theme="@style/TextLabel"
                 android:layout_marginTop="8dp"
+                android:id="@+id/login_mobileNo_textInputLayout"
+                android:hint="@string/mobile_no_view"
                 android:layout_marginBottom="8dp">
 
                 <EditText
@@ -53,7 +57,7 @@
                     android:inputType="number"
                     android:layout_marginStart="5dp"
                     android:id="@+id/loginMobileNo"
-                    android:hint="Mobile No"/>
+                    />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -63,14 +67,16 @@
                 android:theme="@style/TextLabel"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:layout_marginStart="5dp"
+                android:hint="@string/password_view"
+                android:id="@+id/login_password_textInputLayout"
                 android:layout_marginBottom="8dp">
 
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
-                    android:layout_marginLeft="5dp"
-                    android:hint="Password"
+                    android:layout_marginStart="5dp"
                     android:id="@+id/loginPassword"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -81,44 +87,73 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"
-                android:text="Login"
-                android:onClick="LoginOnClick"
+                android:text="@string/login_view"
                 android:textColor="#FFF"
                 android:background="#348E17"
                 style="@style/Base.TextAppearance.AppCompat.Title"
                 android:id="@+id/loginButton"
                 />
 
-            <TextView
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Not Registered Yet?"
-                android:textAlignment="center"
-                android:padding="10dp"
-                android:textColor="#000"
-                android:gravity="bottom"
-                style="@style/Base.TextAppearance.AppCompat.Medium"/>
-
-            <TextView
-                android:layout_width="wrap_content"
+                android:orientation="horizontal"
                 android:layout_gravity="center"
-                android:layout_height="wrap_content"
-
-                android:text="Register Here!"
-                android:textColor="#348E17"
-                android:textAlignment="center"
                 android:gravity="center"
-                style="@style/Base.TextAppearance.AppCompat.Large"
-                android:textStyle="bold"
-                android:onClick="RegisterHereOnClick"
-                android:id="@+id/registerHere"/>
+                android:layout_marginTop="12dp"
+                >
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/not_registered_yet_view"
+                    android:textAlignment="center"
+                    android:padding="5dp"
+                    android:textColor="@color/black_off"
+                    android:gravity="bottom"
+                    android:textSize="18sp"
+                    android:id="@+id/login_not_registered_yet"
+                    style="@style/Base.TextAppearance.AppCompat.Medium"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_height="match_parent"
+                    android:text="@string/register_here_view"
+                    android:textSize="21sp"
+                    android:textColor="@color/colorPrimary"
+                    android:textAlignment="center"
+                    android:gravity="center"
+                    style="@style/Base.TextAppearance.AppCompat.Large"
+                    android:textStyle="bold"
+                    android:onClick="RegisterHereOnClick"
+                    android:id="@+id/registerHere"/>
+
+            </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_height="wrap_content"
+                    android:text="@string/choose_language"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimary"
+                    android:padding="3dp"
+                    android:textStyle="italic"
+                    android:layout_marginBottom="2dp"
+                    android:textSize="19sp"
+                    android:gravity="bottom"
+                    style="@style/Base.TextAppearance.AppCompat.Medium"
+                    android:id="@+id/choose_language_login"
+                    />
 
 
         </LinearLayout>
 
     </ScrollView>
 
+    <!--progress loader-->
     <ProgressBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -129,9 +164,19 @@
         android:visibility="gone"
         />
 
+    <!--space filler-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        >
+
+    </LinearLayout>
+
+    <!--snack layout-->
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/snack_layout_login"
         >
 

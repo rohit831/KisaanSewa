@@ -132,7 +132,7 @@ public class PurchasedFragment extends Fragment {
                     recyclerView.setLayoutManager(layoutManager);
                 }
                 else
-                    Toast.makeText(getContext(), "Something went wrong!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(),R.string.something_went_wrong, Toast.LENGTH_SHORT).show();
             }
 
             @Override

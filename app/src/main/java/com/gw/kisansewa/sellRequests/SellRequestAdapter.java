@@ -105,8 +105,8 @@ public class SellRequestAdapter extends RecyclerView.Adapter<SellRequestAdapter.
         private void cancelRequestClicked(){
             final int position = getAdapterPosition();
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
-            builder.setMessage("Are you sure you want to cancel this request?");
-            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            builder.setMessage(R.string.request_sure_to_cancel);
+            builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     ((SellRequests)context).showProgressBar(true);
@@ -128,20 +128,20 @@ public class SellRequestAdapter extends RecyclerView.Adapter<SellRequestAdapter.
                             }
                             else {
                                 ((SellRequests)context).showProgressBar(false);
-                                ((SellRequests)context).showSnack("Oops!! Something went wrong.");
+                                ((SellRequests)context).showSnack(context.getString(R.string.something_went_wrong));
                             }
                         }
 
                         @Override
                         public void onFailure(Call<Void> call, Throwable t) {
                             ((SellRequests)context).showProgressBar(false);
-                            ((SellRequests)context).showSnack("Oops!! Something went wrong.");
+                            ((SellRequests)context).showSnack(context.getString(R.string.something_went_wrong));
                         }
                     });
                 }
             });
 
-            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.dismiss();
@@ -204,7 +204,7 @@ public class SellRequestAdapter extends RecyclerView.Adapter<SellRequestAdapter.
 
                 @Override
                 public void onFailure(Call<FarmerDetails> call, Throwable t) {
-                    ((SellRequests)context).showSnack("No Internet connection found!");
+                    ((SellRequests)context).showSnack(context.getString(R.string.check_network_connection));
                 }
             });
         }
@@ -216,7 +216,7 @@ public class SellRequestAdapter extends RecyclerView.Adapter<SellRequestAdapter.
             final View dialogView = inflater.inflate(R.layout.sell_request_confirm_dialog, null);
             final AlertDialog.Builder customDialog = new AlertDialog.Builder(context);
             customDialog.setView(dialogView);
-            customDialog.setTitle("Enter Quantity");
+            customDialog.setTitle(R.string.request_enter_quantity);
 
             final TextView totalQuantity;
             final EditText quantity_purchased;
@@ -226,7 +226,7 @@ public class SellRequestAdapter extends RecyclerView.Adapter<SellRequestAdapter.
 
             totalQuantity.setText(requestDetails.get(position).getCropQuantity());
 
-            customDialog.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+            customDialog.setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     ((SellRequests)context).hideKeyboard();
@@ -237,16 +237,16 @@ public class SellRequestAdapter extends RecyclerView.Adapter<SellRequestAdapter.
                             requestDetails.get(position).getCropPrice());
 
                     if(quantity_purchased.getText().toString().trim().equals("0"))
-                        ((SellRequests)context).showSnack("Quantity cannot be zero");
+                        ((SellRequests)context).showSnack(context.getString(R.string.quantity_cannot_be_zero));
 
                     else if (quantity_purchased.getText().toString().trim().equals(""))
-                        ((SellRequests)context).showSnack("Quantity cannot be null");
+                        ((SellRequests)context).showSnack(context.getString(R.string.request_quantity_cannot_empty));
 
                     else if(Integer.parseInt(quantity_purchased.getText().toString()) >
                             Integer.parseInt(totalQuantity.getText().toString()))
-                        ((SellRequests)context).showSnack("Enter a valid quantity");
+                        ((SellRequests)context).showSnack(context.getString(R.string.request_enter_valid_quantity));
                     else{
-                        progressDialog.setMessage("Confirming your order ..");
+                        progressDialog.setMessage(context.getString(R.string.request_dialog_confirming_order));
                         progressDialog.show();
                         RequestAPI requestAPI = RequestGenerator.createService(RequestAPI.class);
                         Call<Orders> confirmOrderCall = requestAPI.confirmOrder(order);
@@ -266,7 +266,7 @@ public class SellRequestAdapter extends RecyclerView.Adapter<SellRequestAdapter.
                                             {
                                                 ((SellRequests)context).noRequestsCurrently();
                                             }
-                                            ((SellRequests)context).showSnack("Your order is confirmed!");
+                                            ((SellRequests)context).showSnack(context.getString(R.string.request_order_confirmed));
                                         }
                                     },1000);
                                 }
@@ -277,21 +277,21 @@ public class SellRequestAdapter extends RecyclerView.Adapter<SellRequestAdapter.
                                             progressDialog.hide();
                                         }
                                     },500);
-                                    ((SellRequests)context).showSnack("Something went wrong!");
+                                    ((SellRequests)context).showSnack(context.getString(R.string.something_went_wrong));
                                 }
                             }
 
                             @Override
                             public void onFailure(Call<Orders> call, Throwable t) {
                                 progressDialog.hide();
-                                ((SellRequests)context).showSnack("No Internet connection Found!");
+                                ((SellRequests)context).showSnack(context.getString(R.string.check_network_connection));
                             }
                         });
                     }
                 }
             });
 
-            customDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            customDialog.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.dismiss();

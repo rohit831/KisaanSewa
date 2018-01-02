@@ -56,7 +56,7 @@ public class SellProductsRecyclerAdapter extends RecyclerView.Adapter<SellProduc
     @Override
     public void onBindViewHolder(SellProductsRecyclerViewHolder holder, int position) {
         holder.vh_productName.setText(cropDetails.get(position).getCropName());
-        holder.vh_productQuantity.setText(cropDetails.get(position).getCropQuantity().concat(" kgs remaining"));
+        holder.vh_productQuantity.setText(cropDetails.get(position).getCropQuantity().concat(" ").concat(context.getString(R.string.sell_product_kgs_remaining)));
         holder.vh_productPrice.setText(cropDetails.get(position).getCropPrice());
     }
 
@@ -83,7 +83,7 @@ public class SellProductsRecyclerAdapter extends RecyclerView.Adapter<SellProduc
 
                     final ProgressDialog progressDialog = new ProgressDialog(context);
                     progressDialog.setIndeterminate(true);
-                    progressDialog.setMessage("Deleting crop .. ");
+                    progressDialog.setMessage(context.getString(R.string.sell_product_dialog_deleting_crop));
                     progressDialog.show();
 
                     LayoutInflater li=LayoutInflater.from(context);
@@ -91,7 +91,7 @@ public class SellProductsRecyclerAdapter extends RecyclerView.Adapter<SellProduc
                     final AlertDialog.Builder customDialog=new AlertDialog.Builder(context);
                     customDialog.setView(dialogView);
 
-                    customDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    customDialog.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             progressDialog.hide();
@@ -99,7 +99,7 @@ public class SellProductsRecyclerAdapter extends RecyclerView.Adapter<SellProduc
                         }
                     });
 
-                    customDialog.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                    customDialog.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
@@ -114,17 +114,17 @@ public class SellProductsRecyclerAdapter extends RecyclerView.Adapter<SellProduc
                                         cropDetails.remove(getAdapterPosition());
                                         notifyItemRemoved(getAdapterPosition());
                                         notifyItemRangeChanged(getAdapterPosition(),cropDetails.size());
-                                        showSnack("Item Deleted");
+                                        showSnack(context.getString(R.string.sell_products_item_deleted));
                                     }
                                     else{
-                                        showSnack("Something went  wrong!");
+                                        showSnack(context.getString(R.string.something_went_wrong));
                                     }
                                 }
 
                                 @Override
                                 public void onFailure(Call<Void> call, Throwable t) {
                                     progressDialog.hide();
-                                    showSnack("Unable to connect to server at the moment");
+                                    showSnack(context.getString(R.string.unable_to_process_request));
                                 }
                             });
                         }
@@ -156,20 +156,20 @@ public class SellProductsRecyclerAdapter extends RecyclerView.Adapter<SellProduc
                     editProductPrice.setText(cropDetails.get(position).getCropPrice());
                     editProductQuantity.setText(cropDetails.get(position).getCropQuantity());
 
-                    customDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    customDialog.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.cancel();
                         }
                     });
 
-                    customDialog.setPositiveButton("Edit", new DialogInterface.OnClickListener() {
+                    customDialog.setPositiveButton(R.string.edit, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
                             if(editProductName.getText().toString().equals("") || editProductPrice.getText().toString().equals("")
                                     || editProductQuantity.getText().toString().equals(""))
-                                showSnack("Field cannot be empty!!");
+                                showSnack(context.getString(R.string.sell_product_field_cannot_empty));
                             else
                             {
                                 SellProductAPI sellProductAPI = ProductGenerator.createService(SellProductAPI.class);
@@ -188,7 +188,7 @@ public class SellProductsRecyclerAdapter extends RecyclerView.Adapter<SellProduc
 
                                     @Override
                                     public void onFailure(Call<Void> call, Throwable t) {
-                                        showSnack("Unable to connect to server!");
+                                        showSnack(context.getString(R.string.unable_to_process_request));
                                     }
                                 });
                             }

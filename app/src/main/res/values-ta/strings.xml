@@ -1,0 +1,177 @@
+<resources>
+
+    <string name="app_name">நான் சேவாவை இயக்கினேன்</string>
+
+    <!--Authentication-->
+    <string name="name_view">பெயர்</string>
+    <string name="area_view">பகுதி</string>
+    <string name="city_view">பெருநகரம்</string>
+    <string name="state_view">நிலை</string>
+    <string name="conf_password_view">கடவுச்சொல்லை உறுதிப்படுத்துக</string>
+    <string name="register_view">பதிவு</string>
+    <string name="mobile_no_view">அலைபேசி எண்</string>
+    <string name="password_view">கடவுச்சொல்</string>
+    <string name="login_view">உள் நுழை</string>
+    <string name="not_registered_yet_view">இன்னும் பதிவு செய்யவில்லையா?</string>
+    <string name="register_here_view">இங்கே பதிவு!</string>
+
+    <!--Dummy Values-->
+    <string name="cropName">Bajra</string>
+    <string name="cropPrice">70</string>
+    <string name="cropQuantity">500</string>
+    <string name="cropQuantity_rem">75 kgs remaining</string>
+    <string name="name">Rohit Agrawal</string>
+    <string name="mobileNo">9039888667</string>
+    <string name="city">Raipur</string>
+    <string name="state">Chattisgarh</string>
+    <string name="area">Swarnabhoomi</string>
+    <string name="address">Swarnabhoomi, Raipur, Chattisgarh</string>
+
+    <!--View text-->
+    <string name="seller_details">விற்பனையாளரை காண்க</string>
+    <string name="buyer_details">வாங்குபவர் காண்க</string>
+    <string name="cancel_request">கோரிக்கையை ரத்துசெய்</string>
+    <string name="confirm">உறுதிப்படுத்தவும்</string>
+    <string name="cancel">ரத்து</string>
+    <string name="delete">அழி</string>
+    <string name="call">அழைப்பு</string>
+    <string name="message">செய்தி</string>
+    <string name="edit">தொகு</string>
+    <string name="yes">ஆம்</string>
+    <string name="no">இல்லை</string>
+    <string name="edit_profile">சுயவிவரத்தைத் திருத்தவும்</string>
+    <string name="quantity_purchased">அளவு (கிலோ) விற்கப்பட்டது</string>
+    <string name="order_quantity_sold">கிலோ ரூ. </string>
+    <string name="add_product">பயிர் சேர்க்கவும்</string>
+    <string name="seller_details_head">விற்பனையாளர் விவரங்கள்:</string>
+    <string name="quantity_available">கிடைக்கும் அளவு: </string>
+    <string name="available">கிடைக்கும்: </string>
+    <string name="distance_from_current">உங்கள் தற்போதைய இருப்பிடத்திலிருந்து தூரத்தைக் கண்டறியவும்</string>
+    <string name="distance_from_address">உங்கள் முகவரியிலிருந்து தூரத்தைக் கண்டறியவும்</string>
+    <string name="retry">மீண்டும் முயற்சி செய்</string>
+    <string name="no_internet">இணைய இணைப்பு இல்லை</string>
+
+
+    <!--HARDCODED STRINGS-->
+    <string name="per_kg">/ கிலோ</string>
+    <string name="kg">கிலோ</string>
+    <string name="kgs">கிலோ</string>
+    <string name="add">கூட்டு</string>
+    <string name="kg_close_bracket">கிலோ)</string>
+    <string name="rs">ரூ.</string>
+    <string name="open_bracket_available">(கிடைக்கும்:</string>
+    <string name="requested">கோரப்பட்டது</string>
+    <string name="at_rs">ரூ.</string>
+    <string name="no_route_addr">உங்கள் குறிப்பிட்ட முகவரியில் எந்த வழியும் இல்லை</string>
+    <string name="no_route_curr">உங்கள் தற்போதைய இருப்பிடத்திலிருந்து எந்த வழியும் இல்லை</string>
+    <string name="dist_addr">கொடுக்கப்பட்ட முகவரிக்கு தொலைவு: </string>
+    <string name="dist_curr">நடப்பு இடத்திலிருந்து உள்ள தூரம்: </string>
+    <string name="out_of">வெளியே</string>
+    <string name="add_first_crop">உங்கள் முதல் பயிர் சேர்க்க கீழே கிளிக் செய்யவும்! </string>
+    <string name="no_crops_to_sell">நீங்கள் விற்க எந்த பயிர்களும் இல்லை.</string>
+    <string name="no_crops_to_buy">தற்போது வாங்குவதற்கு பயிர்கள் இல்லை.</string>
+    <string name="no_requests">உங்களுக்கு இன்னும் கோரிக்கை எதுவும் இல்லை.</string>
+    <string name="no_orders">உங்களிடம் இன்னும் ஆர்டர்கள் இல்லை.</string>
+    <string name="to">பெறுநர்:</string>
+    <string name="open_bracket">(</string>
+    <string name="close_bracket"> )</string>
+
+    <!--LANGUAGE-->
+    <string name="choose_language"><u>மொழியைத் தேர்வு செய்க</u></string>
+    <string name="choose_language_dialog">எந்த மொழியையும் தேர்ந்தெடுக்கவும்</string>
+    <string-array name="languages">
+        <item>ஆங்கிலம்</item>
+        <item>இந்தி</item>
+        <item>மராத்தி</item>
+        <item>பஞ்சாபி</item>
+        <item>சிந்தி</item>
+        <item>தமிழ்</item>
+        <item>தெலுங்கு</item>
+    </string-array>
+
+    <!--FONT AWESOME STRINGS-->
+    <string name="icon_user">&#xf007;</string>
+    <string name="icon_mobile_no">&#xf2b9;</string>
+    <string name="icon_area">&#xf21d;</string>
+    <string name="icon_city">&#xf1ad;</string>
+    <string name="icon_state">&#xf286;</string>
+
+    <!--Tab names-->
+    <string name="tab_buy">பயிர்கள் வாங்கவும்</string>
+    <string name="tab_sell">பயிர்களை விற்கவும்</string>
+
+    <string name="tab_purchased">வாங்கப்பட்டது</string>
+    <string name="tab_sold">விற்கப்பட்டது</string>
+    <string name="tab_confirm_product_buy">தயாரிப்பு விவரங்கள்</string>
+
+    <string name="tab_purchase_req">கொள்முதல் கோரிக்கைகள்</string>
+    <string name="tab_sell_req">கோரிக்கைகளை விற்கவும்</string>
+
+    <string name="tab_orders">என் கட்டளைகள்</string>
+
+
+    <!--View names-->
+
+    <!--SNACK MESSAGES-->
+
+    <string name="something_went_wrong">அச்சச்சோ! ஏதோ தவறு நடந்துவிட்டது!</string>
+    <string name="check_network_connection">தயவுசெய்து உங்கள் இணைய இணைப்பு சரிபார்க்கவும்!</string>
+    <string name="unable_to_process_request">தற்போது உங்கள் கோரிக்கையைச் செயல்படுத்த முடியவில்லை!</string>
+    <string name="cannot_connect_to_server">தற்போது சேவையகத்துடன் இணைக்க முடியவில்லை!</string>
+    <string name="enter_all_details">அனைத்து விவரங்களையும் உள்ளிடவும் !!</string>
+    <string name="passwords_do_not_match">கடவுச்சொற்கள் பொருந்தவில்லை!!</string>
+    <string name="quantity_cannot_be_zero">அளவு பூஜ்யமாக இருக்க முடியாது!</string>
+    <string name="permission_required">எங்களுக்கு அனுமதி வழங்க வேண்டும்</string>
+
+    <!--login-->
+    <string name="login_details_enter_first">மொபைல் எண் / கடவுச்சொல்லை முதலில் உள்ளிடவும் !!</string>
+    <string name="login_invalid_credentials">தவறான பயனர் நற்சான்றுகள்</string>
+
+    <!--sign up-->
+    <string name="signup_valid_no">செல்லுபடியாகும் மொபைல் எண் இல்லை !!</string>
+    <string name="signup_already_registered">பயனர் ஏற்கனவே பதிவு செய்துள்ளார்</string>
+
+    <!--Sell products-->
+    <string name="sell_product_dialog_adding_new_crop">புதிய பயிர் சேர்ப்பது ..</string>
+    <string name="sell_product_dialog_deleting_crop">பயிர் நீக்குகிறது .. </string>
+    <string name="sell_product_kgs_remaining">கிலோ மீதமுள்ள</string>
+
+    <string name="sell_products_item_deleted">உருப்படி நீக்கப்பட்டது</string>
+
+    <string name="sell_product_crop_exists">பயிர் ஏற்கனவே உள்ளது, வேறு பெயரை முயற்சிக்கவும்!</string>
+    <string name="sell_product_field_cannot_empty">புலம் காலியாக இருக்க முடியாது !!</string>
+    <string name="sell_product_delete_product"> தயாரிப்பு நீக்கு</string>
+    <string name="sell_product_sure_to_delete">இந்த தயாரிப்பை நிச்சயமாக நீக்க விரும்புகிறீர்களா?</string>
+    <string name="sell_product_edit_product"> தயாரிப்பு திருத்தவும்</string>
+    <string name="sell_product_product_name">பொருளின் பெயர்</string>
+    <string name="sell_product_product_price">தயாரிப்பு விலை (ரூ.</string>
+    <string name="sell_product_product_quantity">தயாரிப்பு அளவு (கிலோ)</string>
+
+    <!--Confirm product buy-->
+    <string name="confirm_buy_find_distance">தூரம் கண்டுபிடிக்கவும்</string>
+    <string name="confirm_buy_request_product">தயாரிப்பு கோரிக்கை</string>
+    <string name="confirm_buy_dialog_creating_request">உங்கள் கோரிக்கையை உருவாக்குதல் ..</string>
+    <string name="confirm_buy_dialog_confirm_product">தயாரிப்பு உறுதிப்படுத்தவும்</string>
+    <string name="confirm_buy_dialog_calculating_distance">தூரம் கணக்கிடுவது ..</string>
+    <string name="confirm_buy_request_made">கோரிக்கை வெற்றிகரமாக!</string>
+    <string name="confirm_buy_sure_to_request">இந்த தயாரிப்புக்கு நிச்சயமாக நீங்கள் கோர விரும்புகிறீர்களா?</string>
+    <string name="confirm_buy_price">விலை: ரூ.</string>
+
+    <!--Requests-->
+    <string name="request_sure_to_cancel">இந்த கோரிக்கையை நிச்சயமாக ரத்துசெய்ய விரும்புகிறீர்களா?</string>
+    <string name="request_dialog_confirming_order">உங்கள் ஆர்டரை உறுதிப்படுத்துகிறது ..</string>
+    <string name="request_order_confirmed">உங்கள் ஆர்டர் உறுதிப்படுத்தப்பட்டுள்ளது!</string>
+    <string name="request_enter_quantity">அளவு உள்ளிடவும்</string>
+    <string name="request_quantity_cannot_zero">அளவு பூஜ்யமாக இருக்க முடியாது</string>
+    <string name="request_quantity_cannot_empty">அளவு காலியாக இருக்க முடியாது</string>
+    <string name="request_enter_valid_quantity">சரியான அளவு சேர்க்கவும்</string>
+
+    <!--Menu items-->
+    <string name="menu_market_status">சந்தை நிலை</string>
+    <string name="menu_purchase_req">கொள்முதல் கோரிக்கைகள்</string>
+    <string name="menu_sell_req">கோரிக்கைகளை விற்கவும்</string>
+    <string name="menu_my_orders">என் கட்டளைகள்</string>
+    <string name="menu_edit_prof">என் சுயவிவரம்</string>
+    <string name="menu_logout">வெளியேறு</string>
+
+</resources>

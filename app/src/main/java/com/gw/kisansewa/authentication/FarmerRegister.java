@@ -1,7 +1,8 @@
 package com.gw.kisansewa.authentication;
 
-import android.app.ProgressDialog;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -13,9 +14,8 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.gw.kisansewa.Homescreen.HomeScreen;
 import com.gw.kisansewa.api.AuthenticationAPI;
@@ -42,6 +42,7 @@ public class FarmerRegister extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup);
         farmerInitialization();
+
     }
 
     public void farmerInitialization()
@@ -71,11 +72,11 @@ public class FarmerRegister extends AppCompatActivity {
                 area.getText().toString().equals("") || city.getText().toString().equals("") ||
                 state.getText().toString().equals("") || password.getText().toString().equals("") ||
                 confirmPassword.getText().toString().equals(""))
-            Snackbar.make(layout,"Enter All Details!!",Snackbar.LENGTH_SHORT).show();
+            Snackbar.make(layout,R.string.enter_all_details,Snackbar.LENGTH_SHORT).show();
         else if (mobileNo.getText().toString().length() != 10)
-            Snackbar.make(layout,"Enter a valid Mobile No!!",Snackbar.LENGTH_SHORT).show();
+            Snackbar.make(layout,R.string.signup_valid_no,Snackbar.LENGTH_SHORT).show();
         else  if (!password.getText().toString().equals(confirmPassword.getText().toString()))
-            Snackbar.make(layout,"Passwords Don't Match!!",Snackbar.LENGTH_SHORT).show();
+            Snackbar.make(layout,R.string.passwords_do_not_match,Snackbar.LENGTH_SHORT).show();
         else
             checkAvailable();
     }
@@ -88,7 +89,7 @@ public class FarmerRegister extends AppCompatActivity {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.code() == 302){
-                    Snackbar.make(layout, "User already registered", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(layout, R.string.signup_already_registered, Snackbar.LENGTH_SHORT).show();
                     showProgressBar(false);
                 }
                 else if (response.code() == 200) {
@@ -98,7 +99,7 @@ public class FarmerRegister extends AppCompatActivity {
             @Override
             public void onFailure(Call < Void > call, Throwable t){
                 showProgressBar(false);
-                Snackbar snackbar = Snackbar.make(layout, "Please check your internet connection!", Snackbar.LENGTH_INDEFINITE)
+                Snackbar snackbar = Snackbar.make(layout, R.string.check_network_connection, Snackbar.LENGTH_INDEFINITE)
                         .setAction("Retry", new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -136,7 +137,7 @@ public class FarmerRegister extends AppCompatActivity {
                     finish();
                 }
                 if(response.code() == 502){
-                    Snackbar.make(layout,"Something went wrong", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(layout,R.string.something_went_wrong, Snackbar.LENGTH_SHORT).show();
                     showProgressBar(false);
                 }
             }
@@ -144,7 +145,7 @@ public class FarmerRegister extends AppCompatActivity {
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
                 showProgressBar(false);
-                Snackbar snackbar = Snackbar.make(layout,"Please check your network connection",Snackbar.LENGTH_INDEFINITE)
+                Snackbar snackbar = Snackbar.make(layout,R.string.check_network_connection,Snackbar.LENGTH_INDEFINITE)
                         .setAction("RETRY", new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {

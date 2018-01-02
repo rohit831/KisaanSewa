@@ -7,8 +7,10 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:gravity="center_vertical"
-        android:text=" Delete Product"
+        android:text="@string/sell_product_delete_product"
         android:textSize="20sp"
+        android:paddingStart="3dp"
+        android:paddingEnd="3dp"
         style="@style/Base.TextAppearance.AppCompat.Title"
         android:background="#348E17"
         android:textColor="#FFF"/>
@@ -17,9 +19,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/black_off"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="5dp"
-        android:text="Are you sure you want to delete this product!"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginStart="5dp"
+        android:text="@string/sell_product_sure_to_delete"
         style="@style/Base.TextAppearance.AppCompat.Medium"/>
 
 </LinearLayout>

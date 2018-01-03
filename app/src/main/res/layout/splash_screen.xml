@@ -1,17 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/background2"
-    >
-<TextView
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:text="KISAAN SEWA"
-    android:gravity="center"
-    android:textColor="#FFF"
-    android:textStyle="bold"
-    android:textSize="35dp"
+    android:background="@color/white"
+    >
 
-    />
-</RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="0.7"
+        android:src="@drawable/logo_kisaan"
+        android:layout_gravity="center"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="KISAAN SEWA"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:fontFamily="sans-serif"
+        style="@style/Base.TextAppearance.AppCompat.Title"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
+        android:textSize="45sp"
+        android:id="@+id/textView2"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Let's Grow Together!"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20sp"
+        android:id="@+id/textView"
+        style="@style/Base.TextAppearance.AppCompat.Title"
+        android:layout_gravity="center"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.8"
+        >
+    </TextView>
+
+    <!--<ProgressBar-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="bottom"-->
+        <!--android:scrollbarSize="40dp"-->
+
+        <!--android:foregroundGravity="center"-->
+        <!--/>-->
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.3"/>
+
+</LinearLayout>

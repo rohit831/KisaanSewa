@@ -64,8 +64,9 @@
     <string name="at_rs">ਰੁਪਏ ਤੇ</string>
     <string name="no_route_addr">ਤੁਹਾਡੇ ਦਿੱਤੀ ਪਤੇ ਤੋਂ ਕੋਈ ਰੂਟ ਨਹੀਂ ਮਿਲਿਆ</string>
     <string name="no_route_curr">ਤੁਹਾਡੇ ਮੌਜੂਦਾ ਸਥਾਨ ਤੋਂ ਕੋਈ ਰੂਟ ਨਹੀਂ ਮਿਲਿਆ</string>
-    <string name="dist_addr">ਦਿੱਤੀ ਪਤੇ ਤੋਂ ਦੂਰੀ:</string>
-    <string name="dist_curr">ਮੌਜੂਦਾ ਸਥਾਨ ਤੋਂ ਦੂਰੀ: </string>
+    <string name="dist_head">ਦੂਰੀ:</string>
+    <string name="dist_addr">ਦਿੱਤੇ ਪਤੇ ਤੋਂ:</string>
+    <string name="dist_curr">ਮੌਜੂਦਾ ਸਥਾਨ ਤੋਂ: </string>
     <string name="out_of">ਦੇ ਬਾਹਰ</string>
     <string name="add_first_crop">ਆਪਣੀ ਪਹਿਲੀ ਫਸਲ ਜੋੜਨ ਲਈ ਹੇਠਾਂ ਕਲਿੱਕ ਕਰੋ! </string>
     <string name="no_crops_to_sell">ਤੁਹਾਡੇ ਕੋਲ ਵੇਚਣ ਲਈ ਕੋਈ ਫਸਲ ਨਹੀਂ ਹੈ.</string>
@@ -156,6 +157,7 @@
     <string name="confirm_buy_request_made">ਬੇਨਤੀ ਸਫਲਤਾਪੂਰਵਕ ਕੀਤੀ ਗਈ!</string>
     <string name="confirm_buy_sure_to_request">ਕੀ ਤੁਸੀਂ ਨਿਸ਼ਚਤ ਰੂਪ ਤੋਂ ਇਸ ਉਤਪਾਦ ਦੀ ਬੇਨਤੀ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
     <string name="confirm_buy_price">ਕੀਮਤ: ਰੁਪਏ</string>
+    <string name="confirm_buy_already_requested">ਤੁਸੀਂ ਪਹਿਲਾਂ ਹੀ ਇਸ ਫਸਲ ਦੀ ਬੇਨਤੀ ਕੀਤੀ ਹੈ!</string>
 
     <!--Requests-->
     <string name="request_sure_to_cancel">ਕੀ ਤੁਸੀਂ ਨਿਸ਼ਚਿਤ ਹੀ ਇਸ ਬੇਨਤੀ ਨੂੰ ਰੱਦ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?</string>

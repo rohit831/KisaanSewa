@@ -104,7 +104,7 @@ public class BuyProducts extends Fragment
     {
         flag = false;
         buyProductAPI = ProductGenerator.createService(BuyProductAPI.class);
-        Call<ArrayList<CropDetails>> gettingCropsCall = buyProductAPI.getCropsAvailable();
+        Call<ArrayList<CropDetails>> gettingCropsCall = buyProductAPI.getCropsAvailable(userMobileNo);
         showProgressBar(true);
         gettingCropsCall.enqueue(new Callback<ArrayList<CropDetails>>() {
             @Override

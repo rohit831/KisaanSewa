@@ -10,8 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import com.gw.kisansewa.authentication.FarmerLogin;
 
 public class SplashScreen extends AppCompatActivity {
-
-    private static int delay=2000;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +22,6 @@ public class SplashScreen extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-        },delay);
+        },1500);
     }
 }

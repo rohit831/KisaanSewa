@@ -64,8 +64,9 @@
     <string name="at_rs">at Rs.</string>
     <string name="no_route_addr">No route found from your given address</string>
     <string name="no_route_curr">No route found from your current location</string>
-    <string name="dist_addr">Distance from given address: </string>
-    <string name="dist_curr">Distance from current location: </string>
+    <string name="dist_head">Distance:</string>
+    <string name="dist_addr">From given address: </string>
+    <string name="dist_curr">From current location: </string>
     <string name="out_of">out of</string>
     <string name="add_first_crop">Click below to add your first crop! </string>
     <string name="no_crops_to_sell">You do not have any crops to sell.</string>
@@ -156,6 +157,7 @@
     <string name="confirm_buy_request_made">Request successfully made!</string>
     <string name="confirm_buy_sure_to_request">Are you sure you want to request this product!</string>
     <string name="confirm_buy_price">Price : Rs.</string>
+    <string name="confirm_buy_already_requested">You have already requested this crop!</string>
 
     <!--Requests-->
     <string name="request_sure_to_cancel">Are you sure you want to cancel this request?</string>

@@ -64,8 +64,9 @@
     <string name="at_rs">రూ.</string>
     <string name="no_route_addr">మీరు ఇచ్చిన చిరునామా నుండి మార్గం కనుగొనబడలేదు</string>
     <string name="no_route_curr">మీ ప్రస్తుత స్థానం నుండి మార్గం కనుగొనబడలేదు</string>
-    <string name="dist_addr">ఇవ్వబడిన చిరునామా నుండి దూరం: </string>
-    <string name="dist_curr">ప్రస్తుత స్థానం నుండి దూరం: </string>
+    <string name="dist_head">దూరం:</string>
+    <string name="dist_addr">ఇవ్వబడిన చిరునామా నుండి: </string>
+    <string name="dist_curr">ప్రస్తుత స్థానం నుండి: </string>
     <string name="out_of">బయటకు</string>
     <string name="add_first_crop">మీ మొదటి పంటను జోడించడానికి దిగువ క్లిక్ చేయండి! </string>
     <string name="no_crops_to_sell">మీరు విక్రయించడానికి ఏ పంటలూ లేవు.</string>
@@ -156,6 +157,7 @@
     <string name="confirm_buy_request_made">అభ్యర్థన విజయవంతంగా చేయబడింది!</string>
     <string name="confirm_buy_sure_to_request">మీరు ఖచ్చితంగా ఈ ఉత్పత్తిని అభ్యర్థించాలనుకుంటున్నారా?</string>
     <string name="confirm_buy_price">ధర: రూ.</string>
+    <string name="confirm_buy_already_requested">మీరు ఇప్పటికే ఈ పంటను అభ్యర్థించారు!</string>
 
     <!--Requests-->
     <string name="request_sure_to_cancel">మీరు ఖచ్చితంగా ఈ అభ్యర్థనను రద్దు చేయాలనుకుంటున్నారా?</string>

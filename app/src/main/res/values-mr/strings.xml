@@ -64,8 +64,9 @@
     <string name="at_rs">रु.</string>
     <string name="no_route_addr">आपल्या दिलेल्या पत्त्यावरून मार्ग सापडला नाही</string>
     <string name="no_route_curr">आपल्या वर्तमान स्थानावरून कोणतेही मार्ग आढळले नाहीत</string>
-    <string name="dist_addr">दिलेल्या पत्त्यापासूनचे अंतर: </string>
-    <string name="dist_curr">वर्तमान स्थानापासून अंतर: </string>
+    <string name="dist_head">अंतर:</string>
+    <string name="dist_addr">दिलेल्या पत्त्यावरून: </string>
+    <string name="dist_curr">वर्तमान स्थानावरून: </string>
     <string name="out_of">मध्ये</string>
     <string name="add_first_crop">आपले पहिले पीक जोडण्यासाठी खाली क्लिक करा! </string>
     <string name="no_crops_to_sell">आपल्याकडे विक्री करण्यासाठी कोणतीही पिके नाहीत.</string>
@@ -156,6 +157,7 @@
     <string name="confirm_buy_request_made">यशस्वीरित्या विनंती केली!</string>
     <string name="confirm_buy_sure_to_request">आपली खात्री आहे की आपण या उत्पादनाची विनंती करू इच्छिता!</string>
     <string name="confirm_buy_price">किंमत: रु.</string>
+    <string name="confirm_buy_already_requested">आपण आधीच या क्रॉपची विनंती केली आहे!</string>
 
     <!--Requests-->
     <string name="request_sure_to_cancel">आपली खात्री आहे की आपण ही विनंती रद्द करू इच्छिता?</string>

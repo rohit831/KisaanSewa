@@ -44,6 +44,6 @@ public interface RequestAPI {
     @GET("sell/buyers/{sellerMobileNo}")
     Call<ArrayList<String>> getBuyerNames(@Path("sellerMobileNo") String sellerMobileNo );
 
-    @POST("sell/order")
-    Call<Orders> confirmOrder(@Body Orders order);
+    @POST("sell/order/{updatedQuantity}")
+    Call<Orders> confirmOrder(@Path("updatedQuantity") String updatedQuantity,@Body Orders order);
 }

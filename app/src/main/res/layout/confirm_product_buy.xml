@@ -243,29 +243,45 @@
                 android:layout_marginBottom="8dp"
                 android:gravity="center"
                 >
-                <TextView
+                <android.support.v7.widget.CardView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:text="@string/message"
+                    app:cardElevation="5dp"
                     android:layout_marginEnd="5dp"
-                    android:textColor="@color/yellow_msg"
-                    android:id="@+id/message_confirm_buy"
-                    android:background="@drawable/boundary_yellow_rect"
-                    android:textSize="18sp"
-                    />
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:text="@string/message"
+                        android:textColor="@color/yellow_msg"
+                        android:id="@+id/message_confirm_buy"
+                        android:background="@drawable/boundary_yellow_rect"
+                        android:textSize="18sp"
+                        />
 
-                <TextView
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:textSize="18sp"
+                    app:cardElevation="5dp"
                     android:layout_marginEnd="10dp"
-                    android:textColor="@color/colorPrimary"
-                    android:id="@+id/call_confirm_buy"
-                    android:background="@drawable/boundary_primary_rect"
-                    android:text="@string/call"
-                    />
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:textSize="18sp"
+                        android:textColor="@color/colorPrimary"
+                        android:id="@+id/call_confirm_buy"
+                        android:background="@drawable/boundary_primary_rect"
+                        android:text="@string/call"
+                        />
+
+                </android.support.v7.widget.CardView>
+
             </LinearLayout>
 
         </LinearLayout>
@@ -281,46 +297,84 @@
         android:layout_marginRight="5dp"
         android:background="#FFF"
         app:cardElevation="5dp"
-        android:id="@+id/card_dist_addr"
+        android:visibility="gone"
+        android:id="@+id/card_dist"
         >
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:text="@string/dist_addr"
-            android:textSize="18sp"
-            android:padding="5dp"
-            android:id="@+id/dist_from_addr_view"
-            android:textColor="@color/cardview_dark_background"
+            android:orientation="vertical"
             >
-        </TextView>
 
-    </android.support.v7.widget.CardView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/dist_head"
+                style="@style/Base.TextAppearance.AppCompat.Title"
+                android:textColor="@color/colorPrimary"
+                android:textSize="24sp"
+                android:layout_marginTop="4dp"
+                android:layout_marginStart="5dp"/>
 
-    <!--Distance from current location view-->
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:background="#FFF"
-        app:cardElevation="5dp"
-        android:id="@+id/card_dist_location"
-        >
+            <TextView
+                android:layout_width="match_parent"
+                android:background="@color/colorPrimary"
+                android:layout_height="1dp"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
+                />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:padding="5dp"
-            android:textColor="@color/cardview_dark_background"
-            android:id="@+id/dist_from_current_view"
-            android:text="@string/dist_curr"
-            android:visibility="gone"
-            >
-        </TextView>
 
+            <!--Distance from address-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:text="@string/dist_addr"
+                android:textSize="18sp"
+                android:padding="5dp"
+                android:id="@+id/dist_from_addr_view"
+                android:textColor="@color/cardview_dark_background"
+                >
+            </TextView>
+
+
+            <!--Distance from current location-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:padding="5dp"
+                android:textColor="@color/cardview_dark_background"
+                android:id="@+id/dist_from_current_view"
+                android:text="@string/dist_curr"
+                android:visibility="gone"
+                >
+            </TextView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardElevation="2dp"
+                android:layout_gravity="center"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="7dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="See Directions"
+                    android:textColor="@color/colorPrimary"
+                    android:id="@+id/confirm_buy_get_direction"
+                    android:background="@drawable/boundary_primary_rect"
+                    android:textSize="18sp"
+                    />
+
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
     </android.support.v7.widget.CardView>
 
     <!--snack layout-->
@@ -351,7 +405,8 @@
             >
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="match_parent"
                 android:text="@string/confirm_buy_find_distance"
                 android:id="@+id/find_distance_confirm_buy"
@@ -364,14 +419,14 @@
                 />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="match_parent"
                 android:text="@string/confirm_buy_request_product"
                 style="@style/Base.TextAppearance.AppCompat.Title"
                 android:gravity="center"
                 android:textSize="18sp"
                 android:id="@+id/request_product_confirm_buy"
-                android:layout_marginStart="50dp"
                 android:padding="10dp"
                 android:textColor="@color/white"
                 />

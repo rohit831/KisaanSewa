@@ -64,8 +64,9 @@
     <string name="at_rs">ரூ.</string>
     <string name="no_route_addr">உங்கள் குறிப்பிட்ட முகவரியில் எந்த வழியும் இல்லை</string>
     <string name="no_route_curr">உங்கள் தற்போதைய இருப்பிடத்திலிருந்து எந்த வழியும் இல்லை</string>
-    <string name="dist_addr">கொடுக்கப்பட்ட முகவரிக்கு தொலைவு: </string>
-    <string name="dist_curr">நடப்பு இடத்திலிருந்து உள்ள தூரம்: </string>
+    <string name="dist_head">தூரம்:</string>
+    <string name="dist_addr">கொடுக்கப்பட்ட முகவரி: </string>
+    <string name="dist_curr">தற்போதைய இடத்திலிருந்து: </string>
     <string name="out_of">வெளியே</string>
     <string name="add_first_crop">உங்கள் முதல் பயிர் சேர்க்க கீழே கிளிக் செய்யவும்! </string>
     <string name="no_crops_to_sell">நீங்கள் விற்க எந்த பயிர்களும் இல்லை.</string>
@@ -156,6 +157,7 @@
     <string name="confirm_buy_request_made">கோரிக்கை வெற்றிகரமாக!</string>
     <string name="confirm_buy_sure_to_request">இந்த தயாரிப்புக்கு நிச்சயமாக நீங்கள் கோர விரும்புகிறீர்களா?</string>
     <string name="confirm_buy_price">விலை: ரூ.</string>
+    <string name="confirm_buy_already_requested">நீங்கள் ஏற்கனவே இந்த பயிர் கோரியுள்ளீர்கள்!</string>
 
     <!--Requests-->
     <string name="request_sure_to_cancel">இந்த கோரிக்கையை நிச்சயமாக ரத்துசெய்ய விரும்புகிறீர்களா?</string>

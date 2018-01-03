@@ -7,13 +7,18 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Criteria;
+import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -33,6 +38,10 @@ import com.gw.kisansewa.models.RequestDetails;
 
 import org.w3c.dom.Text;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -40,7 +49,7 @@ import retrofit2.Response;
 public class ConfirmProductBuy extends AppCompatActivity {
 
     private TextView productName,productPrice,productQuantity,sellerName,sellerMobileNo, retry_btn;
-    private TextView sellerAddress, message, call, findDistance, requestProduct, dist_from_current, dist_from_addr;
+    private TextView sellerAddress, message, call, seeDirections, requestProduct, dist_from_current, dist_from_addr;
     private BuyProductAPI buyProductAPI;
     private String sellerNo,buyProductName,userMobileNo;
     private FarmerDetails farmerDetails;
@@ -48,6 +57,7 @@ public class ConfirmProductBuy extends AppCompatActivity {
     private CropDetails cropDetails;
     private LinearLayout progressBar, no_internet, snackLayout;
     private ProgressDialog progressDialog;
+    private CardView dist_card;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -91,6 +101,14 @@ public class ConfirmProductBuy extends AppCompatActivity {
                 startActivity(new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", sellerNo, null)));
             }
         });
+
+
+        seeDirections.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                seeDirectionsClicked();
+            }
+        });
     }
 
     @Override
@@ -113,9 +131,9 @@ public class ConfirmProductBuy extends AppCompatActivity {
         sellerAddress = (TextView)findViewById(R.id.address_confirm_buy_product);
         message = (TextView)findViewById(R.id.message_confirm_buy);
         call = (TextView) findViewById(R.id.call_confirm_buy);
+        seeDirections = (TextView)findViewById(R.id.confirm_buy_get_direction);
         dist_from_current = (TextView) findViewById(R.id.dist_from_current_view);
         dist_from_addr = (TextView)findViewById(R.id.dist_from_addr_view);
-        findDistance = (TextView) findViewById(R.id.find_distance_confirm_buy);
         requestProduct = (TextView) findViewById(R.id.request_product_confirm_buy);
         farmerDetails=new FarmerDetails();
         cropDetails=new CropDetails();
@@ -123,6 +141,8 @@ public class ConfirmProductBuy extends AppCompatActivity {
         no_internet = (LinearLayout)findViewById(R.id.no_internet_confirm_product_buy);
         snackLayout = (LinearLayout)findViewById(R.id.snack_layout_confirm_buy_product);
         retry_btn= (TextView)findViewById(R.id.retry_confirm_product_buy);
+        dist_card = (CardView)findViewById(R.id.card_dist);
+
 
         progressDialog = new ProgressDialog(context);
         progressDialog.setIndeterminate(true);
@@ -259,25 +279,33 @@ public class ConfirmProductBuy extends AppCompatActivity {
         buyProductAPI = ProductGenerator.createService(BuyProductAPI.class);
         RequestDetails transaction = new RequestDetails(sellerNo,userMobileNo, buyProductName
                                             ,productPrice.getText().toString(), productQuantity.getText().toString());
-        Call<Void> requestProductCall = buyProductAPI.requestProduct(transaction);
+        Call<String> requestProductCall = buyProductAPI.requestProduct(transaction);
         progressDialog.setMessage(getString(R.string.confirm_buy_dialog_creating_request));
         progressDialog.show();
-        requestProductCall.enqueue(new Callback<Void>() {
+        requestProductCall.enqueue(new Callback<String>() {
             @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
-                if(response.code() == 200){
+            public void onResponse(Call<String> call, final Response<String> response) {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        progressDialog.hide();
+                        if(response.code() == 200){
+                            if(response.body().equals("true"))
+                                Toast.makeText(context, R.string.confirm_buy_request_made, Toast.LENGTH_SHORT).show();
+                            else
+                                Toast.makeText(context,R.string.confirm_buy_already_requested, Toast.LENGTH_SHORT ).show();
+                            Intent intent=new Intent(context,HomeScreen.class);
+                            intent.putExtra("mobileNo",userMobileNo);
+                            startActivity(intent);
+                            finish();
+                        }
+                    }
+                },900);
 
-                    progressDialog.hide();
-                    Toast.makeText(context, R.string.confirm_buy_request_made, Toast.LENGTH_SHORT).show();
-                    Intent intent=new Intent(context,HomeScreen.class);
-                    intent.putExtra("mobileNo",userMobileNo);
-                    startActivity(intent);
-                    finish();
-                }
             }
 
             @Override
-            public void onFailure(Call<Void> call, Throwable t) {
+            public void onFailure(Call<String> call, Throwable t) {
                 progressDialog.hide();
                 Snackbar.make(snackLayout, R.string.something_went_wrong, Snackbar.LENGTH_SHORT).show();
             }
@@ -287,8 +315,55 @@ public class ConfirmProductBuy extends AppCompatActivity {
 //    finding distance from current location
     private void findDistanceFromCurrentLocation()
     {
-        Toast.makeText(ConfirmProductBuy.this, "Find distance from current location clicked!", Toast.LENGTH_SHORT).show();
+        progressDialog.setMessage(getString(R.string.confirm_buy_dialog_calculating_distance));
+        progressDialog.show();
+//        Toast.makeText(ConfirmProductBuy.this, "Find distance from current location clicked!", Toast.LENGTH_SHORT).show();
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        Criteria criteria = new Criteria();
+        String provider = locationManager.getBestProvider(criteria,false);
+        Double lat,lon;
+        Location location = locationManager.getLastKnownLocation(provider);
+        if(location!=null){
+            lat = location.getLatitude();
+            lon = location.getLongitude();
 
+            String buyerAddress = String.valueOf(lat).concat(",").concat(String.valueOf(lon));
+            buyProductAPI = ProductGenerator.createService(BuyProductAPI.class);
+            Call<String> getDistanceCall = buyProductAPI.getDistance(buyerAddress,
+                    sellerAddress.getText().toString());
+            getDistanceCall.enqueue(new Callback<String>() {
+                @Override
+                public void onResponse(Call<String> call, Response<String> response) {
+                    if(response.code() == 204){
+                        progressDialog.hide();
+                        dist_card.setVisibility(View.VISIBLE);
+                        dist_from_current.setVisibility(View.VISIBLE);
+                        dist_from_current.setText(R.string.no_route_curr);
+                    }
+                    else if(response.code() == 200){
+                        progressDialog.hide();
+                        dist_card.setVisibility(View.VISIBLE);
+                        dist_from_current.setVisibility(View.VISIBLE);
+                        dist_from_current.setText(dist_from_current.getText().toString().concat(" ").concat(response.body()));
+                    }
+                    else{
+                        progressDialog.hide();
+                        Snackbar.make(snackLayout, R.string.something_went_wrong, Snackbar.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<String> call, Throwable t) {
+                    progressDialog.hide();
+                    Snackbar.make(snackLayout, R.string.check_network_connection, Snackbar.LENGTH_SHORT).show();
+                }
+            });
+
+        }
+        else{
+            progressDialog.hide();
+            Snackbar.make(snackLayout, R.string.something_went_wrong, Snackbar.LENGTH_LONG).show();
+        }
     }
 
 //    finding distance from address
@@ -316,13 +391,15 @@ public class ConfirmProductBuy extends AppCompatActivity {
                     public void onResponse(Call<String> call, Response<String> response) {
                         if(response.code() == 204){
                             progressDialog.hide();
+                            dist_card.setVisibility(View.VISIBLE);
                             dist_from_addr.setVisibility(View.VISIBLE);
                             dist_from_addr.setText(R.string.no_route_addr);
                         }
                         else if(response.code() == 200){
                             progressDialog.hide();
+                            dist_card.setVisibility(View.VISIBLE);
                             dist_from_addr.setVisibility(View.VISIBLE);
-                            dist_from_addr.setText(dist_from_addr.getText().toString().concat(response.body()));
+                            dist_from_addr.setText(dist_from_addr.getText().toString().concat(" ").concat(response.body()));
                         }
                         else{
                             progressDialog.hide();
@@ -345,6 +422,30 @@ public class ConfirmProductBuy extends AppCompatActivity {
             }
         });
     }
+
+    private void seeDirectionsClicked()
+    {
+//        List<String> addr = Arrays.asList(farmerDetails.getAddress().split("\\s*,\\s*"));
+//        String addrStr = android.text.TextUtils.join("+",addr);
+//        List<String> city = Arrays.asList(farmerDetails.getCity().split("\\s*,\\s*"));
+//        String cityStr = android.text.TextUtils.join("+",city);
+//        List<String> state = Arrays.asList(farmerDetails.getState().split("\\s*,\\s*"));
+//        String stateStr = android.text.TextUtils.join("+",state);
+//        String address = addrStr.concat(",").concat(cityStr).concat(",").concat(stateStr);
+        Uri gmmIntentUri = Uri.parse("google.navigation:q=" + Uri.encode(farmerDetails.getAddress()));
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+        mapIntent.setPackage("com.google.android.apps.maps");
+        if (mapIntent.resolveActivity(getPackageManager()) != null) {
+            startActivity(mapIntent);
+        }
+        else{
+            Intent intent = new Intent(android.content.Intent.ACTION_VIEW);
+            //Copy App URL from Google Play Store.
+            intent.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.google.android.apps.maps"));
+            startActivity(intent);
+        }
+    }
+
 
 //  check for network permissions
     private boolean checkLocationPermissions() {

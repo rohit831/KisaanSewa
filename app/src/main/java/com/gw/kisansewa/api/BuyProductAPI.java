@@ -16,8 +16,8 @@ import retrofit2.http.Path;
 public interface BuyProductAPI {
 
 //    get all the available crops in the market
-    @GET("buy/allcrops")
-    Call<ArrayList<CropDetails>> getCropsAvailable();
+    @GET("buy/allcrops/{mobileNo}")
+    Call<ArrayList<CropDetails>> getCropsAvailable(@Path("mobileNo") String mobileNo);
 
 //    get all the seller names of respective crops
     @POST("buy/sellernames")
@@ -32,8 +32,11 @@ public interface BuyProductAPI {
     Call<FarmerDetails> getFarmerDetails(@Path("mobileNo") String mobileNo);
 
 //    confirm purchasing the product
-    @POST("buy")
-    Call<Void> requestProduct(@Body RequestDetails requestDetails);
+//    @POST("buy")
+//    Call<Void> requestProduct(@Body RequestDetails requestDetails);
+
+    @POST("buy/confirmingRequest")
+    Call<String> requestProduct(@Body RequestDetails requestDetails);
 
 //    get distance between two addresses
     @GET("buy/distance/{origin}/{destination}")

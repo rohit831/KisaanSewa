@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:background="@color/white"
     >
 
     <ScrollView
@@ -16,18 +16,24 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:src="@drawable/logo_kisaan"
+                android:layout_gravity="center"
+                android:layout_marginTop="50dp"
+                />
 
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="140dp"
-                android:layout_marginTop="20dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/app_name"
-                android:paddingTop="50dp"
                 android:textStyle="bold"
-                android:textSize="50sp"
+                android:textSize="45sp"
                 android:fontFamily="serif"
+                android:layout_marginBottom="20dp"
                 android:id="@+id/login_appName"
                 android:textColor="@color/colorPrimary"
                 />
@@ -67,7 +73,6 @@
                 android:theme="@style/TextLabel"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:layout_marginStart="5dp"
                 android:hint="@string/password_view"
                 android:id="@+id/login_password_textInputLayout"
                 android:layout_marginBottom="8dp">

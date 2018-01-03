@@ -64,8 +64,9 @@
     <string name="at_rs">هڪ.</string>
     <string name="no_route_addr">توهان جي ڏنل ايڊريس مان ڪو رستو نه مليو</string>
     <string name="no_route_curr">توهان جي موجوده جڳه مان رستو نه مليو</string>
-    <string name="dist_addr">پتي مان فاصلو: </string>
-    <string name="dist_curr">موجوده هنڌ کان فاصلو: </string>
+    <string name="dist_head">فاصلو:</string>
+    <string name="dist_addr">ڏنل ايڊريس مان </string>
+    <string name="dist_curr">موجوده جڳھ کان </string>
     <string name="out_of">کان ٻاهر</string>
     <string name="add_first_crop">توهان جي پهرين فصل کي شامل ڪرڻ لاء هيٺ ڪلڪ ڪريو! </string>
     <string name="no_crops_to_sell">توهان وٽ ڪي فصل نه وڪڻڻ جو ڪو نه آهي.</string>
@@ -156,6 +157,7 @@
     <string name="confirm_buy_request_made">ڪاميابي سان ڪاميابي ڪئي وئي!</string>
     <string name="confirm_buy_sure_to_request">ڇا توھان پڪ آھي ته توھان ھن پراڊڪٽ جي درخواست ڪرڻ چاھيو ٿا!</string>
     <string name="confirm_buy_price">قيمت: روپ.</string>
+    <string name="confirm_buy_already_requested">توھان ھن فصل جي درخواست ڪئي آھي.</string>
 
     <!--Requests-->
     <string name="request_sure_to_cancel">ڇا توهان پڪ آهي ته توهان هن درخواست کي رد ڪرڻ چاهيو ٿا؟</string>

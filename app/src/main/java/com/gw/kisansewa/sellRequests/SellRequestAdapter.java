@@ -249,7 +249,9 @@ public class SellRequestAdapter extends RecyclerView.Adapter<SellRequestAdapter.
                         progressDialog.setMessage(context.getString(R.string.request_dialog_confirming_order));
                         progressDialog.show();
                         RequestAPI requestAPI = RequestGenerator.createService(RequestAPI.class);
-                        Call<Orders> confirmOrderCall = requestAPI.confirmOrder(order);
+                        int updatedQuantity = Integer.parseInt(totalQuantity.getText().toString())
+                                - Integer.parseInt(quantity_purchased.getText().toString());
+                        Call<Orders> confirmOrderCall = requestAPI.confirmOrder(String.valueOf(updatedQuantity),order);
                         confirmOrderCall.enqueue(new Callback<Orders>() {
                             @Override
                             public void onResponse(Call<Orders> call, Response<Orders> response) {

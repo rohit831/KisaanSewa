@@ -365,7 +365,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
-                    android:text="See Directions"
+                    android:text="@string/confirm_buy_see_directions"
                     android:textColor="@color/colorPrimary"
                     android:id="@+id/confirm_buy_get_direction"
                     android:background="@drawable/boundary_primary_rect"

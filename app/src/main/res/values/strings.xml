@@ -176,4 +176,10 @@
     <string name="menu_edit_prof">My Profile</string>
     <string name="menu_logout">Logout</string>
 
+    <!--new updates-->
+    <string name="add_product_valid_name_enter">*Enter a valid crop name</string>
+    <string name="confirm_buy_see_directions">See Directions</string>
+    <string name="tab_edit_profile">Edit Profile</string>
+    <string name="action_done"> </string>
+
 </resources>

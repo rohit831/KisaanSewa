@@ -171,7 +171,8 @@ public class ConfirmProductBuy extends AppCompatActivity {
             current_dist.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    findDistanceFromCurrentLocation();
+                    if(!(dist_from_current.getVisibility() == View.VISIBLE))
+                        findDistanceFromCurrentLocation();
                     dialog.cancel();
                 }
             });

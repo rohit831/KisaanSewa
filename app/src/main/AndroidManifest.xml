@@ -51,7 +51,6 @@
         <!--Edit Profile-->
         <activity android:name=".authentication.EditProfile"
             android:launchMode="singleInstance"
-            android:theme="@style/NoActionBar"
             />
 
         <!--Splash Screen-->

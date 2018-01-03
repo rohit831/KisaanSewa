@@ -27,6 +27,17 @@
         <requestFocus/>
     </AutoCompleteTextView>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add_product_valid_name_enter"
+        android:layout_marginStart="15dp"
+        android:textSize="15sp"
+        android:textColor="@color/red"
+        android:id="@+id/productValidNameDialog"
+        android:visibility="gone"
+        />
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

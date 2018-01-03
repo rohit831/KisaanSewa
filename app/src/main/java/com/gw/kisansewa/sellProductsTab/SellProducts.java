@@ -30,6 +30,7 @@ import com.gw.kisansewa.authentication.FarmerLogin;
 import com.gw.kisansewa.models.CropDetails;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -48,7 +49,7 @@ public class SellProducts extends Fragment {
     boolean isAvailable = false;
     private LinearLayout progressBar, no_crops, no_internet, snackLayout;
     private ProgressDialog progressDialog;
-    private TextView retry_btn;
+    private TextView retry_btn, validCropNameText;
 
     static String[] cropNames = {"Almond","Apple","Apricot","ArecaNut","Bajra","Baley","Banana","Barley","Basil","Beans","Beetroot","Betel","Blackberry","Cabbage","Cantaloupe","Carrot","Cashew","Cauliflower","Cereals",
             "Cherry","Chestnuts","Chili","Coffee","Coriander","Corn","Cotton","Cucumber","Dahlia","Dates","DragonFruit","Eggs","Flour","Fodder","Garlic","Ginger","Gooseberry","Grain","Gram",
@@ -164,10 +165,37 @@ public class SellProducts extends Fragment {
         final EditText productPrice,productQuantity;
         final AutoCompleteTextView productName;
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),R.layout.dropdown, cropNames);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),R.layout.dropdown, cropNames);
         productName=(AutoCompleteTextView) dialogView.findViewById(R.id.productNameDialog);
         productPrice=(EditText)dialogView.findViewById(R.id.productPriceDialog);
         productQuantity=(EditText)dialogView.findViewById(R.id.productQuantityDialog);
+
+        validCropNameText = (TextView)dialogView.findViewById(R.id.productValidNameDialog);
+        productName.setValidator(new AutoCompleteTextView.Validator() {
+            @Override
+            public boolean isValid(CharSequence text) {
+                Arrays.sort(cropNames);
+                if(Arrays.binarySearch(cropNames, text.toString()) > 0)
+                    return true;
+                return false;
+            }
+
+            @Override
+            public CharSequence fixText(CharSequence invalidText) {
+                validCropNameText.setVisibility(View.VISIBLE);
+                return "";
+            }
+        });
+
+        productName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(productName.isFocused())
+                    validCropNameText.setVisibility(View.GONE);
+                if(v.getId() == R.id.productNameDialog && !hasFocus)
+                    ((AutoCompleteTextView)v).performValidation();
+            }
+        });
 
         productName.setThreshold(1);
         productName.setAdapter(adapter);

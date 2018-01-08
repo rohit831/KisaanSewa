@@ -175,5 +175,29 @@
     <string name="menu_my_orders">என் கட்டளைகள்</string>
     <string name="menu_edit_prof">என் சுயவிவரம்</string>
     <string name="menu_logout">வெளியேறு</string>
+    <!--new updates-->
+    <string name="add_product_valid_name_enter">*Enter a valid crop name</string>
+    <string name="confirm_buy_see_directions">See Directions</string>
+    <string name="tab_edit_profile">Edit Profile</string>
+    <string name="action_done"> </string>
+    <string name="update">Update</string>
+    <string name="profile_updated">Profile successfully updated</string>
+    <string name="profile_updating">Updating your profile .. </string>
+    <string name="password_updating">Updating your password .. </string>
+    <string name="password_updated">Password updated successfully</string>
+    <string name="wrong_password">You entered a wrong password!</string>
+    <string name="change_language">Change Language:</string>
+    <string name="change_password">Change Password:</string>
+    <string name="edit_profile_old_paswrd">Enter Old Password:</string>
+    <string name="edit_profile_new_paswrd">Enter New Password:</string>
+    <string name="edit_profile_conf_new_paswrd">Confirm New Password:</string>
+    <string name="edit_profile_personal_details_head">Personal Details:</string>
 
+    <string name="lang_en">English</string>
+    <string name="lang_hi">Hindi</string>
+    <string name="lang_mr">Marathi</string>
+    <string name="lang_pa">Punjabi</string>
+    <string name="lang_sd">Sindhi</string>
+    <string name="lang_ta">Tamil</string>
+    <string name="lang_te">Telugu</string>
 </resources>

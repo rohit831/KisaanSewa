@@ -9,11 +9,13 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -45,6 +47,8 @@ public class BuyProducts extends Fragment
     private LinearLayout noInternet;
     private TextView retry_btn, no_crops;
     private CoordinatorLayout snackLayout;
+    private CardView searchCard;
+    private EditText search;
 
     @Nullable
     @Override
@@ -82,6 +86,15 @@ public class BuyProducts extends Fragment
                 getCropsAvailable();
             }
         });
+
+//        search.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//            @Override
+//            public void onFocusChange(View v, boolean hasFocus) {
+//                if(hasFocus){
+//                    searchCard.setCardElevation(10);
+//                }
+//            }
+//        });
     }
 
     private void initialize(View view)
@@ -98,6 +111,8 @@ public class BuyProducts extends Fragment
         userMobileNo=sharedPreferences.getString(FarmerLogin.FMobileNo,"");
         recyclerView=(RecyclerView)view.findViewById(R.id.buyProductsView);
         snackLayout = (CoordinatorLayout)view.findViewById(R.id.snack_layout_buy_products);
+        searchCard = (CardView) view.findViewById(R.id.card_search_icon);
+        search = (EditText) view.findViewById(R.id.buy_products_search);
     }
 
     void getCropsAvailable()

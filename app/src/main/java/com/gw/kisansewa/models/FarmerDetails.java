@@ -8,11 +8,13 @@ public class FarmerDetails
     private String city;
     private String state;
     private String password;
+    private String image;
 
     public FarmerDetails()
     {
 
     }
+
     public FarmerDetails(String name, String mobileNo, String area, String city, String state, String password) {
         this.name = name;
         this.mobileNo = mobileNo;
@@ -20,6 +22,24 @@ public class FarmerDetails
         this.city = city;
         this.state = state;
         this.password = password;
+    }
+
+    public FarmerDetails(String name, String mobileNo, String area, String city, String state, String password, String image) {
+        this.name = name;
+        this.mobileNo = mobileNo;
+        this.area = area;
+        this.city = city;
+        this.state = state;
+        this.password = password;
+        this.image = image;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getAddress(){

@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/snack_layout_edit_profile"
+    >
 
     <!--progress loader-->
     <LinearLayout
@@ -76,135 +78,9 @@
 
     </LinearLayout>
 
-    <!--Personal Details-->
-    <android.support.v7.widget.CardView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardElevation="5dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
-        android:background="@color/lightGray"
-        android:layout_marginTop="7dp"
-        >
-
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Personal Details:"
-                android:layout_marginStart="7dp"
-                android:layout_marginTop="4dp"
-                android:textStyle="bold"
-                style="@style/Base.TextAppearance.AppCompat.Headline"
-                android:textColor="@color/colorPrimary"
-                />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/colorPrimary"
-                android:layout_marginStart="7dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="4dp"
-                />
-
-            <!--Name-->
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_edit_profile_name"
-                android:id="@+id/edit_profile_user"
-                android:paddingStart="2dp"
-                android:paddingEnd="4dp"
-                android:hint="@string/name_view"
-                android:gravity="center_vertical"
-                android:layout_marginEnd="5dp"
-                android:layout_marginStart="5dp"
-                android:drawablePadding="5dp"
-                />
-
-            <!--Mobile no-->
-            <EditText
-
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_call"
-                android:id="@+id/edit_profile_mobileNo"
-                android:paddingStart="2dp"
-                android:gravity="center_vertical"
-                android:paddingEnd="2dp"
-                android:hint="@string/mobile_no_view"
-                android:layout_marginEnd="5dp"
-                android:layout_marginStart="5dp"
-                android:drawablePadding="5dp"
-                android:clickable="false"
-                android:focusable="false"
-                />
-
-            <!--Area-->
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_place"
-                android:id="@+id/edit_profile_area"
-                android:paddingStart="2dp"
-                android:gravity="center_vertical"
-                android:paddingEnd="2dp"
-                android:layout_marginEnd="5dp"
-                android:hint="@string/area_view"
-                android:layout_marginStart="5dp"
-                android:drawablePadding="5dp"
-                />
-
-            <!--City-->
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_location_city"
-                android:id="@+id/edit_profile_city"
-                android:paddingStart="2dp"
-                android:paddingEnd="2dp"
-                android:layout_marginEnd="5dp"
-                android:gravity="center_vertical"
-                android:layout_marginStart="5dp"
-                android:hint="@string/city_view"
-                android:drawablePadding="8dp"
-                />
-
-            <!--State-->
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_location_state"
-                android:hint="@string/state_view"
-                android:id="@+id/edit_profile_state"
-                android:paddingStart="2dp"
-                android:paddingEnd="2dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginStart="5dp"
-                android:gravity="center_vertical"
-                android:drawablePadding="7dp"
-                android:layout_marginBottom="5dp"
-                />
-
-
-        </LinearLayout>
-
-    </android.support.v7.widget.CardView>
-
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardElevation="5dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginTop="3dp"
-        >
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -212,48 +88,357 @@
             android:orientation="vertical"
             >
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/choose_language"
-                style="@style/Base.TextAppearance.AppCompat.Title"
-                android:textColor="@color/colorPrimary"
-                android:layout_marginTop="4dp"
-                android:layout_marginStart="7dp"
-                />
-
-            <TextView
+            <!--Personal Details-->
+            <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="English"
-                android:background="@drawable/light_gray_oval"
-                android:layout_marginStart="7dp"
+                app:cardElevation="5dp"
+                android:visibility="visible"
+                android:layout_marginStart="0dp"
+                android:layout_marginEnd="0dp"
+                android:background="@color/background_grey"
+                android:layout_marginTop="0dp"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:layout_marginBottom="15dp"
+                        >
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="10dp"
+                            app:civ_circle_background_color="@color/off_white"
+                            app:civ_border_width="1dp"
+                            android:cropToPadding="true"
+                            android:src="@drawable/no_profile_photo"
+                            android:scaleType="centerCrop"
+                            android:id="@+id/edit_profile_profile_pic"
+                            app:civ_border_color="@color/background_grey"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/edit_photo"
+                            android:textColor="@color/colorPrimary"
+                            android:layout_marginTop="4dp"
+                            android:onClick="updateProfilePicClicked"
+                            />
+
+                    </LinearLayout>
+
+                    <!--Name-->
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_edit_profile_name"
+                        android:id="@+id/edit_profile_user"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="4dp"
+                        android:hint="@string/name_view"
+                        android:gravity="center_vertical"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginStart="20dp"
+                        android:drawablePadding="15dp"
+                        />
+
+                    <!--Mobile no-->
+                    <EditText
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_call"
+                        android:id="@+id/edit_profile_mobileNo"
+                        android:paddingStart="8dp"
+                        android:gravity="center_vertical"
+                        android:paddingEnd="2dp"
+                        android:hint="@string/mobile_no_view"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginStart="20dp"
+                        android:drawablePadding="15dp"
+                        android:clickable="false"
+                        android:focusable="false"
+                        />
+
+                    <!--Area-->
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_place"
+                        android:id="@+id/edit_profile_area"
+                        android:paddingStart="8dp"
+                        android:gravity="center_vertical"
+                        android:paddingEnd="2dp"
+                        android:layout_marginEnd="20dp"
+                        android:hint="@string/area_view"
+                        android:layout_marginStart="20dp"
+                        android:drawablePadding="15dp"
+                        />
+
+                    <!--City-->
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_location_city"
+                        android:id="@+id/edit_profile_city"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="2dp"
+                        android:layout_marginEnd="20dp"
+                        android:gravity="center_vertical"
+                        android:layout_marginStart="20dp"
+                        android:hint="@string/city_view"
+                        android:drawablePadding="15dp"
+                        />
+
+                    <!--State-->
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_location_state"
+                        android:hint="@string/state_view"
+                        android:id="@+id/edit_profile_state"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="2dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginStart="20dp"
+                        android:gravity="center_vertical"
+                        android:drawablePadding="15dp"
+                        android:layout_marginBottom="5dp"
+                        />
+
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <!--choose language-->
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardElevation="5dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginEnd="7dp"
-                android:layout_marginBottom="4dp"
-                android:paddingStart="12dp"
-                android:paddingEnd="10dp"
-                android:padding="6dp"
-                android:drawableEnd="@drawable/ic_edit"
-                style="@style/Base.TextAppearance.AppCompat.SearchResult.Title"
-                android:id="@+id/edit_profile_choose_language"
-                />
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/change_language"
+                        style="@style/Base.TextAppearance.AppCompat.Widget.ActionBar.Title"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginBottom="5dp"
+                        android:textColor="@color/colorPrimary"
+                        android:id="@+id/edit_profile_change_language_view"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/light_gray_oval"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginBottom="10dp"
+                        android:textColor="@color/cardview_dark_background"
+                        android:paddingStart="17dp"
+                        android:paddingEnd="10dp"
+                        android:padding="6dp"
+                        android:text="@string/lang_en"
+                        style="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:textAppearance="?android:attr/textAppearanceListItem"
+                        android:drawableEnd="@drawable/ic_edit"
+                        android:id="@+id/edit_profile_choose_language"
+                        android:onClick="changeLanguageEditProfileClicked"
+                        />
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <!--change password-->
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardElevation="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="8dp"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/change_password"
+                        style="@style/TextAppearance.AppCompat.Title"
+                        android:textColor="@color/colorPrimary"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginStart="13dp"
+                        android:id="@+id/edit_profile_change_passwrd_view"
+
+                        />
+
+                    <!--<TextView-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:background="@color/colorPrimary"-->
+                        <!--android:text="@string/change_password"-->
+                        <!--android:textStyle="bold"-->
+                        <!--android:textSize="23sp"-->
+                        <!--android:textColor="@color/white"-->
+                        <!--android:paddingStart="5dp"-->
+                        <!--android:paddingEnd="2dp"-->
+                        <!--android:paddingBottom="2dp"-->
+                        <!--/>-->
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/colorPrimary"
+                        android:layout_marginStart="13dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginBottom="3dp"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/edit_profile_old_paswrd"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="8dp"
+                        android:textColor="@color/dark_grey"
+                        android:id="@+id/edit_profile_old_passwrd_view"
+                        />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/light_gray_oval"
+                        android:padding="4dp"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:gravity="bottom"
+                        android:inputType="textPassword"
+                        android:id="@+id/edit_profile_old_passwrd"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/edit_profile_new_paswrd"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/dark_grey"
+                        android:id="@+id/edit_profile_new_passwrd_view"
+                        />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/light_gray_oval"
+                        android:layout_marginStart="15dp"
+                        android:padding="4dp"
+                        android:layout_marginEnd="15dp"
+                        android:gravity="bottom"
+                        android:id="@+id/edit_profile_new_passwrd"
+                        android:inputType="textPassword"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/edit_profile_conf_new_paswrd"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:layout_marginStart="15dp"
+                        android:id="@+id/edit_profile_conf_new_passwrd_view"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/dark_grey"
+                        />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/light_gray_oval"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:padding="4dp"
+                        android:inputType="textPassword"
+                        android:id="@+id/edit_profile_conf_new_passwrd"
+                        android:gravity="bottom"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/red"
+                        android:text="@string/enter_all_details"
+                        android:layout_marginStart="20dp"
+                        android:visibility="invisible"
+                        android:layout_marginTop="4dp"
+                        android:id="@+id/edit_profile_notify_password"
+                        android:textAppearance="?android:attr/textAppearanceListItem"
+                        />
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="5dp"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="10dp"
+                        app:cardElevation="5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/update"
+                            style="@style/Base.TextAppearance.AppCompat.Medium"
+                            android:textColor="@color/colorPrimary"
+                            android:padding="5dp"
+                            android:onClick="updatePasswordClicked"
+                            android:background="@drawable/boundary_primary_rect"
+                            android:id="@+id/edit_profile_update_password"
+                            />
+
+
+                    </android.support.v7.widget.CardView>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
         </LinearLayout>
 
-    </android.support.v7.widget.CardView>
+    </ScrollView>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        >
-    </TextView>
-
-    <android.support.design.widget.CoordinatorLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/snack_layout_edit_profile"
-        >
-    </android.support.design.widget.CoordinatorLayout>
 
 </LinearLayout>

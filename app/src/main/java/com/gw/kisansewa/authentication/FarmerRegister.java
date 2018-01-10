@@ -17,7 +17,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.gw.kisansewa.Homescreen.HomeScreen;
+import com.gw.kisansewa.Homescreen.Homescreen;
 import com.gw.kisansewa.api.AuthenticationAPI;
 import com.gw.kisansewa.R;
 import com.gw.kisansewa.apiGenerator.AuthenticationGenerator;
@@ -131,7 +131,7 @@ public class FarmerRegister extends AppCompatActivity {
 
 
                     showProgressBar(false);
-                    Intent intent = new Intent(getApplicationContext(), HomeScreen.class);
+                    Intent intent = new Intent(getApplicationContext(), Homescreen.class);
                     intent.putExtra("mobileNo", mobileNo.getText().toString());
                     startActivity(intent);
                     finish();

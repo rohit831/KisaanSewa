@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/bottom_nav_buy"
+        android:title="@string/bottom_nav_buy"
+        android:icon="@drawable/ic_basket"
+        />
+
+    <item
+        android:id="@+id/bottom_nav_sell"
+        android:title="@string/bottom_nav_sell"
+        android:icon="@drawable/ic_barley"
+        />
+
+    <item
+        android:id="@+id/bottom_nav_market"
+        android:title="@string/bottom_nav_market"
+        android:icon="@drawable/ic_store"
+        />
+
+</menu>

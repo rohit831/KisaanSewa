@@ -18,9 +18,11 @@
         android:theme="@style/AppTheme">
 
         <!--Homescreen-->
-        <activity android:name=".Homescreen.HomeScreen"
+
+        <activity android:name=".Homescreen.Homescreen"
+            android:launchMode="singleInstance"
             android:windowSoftInputMode="stateHidden"
-            android:launchMode="singleInstance"/>
+            />
 
         <!--Auth Views-->
         <activity android:name=".authentication.FarmerRegister"

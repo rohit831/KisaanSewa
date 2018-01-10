@@ -42,7 +42,7 @@
     <string name="edit_profile">Edit Profile</string>
     <string name="quantity_purchased">Quantity sold (in kgs)</string>
     <string name="order_quantity_sold">kgs at Rs. </string>
-    <string name="add_product">ADD PRODUCT</string>
+    <string name="add_product">Add Crop</string>
     <string name="seller_details_head">Seller Details:</string>
     <string name="quantity_available">Quantity Available: </string>
     <string name="available">Available: </string>
@@ -205,4 +205,11 @@
 
     <string name="select_picture">Select Picture</string>
     <string name="edit_photo">Edit Photo</string>
+
+    <string name="bottom_nav_buy">Buy</string>
+    <string name="bottom_nav_sell">Sell</string>
+    <string name="bottom_nav_market">Market</string>
+
+    <string name="click_first_crop">Click here to add your first crop</string>
+
 </resources>

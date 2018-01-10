@@ -26,7 +26,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.gw.kisansewa.Homescreen.HomeScreen;
+import com.gw.kisansewa.Homescreen.Homescreen;
 import com.gw.kisansewa.R;
 import com.gw.kisansewa.api.AuthenticationAPI;
 import com.gw.kisansewa.api.BuyProductAPI;
@@ -295,7 +295,7 @@ public class ConfirmProductBuy extends AppCompatActivity {
                                 Toast.makeText(context, R.string.confirm_buy_request_made, Toast.LENGTH_SHORT).show();
                             else
                                 Toast.makeText(context,R.string.confirm_buy_already_requested, Toast.LENGTH_SHORT ).show();
-                            Intent intent=new Intent(context,HomeScreen.class);
+                            Intent intent=new Intent(context,Homescreen.class);
                             intent.putExtra("mobileNo",userMobileNo);
                             startActivity(intent);
                             finish();

@@ -41,6 +41,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:visibility="gone"
+        android:gravity="center"
         android:id="@+id/no_internet_buy_products"
         >
 
@@ -48,7 +49,6 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_gravity="center"
-            android:layout_marginTop="100dp"
             android:background="@drawable/no_internet"
             />
 
@@ -86,67 +86,77 @@
 
     </LinearLayout>
 
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginTop="3dp"
-        android:id="@+id/card_search_icon"
-        app:cardElevation="3dp"
-        android:background="@color/background_grey"
-        >
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:background="@color/off_white"
-            >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ic_search"
-                android:gravity="center"
-                android:layout_marginStart="8dp"
-                android:id="@+id/search_icon_buyProducts"
-                android:backgroundTint="@color/grey"
-                />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/search"
-                android:padding="10dp"
-                android:focusableInTouchMode="true"
-                android:background="@color/off_white"
-                android:id="@+id/buy_products_search"
-                />
-
-
-        </LinearLayout>
-
-
-    </android.support.v7.widget.CardView>
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="9"
         android:id="@+id/buyProductsRefresh"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="5dp"
         >
 
-        <android.support.v7.widget.RecyclerView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/buyProductsView"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
             >
 
-        </android.support.v7.widget.RecyclerView>
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/card_search_icon"
+                app:cardElevation="3dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginTop="3dp"
+                android:background="#07000000"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ic_search"
+                        android:gravity="center"
+                        android:layout_marginStart="8dp"
+                        android:id="@+id/search_icon_buyProducts"
+                        android:backgroundTint="@color/grey"
+                        />
+
+                    <EditText
+                        android:id="@+id/buy_products_search"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/off_white"
+                        android:focusableInTouchMode="true"
+                        android:layout_marginBottom="5dp"
+                        android:hint="@string/search"
+                        android:padding="8dp"
+                        />
+
+
+                </LinearLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/buyProductsView"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
+                >
+
+            </android.support.v7.widget.RecyclerView>
+
+
+        </LinearLayout>
+
 
 
     </android.support.v4.widget.SwipeRefreshLayout>

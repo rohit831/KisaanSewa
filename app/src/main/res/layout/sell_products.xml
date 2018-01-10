@@ -28,41 +28,70 @@
     <!--No Requests-->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="fill_parent"
         android:orientation="vertical"
         android:id="@+id/no_crops_sell_products"
         android:visibility="gone"
         >
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardElevation="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginTop="3dp"
+            >
+
+            <TextView
+
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/click_first_crop"
+                android:background="@color/off_white"
+                android:drawableEnd="@drawable/ic_plus"
+                android:gravity="center_vertical"
+                android:paddingStart="15dp"
+                android:padding="5dp"
+                android:drawablePadding="4dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/addProductNoCrops"
+                />
+        </android.support.v7.widget.CardView>
+
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:text="@string/no_crops_to_sell"
-            android:textStyle="bold"
+            style="@style/Base.TextAppearance.AppCompat.Title"
             android:textSize="22sp"
+            android:textColor="@color/dark_grey"
             android:gravity="center"
+            android:layout_marginTop="5dp"
             />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/add_first_crop"
-            android:textSize="18sp"
-            android:gravity="center"
-            />
+        <!--<TextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="@string/add_first_crop"-->
+            <!--android:textSize="18sp"-->
+            <!--android:gravity="center"-->
+            <!--/>-->
 
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="43dp"
-            android:background="@color/colorPrimary"
-            android:layout_margin="5dp"
-            android:textColor="@color/white"
-            android:text="@string/add_product"
-            style="@style/Base.TextAppearance.AppCompat.Medium"
-            android:textStyle="bold"
-            android:id="@+id/addProductNoCrops"/>
+        <!--<Button-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="43dp"-->
+            <!--android:background="@color/colorPrimary"-->
+            <!--android:layout_margin="5dp"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:text="@string/add_product"-->
+            <!--style="@style/Base.TextAppearance.AppCompat.Medium"-->
+            <!--android:textStyle="bold"-->
+            <!--/>-->
 
 
 
@@ -75,6 +104,8 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:visibility="gone"
+        android:layout_gravity="center"
+        android:gravity="center"
         android:id="@+id/no_internet_sell_products"
         >
 
@@ -82,7 +113,6 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_gravity="center"
-            android:layout_marginTop="100dp"
             android:background="@drawable/no_internet"
             />
 
@@ -121,6 +151,31 @@
     </LinearLayout>
 
 
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginTop="3dp"
+        >
+
+    <TextView
+
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/add_product"
+            android:background="@color/off_white"
+            android:drawableStart="@drawable/ic_plus"
+            android:gravity="center_vertical"
+            android:padding="5dp"
+            android:drawablePadding="10dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/addProduct"
+            />
+    </android.support.v7.widget.CardView>
+
     <android.support.v4.widget.SwipeRefreshLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -140,15 +195,15 @@
 
         </android.support.v4.widget.SwipeRefreshLayout>
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="43dp"
-        android:background="@color/colorPrimary"
-        android:layout_margin="5dp"
-        android:textColor="@color/white"
-        android:text="@string/add_product"
-        style="@style/Base.TextAppearance.AppCompat.Medium"
-        android:textStyle="bold"
-        android:id="@+id/addProduct"/>
+    <!--<Button-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="43dp"-->
+        <!--android:background="@color/colorPrimary"-->
+        <!--android:layout_margin="5dp"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:text="@string/add_product"-->
+        <!--style="@style/Base.TextAppearance.AppCompat.Medium"-->
+        <!--android:textStyle="bold"-->
+        <!--/>-->
 
 </LinearLayout>

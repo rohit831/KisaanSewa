@@ -43,7 +43,7 @@ public class SellProducts extends Fragment {
     private RecyclerView.Adapter recyclerAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<CropDetails> cropDetails;
-    private Button addProduct, addProductsNoCrops;
+    private TextView addProduct, addProductsNoCrops;
     private String mobileNo;
     private SharedPreferences sharedPreferences;
     boolean isAvailable = false;
@@ -110,20 +110,20 @@ public class SellProducts extends Fragment {
 
     //referencing all the elements
     private void initialize(View view) {
-        swipeRefreshLayout=(SwipeRefreshLayout)view.findViewById(R.id.sellProductsRefresh);
+        swipeRefreshLayout=view.findViewById(R.id.sellProductsRefresh);
         swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
-        recyclerView=(RecyclerView)view.findViewById(R.id.sellProductsView);
-        progressBar = (LinearLayout)view.findViewById(R.id.progress_sell_products);
+        recyclerView=view.findViewById(R.id.sellProductsView);
+        progressBar = view.findViewById(R.id.progress_sell_products);
         sharedPreferences = getActivity().getSharedPreferences(FarmerLogin.FarmerPreferences, Context.MODE_PRIVATE);
         mobileNo = sharedPreferences.getString(FarmerLogin.FMobileNo,"");
-        addProductsNoCrops = (Button)view.findViewById(R.id.addProductNoCrops);
-        no_crops = (LinearLayout)view.findViewById(R.id.no_crops_sell_products);
-        no_internet = (LinearLayout)view.findViewById(R.id.no_internet_sell_products);
-        addProduct=(Button)view.findViewById(R.id.addProduct);
+        addProductsNoCrops = view.findViewById(R.id.addProductNoCrops);
+        no_crops = view.findViewById(R.id.no_crops_sell_products);
+        no_internet = view.findViewById(R.id.no_internet_sell_products);
+        addProduct= view.findViewById(R.id.addProduct);
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setIndeterminate(true);
-        snackLayout = (LinearLayout)view.findViewById(R.id.snack_layout_sell_product);
-        retry_btn = (TextView) view.findViewById(R.id.retry_sell_products);
+        snackLayout = view.findViewById(R.id.snack_layout_sell_product);
+        retry_btn = view.findViewById(R.id.retry_sell_products);
     }
 
     //retrieve all the seller crops

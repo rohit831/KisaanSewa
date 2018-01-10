@@ -29,7 +29,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.gw.kisansewa.Homescreen.HomeScreen;
+import com.gw.kisansewa.Homescreen.Homescreen;
 import com.gw.kisansewa.R;
 import com.gw.kisansewa.api.AuthenticationAPI;
 import com.gw.kisansewa.apiGenerator.AuthenticationGenerator;
@@ -469,7 +469,7 @@ public class EditProfile extends AppCompatActivity {
                 if(response.code() == 200){
                     progressDialog.hide();
                     Toast.makeText(EditProfile.this, R.string.profile_updated, Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(EditProfile.this, HomeScreen.class));
+                    startActivity(new Intent(EditProfile.this, Homescreen.class));
                     finish();
                 }
                 else{
@@ -527,7 +527,7 @@ public class EditProfile extends AppCompatActivity {
         }
     }
 
-//    convert input stream into a byte array
+//  convert input stream into a byte array
     public void getBytes(InputStream is)throws IOException {
         ByteArrayOutputStream byteBuff = new ByteArrayOutputStream();
 

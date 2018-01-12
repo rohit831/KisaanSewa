@@ -47,17 +47,17 @@ public class FarmerRegister extends AppCompatActivity {
 
     public void farmerInitialization()
     {
-        name=(EditText)findViewById(R.id.name);
-        mobileNo=(EditText)findViewById(R.id.mobileNo);
-        area=(EditText)findViewById(R.id.area);
-        city=(EditText)findViewById(R.id.city);
-        state=(EditText)findViewById(R.id.state);
-        password=(EditText)findViewById(R.id.password);
-        confirmPassword=(EditText)findViewById(R.id.confirmPassword);
-        register=(Button) findViewById(R.id.registerBtn);
-        layout = (CoordinatorLayout)findViewById(R.id.layout_signup);
+        name= findViewById(R.id.name);
+        mobileNo= findViewById(R.id.mobileNo);
+        area= findViewById(R.id.area);
+        city= findViewById(R.id.city);
+        state= findViewById(R.id.state);
+        password= findViewById(R.id.password);
+        confirmPassword= findViewById(R.id.confirmPassword);
+        register= findViewById(R.id.registerBtn);
+        layout = findViewById(R.id.layout_signup);
         authenticationAPI = AuthenticationGenerator.createService(AuthenticationAPI.class);
-        progressBar =  (ProgressBar) findViewById(R.id.progress_signup);
+        progressBar = findViewById(R.id.progress_signup);
     }
 
 //    Registering the farmer
@@ -116,7 +116,7 @@ public class FarmerRegister extends AppCompatActivity {
 
         farmerDetails = new FarmerDetails(name.getText().toString(), mobileNo.getText().toString(),
                 area.getText().toString(), city.getText().toString(),
-                state.getText().toString(), password.getText().toString());
+                state.getText().toString(), password.getText().toString(),"" );
 
         Call<Void> signUpCall = authenticationAPI.createNewUser(farmerDetails);
         signUpCall.enqueue(new Callback<Void>() {
@@ -127,8 +127,6 @@ public class FarmerRegister extends AppCompatActivity {
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString(FarmerLogin.FMobileNo, mobileNo.getText().toString());
                     editor.commit();
-
-
 
                     showProgressBar(false);
                     Intent intent = new Intent(getApplicationContext(), Homescreen.class);

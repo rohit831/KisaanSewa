@@ -6,6 +6,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
 import android.location.Location;
@@ -32,9 +33,11 @@ import com.gw.kisansewa.api.AuthenticationAPI;
 import com.gw.kisansewa.api.BuyProductAPI;
 import com.gw.kisansewa.apiGenerator.AuthenticationGenerator;
 import com.gw.kisansewa.apiGenerator.ProductGenerator;
+import com.gw.kisansewa.authentication.FarmerLogin;
 import com.gw.kisansewa.models.CropDetails;
 import com.gw.kisansewa.models.FarmerDetails;
 import com.gw.kisansewa.models.RequestDetails;
+import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
@@ -42,6 +45,7 @@ import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -54,6 +58,7 @@ public class ConfirmProductBuy extends AppCompatActivity {
     private String sellerNo,buyProductName,userMobileNo;
     private FarmerDetails farmerDetails;
     final Context context=this;
+    private CircleImageView sellerImage;
     private CropDetails cropDetails;
     private LinearLayout progressBar, no_internet, snackLayout;
     private ProgressDialog progressDialog;
@@ -123,32 +128,35 @@ public class ConfirmProductBuy extends AppCompatActivity {
 
     //    Reference all the variables
     public void initialize() {
-        productName=(TextView)findViewById(R.id.finalProductName);
-        productPrice=(TextView)findViewById(R.id.finalProductPrice);
-        productQuantity=(TextView)findViewById(R.id.finalProductQuantity);
-        sellerName=(TextView)findViewById(R.id.finalSellerName);
-        sellerMobileNo=(TextView)findViewById(R.id.finalMobileNo);
-        sellerAddress = (TextView)findViewById(R.id.address_confirm_buy_product);
-        message = (TextView)findViewById(R.id.message_confirm_buy);
-        call = (TextView) findViewById(R.id.call_confirm_buy);
-        seeDirections = (TextView)findViewById(R.id.confirm_buy_get_direction);
-        dist_from_current = (TextView) findViewById(R.id.dist_from_current_view);
-        dist_from_addr = (TextView)findViewById(R.id.dist_from_addr_view);
-        requestProduct = (TextView) findViewById(R.id.request_product_confirm_buy);
-        farmerDetails=new FarmerDetails();
-        cropDetails=new CropDetails();
-        progressBar = (LinearLayout)findViewById(R.id.progress_confirm_product_buy);
-        no_internet = (LinearLayout)findViewById(R.id.no_internet_confirm_product_buy);
-        snackLayout = (LinearLayout)findViewById(R.id.snack_layout_confirm_buy_product);
-        retry_btn= (TextView)findViewById(R.id.retry_confirm_product_buy);
-        dist_card = (CardView)findViewById(R.id.card_dist);
-
+        productName= findViewById(R.id.finalProductName);
+        productPrice= findViewById(R.id.finalProductPrice);
+        productQuantity= findViewById(R.id.finalProductQuantity);
+        sellerName= findViewById(R.id.finalSellerName);
+        sellerMobileNo= findViewById(R.id.finalMobileNo);
+        sellerAddress = findViewById(R.id.address_confirm_buy_product);
+        message = findViewById(R.id.message_confirm_buy);
+        call =  findViewById(R.id.call_confirm_buy);
+        seeDirections = findViewById(R.id.confirm_buy_get_direction);
+        dist_from_current = findViewById(R.id.dist_from_current_view);
+        dist_from_addr = findViewById(R.id.dist_from_addr_view);
+        requestProduct = findViewById(R.id.request_product_confirm_buy);
+        farmerDetails = new FarmerDetails();
+        cropDetails = new CropDetails();
+        progressBar = findViewById(R.id.progress_confirm_product_buy);
+        no_internet = findViewById(R.id.no_internet_confirm_product_buy);
+        snackLayout = findViewById(R.id.snack_layout_confirm_buy_product);
+        retry_btn= findViewById(R.id.retry_confirm_product_buy);
+        dist_card = findViewById(R.id.card_dist);
+        sellerImage = findViewById(R.id.finalSellerImage);
 
         progressDialog = new ProgressDialog(context);
         progressDialog.setIndeterminate(true);
 
+        SharedPreferences sharedPreferences = getSharedPreferences(FarmerLogin.FarmerPreferences, MODE_PRIVATE);
+        userMobileNo = sharedPreferences.getString(FarmerLogin.FMobileNo,"");
+
         sellerNo=getIntent().getStringExtra("sellerMobileNo");
-        userMobileNo=getIntent().getStringExtra("userMobileNo");
+//        userMobileNo=getIntent().getStringExtra("userMobileNo");
         buyProductName=getIntent().getStringExtra("productName");
     }
 
@@ -219,6 +227,10 @@ public class ConfirmProductBuy extends AppCompatActivity {
             public void onResponse(Call<FarmerDetails> call, Response<FarmerDetails> response) {
                 if(response.code()==200) {
                     farmerDetails = response.body();
+                    if(!farmerDetails.getImage().equals(""))
+                        Picasso.with(context)
+                            .load(farmerDetails.getImage())
+                            .into(sellerImage);
                     showProgressBar(false);
                     setValues();
                 }

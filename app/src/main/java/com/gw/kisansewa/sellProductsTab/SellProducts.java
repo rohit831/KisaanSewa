@@ -51,7 +51,7 @@ public class SellProducts extends Fragment {
     private ProgressDialog progressDialog;
     private TextView retry_btn, validCropNameText;
 
-    static String[] cropNames = {"Almond","Apple","Apricot","ArecaNut","Bajra","Baley","Banana","Barley","Basil","Beans","Beetroot","Betel","Blackberry","Cabbage","Cantaloupe","Carrot","Cashew","Cauliflower","Cereals",
+    static String[] cropNames = {"Almond","Apple","Apricot","ArecaNut","Bajra","Barley","Banana","Basil","Beans","Beetroot","Betel","Blackberry","Cabbage","Cantaloupe","Carrot","Cashew","Cauliflower","Cereals",
             "Cherry","Chestnuts","Chili","Coffee","Coriander","Corn","Cotton","Cucumber","Dahlia","Dates","DragonFruit","Eggs","Flour","Fodder","Garlic","Ginger","Gooseberry","Grain","Gram",
             "Grapes","Groundnut","Guava","Hay","Hazelnuts","Herbs","Honey","Jowar","Jute","Kiwi","Legumes","Lemon","Lentils","Lettuce","Limes","Litchi","Maize","Mandarin","Mango","Millet","Mint","Moong",
             "Mushroom","Mustard","Niger","Oak","Oat","Onion","Orange","Oregano","Paddy","Papaya","Peach","Peanut","Pear","Peas","Pepper","Pineapple","Pistachio","Pomegranate","potato","pulses",

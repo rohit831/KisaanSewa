@@ -18,7 +18,7 @@ import android.widget.Toast;
 import com.gw.kisansewa.R;
 import com.gw.kisansewa.authentication.EditProfile;
 import com.gw.kisansewa.authentication.FarmerLogin;
-import com.gw.kisansewa.buyProductsTab.BuyProducts;
+import com.gw.kisansewa.buyCropsTab.BuyCropsFragment;
 import com.gw.kisansewa.marketTab.Market;
 import com.gw.kisansewa.orders.Order;
 import com.gw.kisansewa.purchaseRequests.PurchaseRequest;
@@ -30,7 +30,7 @@ public class Homescreen extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
     private ViewPager viewPager;
     private MenuItem prevMenuItem;
-    private BuyProducts buyProducts;
+    private BuyCropsFragment buyCropsFragment;
     private SellProducts sellProducts;
     private Market market;
 
@@ -141,10 +141,11 @@ public class Homescreen extends AppCompatActivity {
 //  setting up view pager
     private void setupViewPager(){
         HomescreenAdapter adapter = new HomescreenAdapter(getSupportFragmentManager());
-        buyProducts = new BuyProducts();
+//        buyProducts = new BuyProducts();
+        buyCropsFragment = new BuyCropsFragment();
         sellProducts = new SellProducts();
         market = new Market();
-        adapter.addFragment(buyProducts);
+        adapter.addFragment(buyCropsFragment);
         adapter.addFragment(sellProducts);
         adapter.addFragment(market);
         viewPager.setAdapter(adapter);

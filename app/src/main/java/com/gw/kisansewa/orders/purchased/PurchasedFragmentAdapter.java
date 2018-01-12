@@ -21,7 +21,7 @@ public class PurchasedFragmentAdapter extends RecyclerView.Adapter<PurchasedFrag
     private ArrayList<Orders> orders;
     private ArrayList<FarmerDetails> farmers;
 
-    public PurchasedFragmentAdapter(Context context, ArrayList<Orders> orders, ArrayList<FarmerDetails> farmers) {
+    PurchasedFragmentAdapter(Context context, ArrayList<Orders> orders, ArrayList<FarmerDetails> farmers) {
         this.context = context;
         this.orders = orders;
         this.farmers = farmers;
@@ -56,14 +56,14 @@ public class PurchasedFragmentAdapter extends RecyclerView.Adapter<PurchasedFrag
         public PurchasedFragmentHolder(View view)
         {
             super(view);
-            vh_cropName= (TextView)view.findViewById(R.id.order_cropName);
-            vh_cropPrice = (TextView)view.findViewById(R.id.order_cropPrice);
-            vh_cropQuantity= (TextView)view.findViewById(R.id.order_cropQuantity);
-            vh_name= (TextView)view.findViewById(R.id.order_farmerName);
-            vh_mobileNo= (TextView)view.findViewById(R.id.order_farmerNo);
-            vh_address= (TextView)view.findViewById(R.id.order_farmerAddress);
-            vh_call= (TextView)view.findViewById(R.id.call_farmer);
-            vh_message= (TextView)view.findViewById(R.id.message_farmer);
+            vh_cropName= view.findViewById(R.id.order_cropName);
+            vh_cropPrice = view.findViewById(R.id.order_cropPrice);
+            vh_cropQuantity= view.findViewById(R.id.order_cropQuantity);
+            vh_name= view.findViewById(R.id.order_farmerName);
+            vh_mobileNo= view.findViewById(R.id.order_farmerNo);
+            vh_address= view.findViewById(R.id.order_farmerAddress);
+            vh_call= view.findViewById(R.id.call_farmer);
+            vh_message= view.findViewById(R.id.message_farmer);
 
             vh_call.setOnClickListener(new View.OnClickListener() {
                 @Override

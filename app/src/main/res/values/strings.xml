@@ -212,4 +212,10 @@
 
     <string name="click_first_crop">Click here to add your first crop</string>
 
+    <string name="sellers">sellers</string>
+    <string name="seller">seller</string>
+    <string name="no_sellers">There are no sellers currently!</string>
+
+
+    <string name="crop_detail_image">Crop Image</string>
 </resources>

@@ -10,7 +10,6 @@ repositories {
 
 android {
     compileSdkVersion 26
-    buildToolsVersion '26.0.0'
     defaultConfig {
         applicationId "com.cognizant.interviewquestions.cognizantiqpractice2"
         minSdkVersion 21

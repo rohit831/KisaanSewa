@@ -34,6 +34,11 @@
             android:windowSoftInputMode="stateHidden"
             android:launchMode="singleInstance"/>
 
+        <!--Crop Detail-->
+        <activity android:name=".buyCropsTab.cropDetail.CropDetail"
+            android:launchMode="singleInstance"
+            />
+
         <!--Confirm Buy View-->
         <activity android:name=".buyProductsTab.ConfirmProductBuy"
             android:launchMode="singleInstance"

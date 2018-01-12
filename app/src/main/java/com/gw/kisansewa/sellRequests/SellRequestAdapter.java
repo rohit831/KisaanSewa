@@ -22,9 +22,11 @@ import com.gw.kisansewa.apiGenerator.RequestGenerator;
 import com.gw.kisansewa.models.FarmerDetails;
 import com.gw.kisansewa.models.Orders;
 import com.gw.kisansewa.models.RequestDetails;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -161,11 +163,13 @@ public class SellRequestAdapter extends RecyclerView.Adapter<SellRequestAdapter.
 
 //            Referencing all the elements
             final TextView sName, sMobileNo, sAddress, sCall, sMessage;
-            sName = (TextView)dialogView.findViewById(R.id.sellerName_sellerDetail);
-            sMobileNo = (TextView)dialogView.findViewById(R.id.sellerNo_sellerDetail);
-            sAddress = (TextView)dialogView.findViewById(R.id.sellerAddress_sellerDetail);
-            sCall = (TextView)dialogView.findViewById(R.id.call_sellerDetail);
-            sMessage = (TextView)dialogView.findViewById(R.id.message_sellerDetail);
+            final CircleImageView sImage;
+            sImage = dialogView.findViewById(R.id.seller_image_sellerDetail);
+            sName = dialogView.findViewById(R.id.sellerName_sellerDetail);
+            sMobileNo = dialogView.findViewById(R.id.sellerNo_sellerDetail);
+            sAddress = dialogView.findViewById(R.id.sellerAddress_sellerDetail);
+            sCall = dialogView.findViewById(R.id.call_sellerDetail);
+            sMessage = dialogView.findViewById(R.id.message_sellerDetail);
 
             RequestAPI requestAPI = RequestGenerator.createService(RequestAPI.class);
             Call<FarmerDetails> viewFarmerCall = requestAPI.getFarmerDetails(requestDetails.get(position).getBuyerMobileNo());
@@ -174,6 +178,8 @@ public class SellRequestAdapter extends RecyclerView.Adapter<SellRequestAdapter.
                 public void onResponse(Call<FarmerDetails> call, Response<FarmerDetails> response) {
                     if(response.code() == 200){
                         FarmerDetails farmer = response.body();
+                        if(!farmer.getImage().equals(""))
+                            Picasso.with(context).load(farmer.getImage()).into(sImage);
                         sName.setText(farmer.getName());
                         sMobileNo.setText(farmer.getMobileNo());
                         String area = farmer.getArea();
